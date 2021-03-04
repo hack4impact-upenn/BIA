@@ -2,17 +2,17 @@ import { useMemo, useState } from 'react';
 import { QueryCache, ReactQueryCacheProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import auth from './api/auth';
-import AppContainer from './components/AppContainer';
+import AppContainer from './components/AppContainer.tsx';
 import PublicRoute from './components/routing/PublicRoute';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { AuthContext } from './context';
 
 // import pages
-import LoginPage from './pages/authflow/LoginPage';
-import RegisterPage from './pages/authflow/RegisterPage';
-import IndexPage from './pages/IndexPage';
-import NotFoundPage from './pages/NotFoundPage';
-import DashboardPage from './pages/DashboardPage';
+import LoginPage from './pages/authflow/LoginPage.tsx';
+import RegisterPage from './pages/authflow/RegisterPage.tsx';
+import IndexPage from './pages/IndexPage.tsx';
+import NotFoundPage from './pages/NotFoundPage.tsx';
+import DashboardPage from './pages/DashboardPage.tsx';
 import Map from './components/Map.tsx';
 import Card from './components/Card.tsx';
 
