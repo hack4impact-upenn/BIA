@@ -20,13 +20,9 @@ const FooterContainer = styled.div`
 const AppContainer = ({ children }) => {
   return (
     <div>
-      <Navbar />
       {children}
       <FooterContainer>
-        <h1 className="has-text-grey-light">
-          Made with{' '}
-          <i className="fas fa-heart" style={{ color: '#e74c3c' }}></i> by DT
-        </h1>
+        <h1 style={{ color: 'black' }}>Black Innovation Alliance</h1>
       </FooterContainer>
     </div>
   );
