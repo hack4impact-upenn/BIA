@@ -23,7 +23,7 @@ function Navbar() {
       <div className="container">
         <div className="navbar-brand">
           <a href="/" className="navbar-item title is-4">
-            🚀 TS-Boilerplate
+            Black Innovation Alliance
           </a>
         </div>
         <div className="navbar-menu">
