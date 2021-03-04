@@ -13,8 +13,8 @@ import RegisterPage from './pages/authflow/RegisterPage';
 import IndexPage from './pages/IndexPage';
 import NotFoundPage from './pages/NotFoundPage';
 import DashboardPage from './pages/DashboardPage';
-import Map from './components/Map';
-import Card from './components/Card';
+import Map from './components/Map.tsx';
+import Card from './components/Card.tsx';
 
 const queryCache = new QueryCache();
 
