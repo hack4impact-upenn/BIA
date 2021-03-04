@@ -8,15 +8,6 @@ import auth from './auth';
  * every request, in the Authorization: `Bearer X` header. It also detects when
  * an invalid token (401) response is received, and uses the refresh token to
  * automatically obtain a new access token.
- *
- * Example of use (from a component):
- *
- * ```
- * import api from "../api";
- *
- * const resp = await api.get('/api/users');
- * console.log(resp.data);
- * ```
  */
 const api = axios.create();
 

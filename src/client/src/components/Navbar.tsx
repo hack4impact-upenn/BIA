@@ -10,6 +10,8 @@ const NavBarItems = styled.div`
   }
 `;
 
+//Might add this component later. Keep it for now because the login/register control might be useful.
+
 function Navbar() {
   const auth = useContext(AuthContext);
   const history = useHistory();
@@ -23,7 +25,7 @@ function Navbar() {
       <div className="container">
         <div className="navbar-brand">
           <a href="/" className="navbar-item title is-4">
-            🚀 TS-Boilerplate
+            Black Innovation Alliance
           </a>
         </div>
         <div className="navbar-menu">
