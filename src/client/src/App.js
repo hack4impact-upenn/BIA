@@ -1,3 +1,4 @@
+import React from 'react';
 import { useMemo, useState } from 'react';
 import { QueryCache, ReactQueryCacheProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';

@@ -1,6 +1,9 @@
+import React from 'react';
 import { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { AuthContext } from '../../context';
+
+//Componetes/pages that don't need login
 
 const PrivateRoute = (props) => {
   const auth = useContext(AuthContext);
