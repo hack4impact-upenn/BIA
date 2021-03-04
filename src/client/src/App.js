@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import { QueryCache, ReactQueryCacheProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query-devtools';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import auth from './api/auth';
 import AppContainer from './components/AppContainer';
@@ -47,7 +46,6 @@ function App() {
       <Router>
         <AppContainer>
           <ReactQueryCacheProvider queryCache={queryCache}>
-            <ReactQueryDevtools />
             <main>
               <Switch>
                 <PublicRoute exact path="/" component={IndexPage} />
