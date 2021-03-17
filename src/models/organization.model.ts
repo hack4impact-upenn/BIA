@@ -34,7 +34,12 @@ const OrganizationSchema = new Schema({
   shortDescription: { type: String, required: true },
   longDescription: { type: String, required: false },
   headquarterCity: { type: String, required: true },
-  pointOfContact: { type: String, required: true },
+  pointOfContact: {
+    name: { type: String, required: true },
+    title: { type: String, required: true },
+    email: { type: String, required: true },
+    required: true,
+  },
   contactEmail: { type: String, required: true },
   website: { type: String, required: true },
   twitter: { type: String, required: false },
