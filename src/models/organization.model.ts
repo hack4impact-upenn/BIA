@@ -8,7 +8,11 @@ interface IOrganization extends mongoose.Document {
   shortDescription: string;
   longDescription: string;
   headquarterCity: string;
-  pointOfContact: string;
+  pointOfContact: {
+    title?: string;
+    name: string;
+    email: string;
+  };
   contactEmail: string;
   website: string;
   twitter: string;
@@ -24,7 +28,7 @@ interface IOrganization extends mongoose.Document {
   logo: Buffer;
   signatureProgram: {
     image: Buffer;
-    description: string;
+    description?: string;
   };
 }
 
@@ -36,7 +40,7 @@ const OrganizationSchema = new Schema({
   headquarterCity: { type: String, required: true },
   pointOfContact: {
     name: { type: String, required: true },
-    title: { type: String, required: true },
+    title: { type: String, required: false },
     email: { type: String, required: true },
     required: true,
   },
