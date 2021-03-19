@@ -1,97 +1,101 @@
-import React from 'react' 
-import styled from 'styled-components' 
- 
+import React from 'react';
+import styled from 'styled-components';
+import SocialsList from './SocialsList.tsx';
+import colors from '../common/Colors';
+
 // work here for task 1.2
 
-// const Card = (props) => { 
-//   return <div>card</div>; 
+// const Card = (props) => {
+//   return <div>card</div>;
 // };s
- 
- 
+
 const Container = styled.div`
   border-radius: 10px;
-  height: 300px;
-  background-color: Colors.primaryPurple;
-  overflow: hidden; 
+  height: 250px;
+  width: 600px;
+  padding: 10px;
+  background-color: ${colors.PURPLE};
+
   justify-content: center;
-	align-items: center;
+  margin: auto;
+  align-items: center;
   box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
   &:hover {
     box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
     transition-duration: 0.5s;
   }
-`
+`;
 
-const Titlebar = styled.view`
-	width: 100%;
-	margin-top: 50px;
-	padding-left: 80px;
+const Titlebar = styled.div`
+  width: 100%;
+  padding: 0px;
+`;
+
+const StyledP = styled.p`
+  color: white;
+  font-size: 18px;
+`;
+
+const InfoDiv = styled.div`
+  max-width: 280px;
+  margin: 0px;
+`;
+
+const StyledSpan = styled.span`
+  color: white;
+  font-size: 12px;
 `;
 
 const Avatar = styled.img`
-  width: 44px;
-	height: 44px;
-	background: black;
-	border-radius: 22px;
-	margin-left: 20px;
-  position: absolute;
-	top: 0;
-	left: 0;
-  
+  display: inline;
+  width: 60px;
+  height: 60px;
+  background: black;
+  border-radius: 50%;
+  margin: 0;
 `;
 
-const OrgName = styled.text`
-	font-size: 20px;
-	font-weight: 500;
-	color: white;
+const OrgName = styled.span`
+  display: block;
+  font-size: 24px;
+  font-weight: 500;
+  color: ${colors.YELLOW};
 `;
 
-
-const OrgCity = styled.text`
-  font-size: 20px;
-	font-weight: 500;
-	color: white;
-
-`
-const OrgDescription = styled.text`
-  display: flex;
-  width: 100%;
-  height: 20%;
-  text-align: center;
+const OrgCity = styled.span`
+  font-size: 16px;
+  font-weight: 500;
   color: white;
+`;
+const OrgDescription = styled.p`
+  text-align: start;
+  color: white;
+  font-size: 12px;
+`;
 
-`
-  
+const dummyOrg = {
+  name: 'Hack for Impact',
+  location: 'Philadelphia, PA',
+  shortDisc:
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
+  facebook: 'facebok.com',
+  website: 'hack4impact.org/',
+};
+
 const Card = ({ descriptionText, photo, name, cityState }) => (
-  <Container
-   
-  >
+  <div style={{ marginTop: '100px' }}>
+    <Container>
+      <Titlebar>
+        <Avatar src={photo} />
+        <InfoDiv>
+          <OrgName>{dummyOrg.name}</OrgName>
+          <OrgCity>{dummyOrg.location}</OrgCity>
+        </InfoDiv>
+      </Titlebar>
+      <OrgDescription>{dummyOrg.shortDisc}</OrgDescription>
+      <SocialsList org={dummyOrg} />
+    </Container>
+  </div>
+);
 
-  <Titlebar>
-					<Avatar  src={photo} />
-					<OrgName>
-          <p style={{ margin: 'auto' }}>{name}</p>
-          </OrgName>
-          <OrgCity>
-          <p style={{ margin: 'auto' }}>{cityState}</p>
-          </OrgCity> 
-
-				</Titlebar>
-    <div style={{ width: '100%', height: '80%' }}></div>
-    
-
-   
-    <OrgDescription>
-      <p style={{ margin: 'auto' }}>{descriptionText}</p>
-    </OrgDescription>
-
-  </Container>
-)
-
-export default Card
-
-  
-  
-  
-
-
+export default Card;
