@@ -10,7 +10,7 @@ const IconWrapper = styled.span`
   cursor: pointer;
   width: 50px;
   height: 50px;
-  border: 2px solid #ddd; /* add border to the buttons */
+  border: 1px solid #ddd;
   box-shadow: 0 3px 3px #999;
   padding: 0px;
   text-decoration: none;
