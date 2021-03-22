@@ -52,9 +52,9 @@ export const Icon = ({
     <IconWrapper noAlign={noAlign} noMargin={noMargin}>
       {svg.default({
         preserveAspectRatio: 'xMidYMid meet',
-        width: size,
-        height: size,
-        viewBox: `0 0 ${iconInfo.width} ${iconInfo.height}`,
+        width: 30,
+        height: 30,
+        viewBox: `0 0 ${30} ${30}`,
         ...props,
       })}
     </IconWrapper>
