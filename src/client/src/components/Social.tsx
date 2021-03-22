@@ -6,12 +6,11 @@ import colors from '../common/Colors';
 const IconWrapper = styled.span`
   display: inline-block;
   position: relative;
-  margin: 5px;
+  margin-left: 5px;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
-  border: 1px solid #ddd;
-  box-shadow: 0 3px 3px #999;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #000000;
   padding: 0px;
   text-decoration: none;
   text-align: center;
@@ -27,11 +26,11 @@ const Social = (props) => {
   const { type, link } = props;
   return (
     <>
-      <IconWrapper>
-        <a href={`http://${link}`} target="blank">
+      <a href={`http://${link}`} target="blank">
+        <IconWrapper>
           <Icon name={type} />
-        </a>
-      </IconWrapper>
+        </IconWrapper>
+      </a>
     </>
   );
 };

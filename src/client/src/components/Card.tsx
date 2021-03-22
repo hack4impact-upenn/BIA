@@ -5,17 +5,12 @@ import colors from '../common/Colors';
 
 // work here for task 1.2
 
-// const Card = (props) => {
-//   return <div>card</div>;
-// };s
-
 const Container = styled.div`
   border-radius: 10px;
-  height: 250px;
-  width: 600px;
+  height: 210px;
+  width: 400px;
   padding: 10px;
   background-color: ${colors.PURPLE};
-
   justify-content: center;
   margin: auto;
   align-items: center;
@@ -27,66 +22,61 @@ const Container = styled.div`
 `;
 
 const Titlebar = styled.div`
-  width: 100%;
   padding: 0px;
-`;
-
-const StyledP = styled.p`
-  color: white;
-  font-size: 18px;
+  positon: relative;
 `;
 
 const InfoDiv = styled.div`
-  max-width: 280px;
-  margin: 0px;
-`;
-
-const StyledSpan = styled.span`
-  color: white;
-  font-size: 12px;
+  display: inline-block;
+  margin-left: 20px;
+  margin-bottom: 8px;
 `;
 
 const Avatar = styled.img`
   display: inline;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background: black;
   border-radius: 50%;
-  margin: 0;
 `;
 
 const OrgName = styled.span`
   display: block;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   color: ${colors.YELLOW};
 `;
 
 const OrgCity = styled.span`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   color: white;
 `;
 const OrgDescription = styled.p`
   text-align: start;
   color: white;
-  font-size: 12px;
+  font-size: 10px;
+  margin-bottom: 6px;
 `;
 
 const dummyOrg = {
-  name: 'Hack for Impact',
+  name: 'Black Innovation Alliance',
   location: 'Philadelphia, PA',
+  tags: ['Inoovation', 'Entrepreneuership'],
   shortDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
   facebook: 'facebok.com',
   website: 'hack4impact.org/',
 };
-
-const Card = ({ descriptionText, photo, name, cityState }) => (
-  <div style={{ marginTop: '100px' }}>
+//we will provide an org to this component, but for now we are using the dummy org object to fill these fields
+const Card = (org) => (
+  <div
+    className="is-pulled-left"
+    style={{ marginTop: '100px', marginLeft: '50px' }}
+  >
     <Container>
       <Titlebar>
-        <Avatar src={photo} />
+        <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
         <InfoDiv>
           <OrgName>{dummyOrg.name}</OrgName>
           <OrgCity>{dummyOrg.location}</OrgCity>
