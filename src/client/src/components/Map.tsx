@@ -12,8 +12,7 @@ import Pins from './Pins.tsx';
 
 console.log(process.env);
 
-const MAPBOX_TOKEN =
-  'pk.eyJ1IjoiYm5kZW1lcnMiLCJhIjoiY2tsenF2NGIzMGRxYTJvcDg2OXJlZmJ2biJ9.u0aRAyvkPsmNcxaF2kdfZQ'; // Set your mapbox token here
+const MAPBOX_TOKEN = 'token'; // Set your mapbox token here
 
 const CITIES = [
   {
