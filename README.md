@@ -47,12 +47,6 @@ For the first time after cloning only:
 ```bash
 $ # setup yarn
 $ yarn setup
-$ # run both server and client
-$ yarn dev
-$ # run server only
-$ yarn server
-$ # run client only
-$ yarn client
 ```
 
 ```bash
