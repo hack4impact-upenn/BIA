@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Colors from '../common/Colors';
 
 const FooterContainer = styled.div`
   position: fixed;
@@ -7,7 +8,7 @@ const FooterContainer = styled.div`
   bottom: 0;
   height: 50px;
   width: 100%;
-  background-color: #ecf0f1;
+  background-color: ${Colors.PURPLE};
   color: white;
   text-align: center;
   display: flex;
@@ -21,7 +22,7 @@ const AppContainer = ({ children }) => {
     <div>
       {children}
       <FooterContainer>
-        <h1 style={{ color: 'black' }}>Black Innovation Alliance</h1>
+        <h1 style={{ color: Colors.YELLOW }}>Black Innovation Alliance</h1>
       </FooterContainer>
     </div>
   );
