@@ -13,6 +13,7 @@ const Container = styled.div`
   background-color: ${colors.PURPLE};
   justify-content: center;
   margin: auto;
+  cursor: pointer;
   align-items: center;
   box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
   &:hover {
@@ -72,7 +73,8 @@ const dummyOrg = {
 const Card = (org) => (
   <div
     className="is-pulled-left"
-    style={{ marginTop: '100px', marginLeft: '50px' }}
+    style={{ marginBottom: '20px', marginLeft: '10px', marginRight: '10px' }}
+    onClick={() => alert('expanded view')}
   >
     <Container>
       <Titlebar>
