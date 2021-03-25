@@ -5,7 +5,7 @@ import Colors from '../common/Colors';
 export const Tag = styled.span`
   margin: 5px 4px 4px 5px;
   font-weight: 300;
-  background-color: grey;
+  background-color: white;
   color: ${Colors.PURPLE};
   border-radius: 10%;
   padding: 5px;

@@ -119,10 +119,10 @@ const dummyOrgs = [
   dummyOrg8,
 ];
 
-const CardsList = ({ orgs }) => {
+const CardsList = (props) => {
   const cardArray = dummyOrgs.map((curr) => (
     <div key={curr._id}>
-      <Card org={curr} handleClick={() => alert(curr.name)} />
+      <Card org={curr} handleClick={() => props.switchToExpanded(curr)} />
     </div>
   ));
   return (

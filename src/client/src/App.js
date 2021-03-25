@@ -17,6 +17,8 @@ import DashboardPage from './pages/DashboardPage.tsx';
 import Map from './components/Map.tsx';
 import Card from './components/Card.tsx';
 import CardsList from './components/CardsList.tsx';
+import ExpandedCard from './components/ExpandedCard.tsx';
+import CardWrapper from './components/CardWrapper.tsx';
 
 const queryCache = new QueryCache();
 
@@ -56,6 +58,16 @@ function App() {
                 <PublicRoute exact path="/map" component={Map} />
                 <PublicRoute exact path="/card" component={Card} />
                 <PublicRoute exact path="/cardslist" component={CardsList} />
+                <PublicRoute
+                  exact
+                  path="/expandedcard"
+                  component={ExpandedCard}
+                />
+                <PublicRoute
+                  exact
+                  path="/cardwrapper"
+                  component={CardWrapper}
+                />
                 <PrivateRoute
                   exact
                   path="/dashboard"
