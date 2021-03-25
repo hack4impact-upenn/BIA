@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './Card.tsx';
 import styled from 'styled-components';
 import colors from '../common/Colors';
+import { moveCursor } from 'node:readline';
 
 // var Dimensions = require('Dimensions');
 // var {
@@ -23,6 +24,7 @@ const Container = styled.div`
 `;
 
 const dummyOrg1 = {
+  _id: '1',
   name: 'Black Innovation Alliance',
   location: 'Philadelphia, PA',
   tags: ['Inoovation', 'Entrepreneuership'],
@@ -32,6 +34,7 @@ const dummyOrg1 = {
   website: 'hack4impact.org/',
 };
 const dummyOrg2 = {
+  _id: '2',
   name: 'Hack4Impact',
   location: 'Philadelphia, PA',
   tags: ['Social Impact', 'Tech'],
@@ -41,6 +44,7 @@ const dummyOrg2 = {
   website: 'hack4impact.org/',
 };
 const dummyOrg3 = {
+  _id: '3',
   name: 'Here-to-Serve',
   location: 'Philadelphia, PA',
   tags: ['HealthCare', 'Entrepreneuership'],
@@ -51,6 +55,7 @@ const dummyOrg3 = {
 };
 
 const dummyOrg4 = {
+  _id: '4',
   name: 'Here-to-Serve',
   location: 'Philadelphia, PA',
   tags: ['HealthCare', 'Entrepreneuership'],
@@ -61,6 +66,7 @@ const dummyOrg4 = {
 };
 
 const dummyOrg5 = {
+  _id: '5',
   name: 'Here-to-Serve',
   location: 'Philadelphia, PA',
   tags: ['HealthCare', 'Entrepreneuership'],
@@ -71,6 +77,7 @@ const dummyOrg5 = {
 };
 
 const dummyOrg6 = {
+  _id: '6',
   name: 'Here-to-Serve',
   location: 'Philadelphia, PA',
   tags: ['HealthCare', 'Entrepreneuership'],
@@ -81,6 +88,7 @@ const dummyOrg6 = {
 };
 
 const dummyOrg7 = {
+  _id: '7',
   name: 'Here-to-Serve',
   location: 'Philadelphia, PA',
   tags: ['HealthCare', 'Entrepreneuership'],
@@ -91,6 +99,7 @@ const dummyOrg7 = {
 };
 
 const dummyOrg8 = {
+  _id: '8',
   name: 'Here-to-Serve',
   location: 'Philadelphia, PA',
   tags: ['HealthCare', 'Entrepreneuership'],
@@ -109,10 +118,13 @@ const dummyOrgs = [
   dummyOrg7,
   dummyOrg8,
 ];
-const dummyCards = dummyOrgs.map((org) => Card(org));
 
 const CardsList = ({ orgs }) => {
-  const cardArray = dummyOrgs.map((curr) => <Card org={curr} />);
+  const cardArray = dummyOrgs.map((curr) => (
+    <div key={curr._id}>
+      <Card org={curr} handleClick={() => alert(curr.name)} />
+    </div>
+  ));
   return (
     <div>
       <Container>{cardArray}</Container>

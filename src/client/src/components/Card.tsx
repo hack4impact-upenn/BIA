@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
+import { construct } from 'core-js/fn/reflect';
+import { isConstructorDeclaration } from 'typescript';
 
 // work here for task 1.2
 
@@ -70,24 +72,27 @@ const dummyOrg = {
   website: 'hack4impact.org/',
 };
 //we will provide an org to this component, but for now we are using the dummy org object to fill these fields
-const Card = (org) => (
-  <div
-    className="is-pulled-left"
-    style={{ marginBottom: '20px', marginLeft: '10px', marginRight: '10px' }}
-    onClick={() => alert('expanded view')}
-  >
-    <Container>
-      <Titlebar>
-        <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
-        <InfoDiv>
-          <OrgName>{dummyOrg.name}</OrgName>
-          <OrgCity>{dummyOrg.location}</OrgCity>
-        </InfoDiv>
-      </Titlebar>
-      <OrgDescription>{dummyOrg.shortDisc}</OrgDescription>
-      <SocialsList org={dummyOrg} />
-    </Container>
-  </div>
-);
+const Card = (props) => {
+  return (
+    <div
+      className="is-pulled-left"
+      style={{ marginBottom: '20px', marginLeft: '10px', marginRight: '10px' }}
+    >
+      <Container>
+        <div onClick={() => props.handleClick()}>
+          <Titlebar>
+            <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
+            <InfoDiv>
+              <OrgName>{props.org.name}</OrgName>
+              <OrgCity>{props.org.location}</OrgCity>
+            </InfoDiv>
+          </Titlebar>
+          <OrgDescription>{props.org.shortDisc}</OrgDescription>
+        </div>
+        <SocialsList org={props.org} />
+      </Container>
+    </div>
+  );
+};
 
 export default Card;
