@@ -38,6 +38,12 @@ REACT_APP_API_URL="http://localhost:5000"
 
 #### Running Project
 
+For the first time after cloning only:
+```bash
+$ # setup yarn
+$ yarn setup
+```
+
 ```bash
 $ # run both server and client
 $ yarn dev
