@@ -12,7 +12,7 @@ import Pins from './Pins.tsx';
 
 console.log(process.env);
 
-const MAPBOX_TOKEN = 'token'; // Set your mapbox token here
+const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN; // Set your mapbox token here
 
 const CITIES = [
   {
