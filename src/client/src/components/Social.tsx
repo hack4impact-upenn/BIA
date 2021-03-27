@@ -3,17 +3,18 @@ import styled from 'styled-components';
 import { Icon } from '../common/Icon.tsx';
 import colors from '../common/Colors';
 
-const IconWrapper = styled.span`
+const IconWrapper = styled.a`
   display: inline-block;
   position: relative;
   margin-left: 5px;
-  cursor: pointer;
-  width: 45px;
-  height: 45px;
-  border: 1px solid #000000;
   padding: 0px;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  padding: 0px;
+  border: 1px solid #000000;
   text-decoration: none;
-  text-align: center;
+  text-align: start;
   color: ${colors.PURPLE};
   background-color: ${colors.YELLOW};
   font-size: 25px;
@@ -26,11 +27,9 @@ const Social = (props) => {
   const { type, link } = props;
   return (
     <>
-      <a href={`http://${link}`} target="blank">
-        <IconWrapper>
-          <Icon name={type} />
-        </IconWrapper>
-      </a>
+      <IconWrapper href={`http://${link}`} target="blank">
+        <Icon name={type} />
+      </IconWrapper>
     </>
   );
 };
