@@ -2,9 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
-import { construct } from 'core-js/fn/reflect';
-import { isConstructorDeclaration } from 'typescript';
-
 
 // work here for task 1.2
 
@@ -97,4 +94,3 @@ const Card = (props) => {
 };
 
 export default Card;
-
