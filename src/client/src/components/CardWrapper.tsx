@@ -4,12 +4,25 @@ import { render } from 'react-dom';
 import CardsList from './CardList.tsx';
 import ExpandedCard from './ExpandedCard.tsx';
 
+let currOrg = {
+  name: '',
+  yearFounded: '',
+  location: '',
+tags: [],
+shortDisc: '',
+longDisc:'',
+  facebook: '',
+website: '',
+};
+
 const CardWrapper = () => {
-  let currOrg;
+  
+  
   const [state, setState] = useState('list');
   const switchToExpanded = (org) => {
+    currOrg = org
+    console.log(currOrg)
     setState('expanded');
-    currOrg = org;
   };
 
   const switchToList = () => {
@@ -17,10 +30,10 @@ const CardWrapper = () => {
   };
   return (
     <div>
-      {state === 'list' && <CardsList switchToExpanded={switchToExpanded} />}
+      {state === 'list' && <CardsList  switch={(o) => switchToExpanded(o)} />}
 
       {state === 'expanded' && (
-        <ExpandedCard org={currOrg} handleClick={() => switchToList} />
+        <ExpandedCard org={currOrg} switchToList={() => switchToList} />
       )}
     </div>
   );
