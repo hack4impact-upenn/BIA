@@ -9,7 +9,7 @@ const Container = styled.div`
   border-radius: 10px;
   height: 580px;
   overflow-y: auto;
-  width: 400px;
+  width: 440px;
   padding: 10px;
   background-color: ${colors.PURPLE};
   justify-content: center;
@@ -123,59 +123,36 @@ const TagBar = styled.div`
   positon: absolute;
 `;
 
-const TagBlock = styled.button`
-  font-size: 20px;
-  font-weight: 500;
-  background: white
-  color: black;
-  border: 2px solid white;
-  border-radius: 3px;
-`;
 
-
-
-const dummyOrg = {
-  name: 'Black Innovation Alliance',
-  yearFounded: '2000',
-  location: 'Philadelphia, PA',
-  tags: ['Innovation', 'Entrepreneuership'],
-  shortDisc: 
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
-  longDisc:
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
-    facebook: 'facebok.com',
-  website: 'hack4impact.org/',
-};
-//we will provide an org to this component, but for now we are using the dummy org object to fill these fields
-const ExpandedCard = ({props}) => {
-  
+const ExpandedCard = (props) => {
+  console.log(props.org)
    return(
   <div
     className="is-pulled-left"
-    style={{ marginTop: '100px', marginLeft: '50px' }}
+    style={{ marginTop: '50px', marginLeft: '50px' }}
   >
     
     <Container>
       <TopBar>
-      <FaArrowLeft size = {20} onClick={props.handleClick()}/>
-      <OrgTitle>{dummyOrg.name}</OrgTitle>
+      <FaArrowLeft size = {20} onClick={props.switchToList()}/>
+      <OrgTitle>{props.org.name}</OrgTitle>
       </TopBar>
       <Titlebar>
         <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
         <InfoDiv>
-          <OrgName>{dummyOrg.name}</OrgName>
-          <OrgYear>Established: {dummyOrg.yearFounded}</OrgYear>
-          <OrgCity>{dummyOrg.location}</OrgCity>
-          <OrgWebsite> Website: {dummyOrg.website}</OrgWebsite>
+          <OrgName>{props.org.name}</OrgName>
+          <OrgYear>Established: {props.org.yearFounded}</OrgYear>
+          <OrgCity>{props.org.location}</OrgCity>
+          <OrgWebsite> Website: {props.org.website}</OrgWebsite>
         </InfoDiv>
       </Titlebar>
       <DescriptionDiv>
-      <OrgDescription>{dummyOrg.longDisc}</OrgDescription>
+      <OrgDescription>{props.org.longDisc}</OrgDescription>
       </DescriptionDiv>
       <TagBar>  
-          <Tags tags = {dummyOrg.tags}></Tags>
+          <Tags tags = {props.org.tags}></Tags>
          </TagBar>
-      <SocialsList org={dummyOrg} />
+      <SocialsList org={props.org} />
     </Container>
     
   </div>

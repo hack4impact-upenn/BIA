@@ -29,6 +29,7 @@
     }
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.12.13",
     "@types/jest": "^26.0.15",
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^3.6.1",
@@ -46,6 +47,7 @@
   },
   "dependencies": {
     "@creativebulma/bulma-divider": "^1.1.0",
+    "@react-icons/all-files": "^4.1.0",
     "@sendgrid/mail": "^7.4.0",
     "@svgr/webpack": "^5.5.0",
     "@types/bcrypt": "^3.0.0",
@@ -88,6 +90,9 @@
     "node-sass": "4.14.1",
     "react-bulma-components": "^3.4.0",
     "react-dom": "^17.0.1",
+    "react-icons": "^4.2.0",
+    "react-native-ionicons": "^4.6.5",
+    "react-native-vector-icons": "^8.1.0",
     "react-query": "^2.26.3",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.3.1",
