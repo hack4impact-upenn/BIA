@@ -5,7 +5,6 @@ import colors from '../common/Colors';
 import Card from './Card.tsx';
 import { moveCursor } from 'node:readline';
 
-
 const Container = styled.div`
   border-radius: 10px;
   height: 795px;
@@ -30,18 +29,22 @@ const dummyOrg1 = {
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
   facebook: 'facebok.com',
   website: 'hack4impact.org/',
+  instagram: 'here-to-serve.org/',
+  linkedin: 'wooo.com',
 };
 const dummyOrg2 = {
   name: 'Hack4Impact',
   yearFounded: '2000',
   longDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
-   location: 'Philadelphia, PA',
+  location: 'Philadelphia, PA',
   tags: ['Social Impact', 'Tech'],
   shortDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
   facebook: 'facebok.com',
   website: 'hack4impact.org/',
+  twitter: 'here-to-serve.org/',
+  linkedin: 'wooo.com',
 };
 const dummyOrg3 = {
   name: 'Here-to-Serve',
@@ -54,6 +57,7 @@ const dummyOrg3 = {
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
   facebook: 'facebok.com',
   website: 'here-to-serve.org/',
+  linkedin: 'wooo.com',
 };
 
 const dummyOrg4 = {
@@ -65,8 +69,9 @@ const dummyOrg4 = {
   tags: ['HealthCare', 'Entrepreneuership'],
   shortDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
-  facebook: 'facebok.com',
   website: 'here-to-serve.org/',
+  instagram: 'here-to-serve.org/',
+  linkedin: 'wooo.com',
 };
 
 const dummyOrg5 = {
@@ -78,8 +83,10 @@ const dummyOrg5 = {
   tags: ['HealthCare', 'Entrepreneuership'],
   shortDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
-  facebook: 'facebok.com',
   website: 'here-to-serve.org/',
+  twitter: 'here-to-serve.org/',
+  instagram: 'here-to-serve.org/',
+  linkedin: 'wooo.com',
 };
 
 const dummyOrg6 = {
@@ -93,13 +100,16 @@ const dummyOrg6 = {
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
   facebook: 'facebok.com',
   website: 'here-to-serve.org/',
+  twitter: 'here-to-serve.org/',
+  instagram: 'here-to-serve.org/',
+  linkedin: 'wooo.com',
 };
 
 const dummyOrg7 = {
   name: 'Here-to-Serve',
   yearFounded: '2000',
   longDisc:
-  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
   location: 'Philadelphia, PA',
   tags: ['HealthCare', 'Entrepreneuership'],
   shortDisc:
@@ -133,18 +143,19 @@ const dummyOrgs = [
 //const dummyCards = dummyOrgs.map((org) => Card(org));
 
 const CardsList = (props) => {
-    const cardArray = dummyOrgs.map((curr) => (
-      <div key={curr._id} 
-      >
-        <Card org={curr} handleClick={() => props.switch(curr)} />
-      </div>
-    ));
-    return (
-      <div className="is-pulled-left"
-      style={{ marginTop: '50px', marginLeft: '50px' }}>
-        <Container>{cardArray}</Container>
-      </div>
-    );
-  };
-  
-  export default CardsList;
+  const cardArray = dummyOrgs.map((curr) => (
+    <div key={curr._id}>
+      <Card org={curr} handleClick={() => props.switch(curr)} />
+    </div>
+  ));
+  return (
+    <div
+      className="is-pulled-left"
+      style={{ marginTop: '50px', marginLeft: '50px' }}
+    >
+      <Container>{cardArray}</Container>
+    </div>
+  );
+};
+
+export default CardsList;
