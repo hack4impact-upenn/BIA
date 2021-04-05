@@ -41,6 +41,13 @@ Then, create another file called ".env" in "src/client", it should look like the
 REACT_APP_API_URL="http://localhost:5000"
 ```
 
+Finally, create another file called ".env.development.local" in "src/client", it should look like the following:
+
+```
+REACT_APP_MAPBOX_TOKEN=mapbox-access-token-placeholder
+```
+
+
 #### Running Project
 
 For the first time after cloning only:
