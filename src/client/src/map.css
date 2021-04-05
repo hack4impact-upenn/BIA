@@ -1,9 +1,8 @@
 .map-container {
-  position: absolute;
   top: 0;
-  bottom: 0;
-  left: 0;
+  margin: 20px;
   right: 0;
+  overflow: hidden;
 }
 
 .marker {

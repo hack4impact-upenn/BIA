@@ -1,6 +1,8 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import api from '../api';
+import Map from '../components/Map.tsx';
+import CardWrapper from '../components/CardWrapper.tsx';
 
 function IndexPage() {
   const { isLoading, error, data } = useQuery('users', () =>
@@ -10,8 +12,16 @@ function IndexPage() {
   );
 
   return (
-    <div className="container center">
-      <h1>This is home page</h1>
+    <div
+      className="container center"
+      style={{ display: 'flex', flexDirection: 'row' }}
+    >
+      <div>
+        <CardWrapper />
+      </div>
+      <div style={{ width: '70%' }}>
+        <Map />
+      </div>
     </div>
   );
 }
