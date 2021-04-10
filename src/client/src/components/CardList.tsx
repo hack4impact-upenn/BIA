@@ -149,10 +149,7 @@ const CardsList = (props) => {
     </div>
   ));
   return (
-    <div
-      className="is-pulled-left"
-      style={{ marginTop: '50px', marginLeft: '50px' }}
-    >
+    <div>
       <Container>{cardArray}</Container>
     </div>
   );

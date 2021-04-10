@@ -39,6 +39,7 @@ const Avatar = styled.img`
   height: 50px;
   background: black;
   border-radius: 50%;
+  border: 2px solid white;
 `;
 
 const OrgName = styled.span`
