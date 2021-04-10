@@ -17,7 +17,7 @@ const Dropdown: React.FC<DropdownProps> = ({ data }: DropdownProps) => {
       <div className="dropdown-trigger">
         <button
           className="button"
-          onClick={() => console.log('yeet')}
+          // onClick = {() => this.handleClick()}
           aria-haspopup="true"
           aria-controls="dropdown-menu3"
         >

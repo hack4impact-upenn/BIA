@@ -16,7 +16,7 @@ const DashboardPage: React.FC = () => {
           </div>
           <div className="column">
             <Subtitle>Partner</Subtitle>
-            <Dropdown2></Dropdown2>
+            <Dropdown></Dropdown>
           </div>
           <div className="column">
             <Subtitle>Update Logo</Subtitle>
