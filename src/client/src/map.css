@@ -3,6 +3,13 @@
   margin: 20px;
   right: 0;
   overflow: hidden;
+  min-height: 600px;
+}
+
+@media screen and (max-width: 768px) {
+  .map-container {
+    display: none;
+  }
 }
 
 .marker {

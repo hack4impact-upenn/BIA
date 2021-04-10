@@ -10,7 +10,7 @@ const Titlebar = styled.div`
   font-size: 48px;
   text-align: center;
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   color: ${Colors.PURPLE};
 `;
 
