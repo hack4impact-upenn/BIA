@@ -13,7 +13,6 @@ const Container = styled.div`
   padding: 10px;
   justify-content: center;
   align-items: center;
-  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
   margin: auto;
   position: relative;
 `;
@@ -149,10 +148,7 @@ const CardsList = (props) => {
     </div>
   ));
   return (
-    <div
-      className="is-pulled-left"
-      style={{ marginTop: '50px', marginLeft: '50px' }}
-    >
+    <div>
       <Container>{cardArray}</Container>
     </div>
   );

@@ -1,9 +1,15 @@
 .map-container {
-  position: absolute;
   top: 0;
-  bottom: 0;
-  left: 0;
+  margin: 20px;
   right: 0;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+@media screen and (max-width: 768px) {
+  .map-container {
+    display: none;
+  }
 }
 
 .marker {

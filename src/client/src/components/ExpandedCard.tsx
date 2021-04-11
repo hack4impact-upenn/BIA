@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
-import Tags from './Tags.tsx'
-import { FaArrowLeft} from 'react-icons/fa'
+import Tags from './Tags.tsx';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const Container = styled.div`
   border-radius: 10px;
@@ -29,7 +29,7 @@ const Titlebar = styled.div`
 
 const TopBar = styled.div`
   padding: 10px;
-  
+
   background: ${colors.YELLOW};
   width: 500px;
   height: 70px;
@@ -59,6 +59,7 @@ const Avatar = styled.img`
   margin-left: 10px;
   background: black;
   border-radius: 50%;
+  border: 2px solid white;
 `;
 
 const Arrow = styled.button`
@@ -79,8 +80,6 @@ const OrgTitle = styled.span`
   font-weight: 500;
   color: ${colors.WHITE};
 `;
-
-
 
 const OrgName = styled.span`
   display: block;
@@ -123,40 +122,33 @@ const TagBar = styled.div`
   positon: absolute;
 `;
 
-
 const ExpandedCard = (props) => {
-  console.log(props.org)
-   return(
-  <div
-    className="is-pulled-left"
-    style={{ marginTop: '50px', marginLeft: '50px' }}
-  >
-    
-    <Container>
-      <TopBar>
-      <FaArrowLeft size = {20} onClick={props.switchToList()}/>
-      <OrgTitle>{props.org.name}</OrgTitle>
-      </TopBar>
-      <Titlebar>
-        <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
-        <InfoDiv>
-          <OrgName>{props.org.name}</OrgName>
-          <OrgYear>Established: {props.org.yearFounded}</OrgYear>
-          <OrgCity>{props.org.location}</OrgCity>
-          <OrgWebsite> Website: {props.org.website}</OrgWebsite>
-        </InfoDiv>
-      </Titlebar>
-      <DescriptionDiv>
-      <OrgDescription>{props.org.longDisc}</OrgDescription>
-      </DescriptionDiv>
-      <TagBar>  
-          <Tags tags = {props.org.tags}></Tags>
-         </TagBar>
-      <SocialsList org={props.org} />
-    </Container>
-    
-  </div>
-   )
-}; 
+  return (
+    <div>
+      <Container>
+        <TopBar>
+          <FaArrowLeft size={20} onClick={props.switchToList()} />
+          <OrgTitle>{props.org.name}</OrgTitle>
+        </TopBar>
+        <Titlebar>
+          <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
+          <InfoDiv>
+            <OrgName>{props.org.name}</OrgName>
+            <OrgYear>Established: {props.org.yearFounded}</OrgYear>
+            <OrgCity>{props.org.location}</OrgCity>
+            <OrgWebsite> Website: {props.org.website}</OrgWebsite>
+          </InfoDiv>
+        </Titlebar>
+        <DescriptionDiv>
+          <OrgDescription>{props.org.longDisc}</OrgDescription>
+        </DescriptionDiv>
+        <TagBar>
+          <Tags tags={props.org.tags}></Tags>
+        </TagBar>
+        <SocialsList org={props.org} />
+      </Container>
+    </div>
+  );
+};
 
 export default ExpandedCard;
