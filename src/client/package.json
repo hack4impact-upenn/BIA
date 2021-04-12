@@ -21,6 +21,7 @@
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "clsx": "^1.1.1",
     "css-loader": "4.3.0",
+    "cypress": "^7.0.1",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "file-loader": "6.1.1",
@@ -77,6 +78,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
+    "cypress": "cypress open",
     "clean": "eslint \"./src/{pages,components}/**/*.{js,ts,tsx}\" \"*.{js,ts,tsx}\" --fix"
   },
   "browserslist": {
@@ -147,5 +149,6 @@
     "presets": [
       "react-app"
     ]
-  }
+  },
+  "devDependencies": {}
 }
