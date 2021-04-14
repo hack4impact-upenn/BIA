@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 interface IOrganization extends mongoose.Document {
+  _id: string;
   organizationName: string;
   yearFounded: number;
   shortDescription: string;
