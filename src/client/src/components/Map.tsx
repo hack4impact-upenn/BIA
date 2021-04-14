@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import '../map.css';
-import '../mapbox-gl.css';
 
 mapboxgl.accessToken =
   'pk.eyJ1Ijoiams2MDYwNjA2MCIsImEiOiJja2J4Nm4yd3kwampvMnJwZ2l6a2hrY3RjIn0.7WBReAD5vV1__FmyUaPMbA';
@@ -14,8 +14,8 @@ const Map = () => {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       // styles: https://docs.mapbox.com/api/maps/#styles
-      style: 'mapbox://styles/jk60606060/ckmxoum3w11cf17ld76oy7cgb',
-      center: [-98.5795, 39.8283],
+      style: 'mapbox://styles/jk60606060/cknh2goxk0d6717o5fv913vam',
+      center: [0, 0],
       zoom: 4.25,
     });
 
