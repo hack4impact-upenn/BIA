@@ -26,9 +26,9 @@ interface IOrganization extends mongoose.Document {
   programTypes: string[];
   focusArea: string;
   profitStatus: string;
-  logo: Buffer;
+  logoURL: string;
   signatureProgram: {
-    image: Buffer;
+    imageURL: string;
     description?: string;
   };
 }
@@ -57,9 +57,9 @@ const OrganizationSchema = new Schema({
   programTypes: { type: [String], required: true },
   focusArea: { type: String, required: true },
   profitStatus: { type: String, required: true },
-  logo: { type: Buffer, required: true },
+  logoURL: { type: String, required: true },
   signatureProgram: {
-    image: { type: Buffer, required: false },
+    imageURL: { type: String, required: false },
     description: { type: String, required: true },
     required: false,
   },

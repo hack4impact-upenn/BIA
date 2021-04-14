@@ -1,9 +1,8 @@
 import express from 'express';
-import { hash, compare } from 'bcrypt';
-import { User, IUser } from '../models/user.model';
-import auth from '../middleware/auth';
 import errorHandler from './error';
 import { Organization, IOrganization } from '../models/organization.model';
+
+const { awsUpload, awsGet } = require('../utils/aws');
 
 const router = express.Router();
 
@@ -13,12 +12,11 @@ router.post('/create/organization', async (req, res) => {
   const { yearFounded } = req.body;
   const { shortDescription } = req.body;
   const { headquarterCity } = req.body;
-  const { pointOfContact } = req.body;
   const { contactEmail } = req.body;
   const { website } = req.body;
   const { industryFocus } = req.body;
   const { programTypes } = req.body;
-  const { logo } = req.body;
+  const { logoURL } = req.body;
 
   if (await Organization.findOne({ organizationName })) {
     return errorHandler(res, 'Organization already exists.');
@@ -29,12 +27,21 @@ router.post('/create/organization', async (req, res) => {
     yearFounded: yearFounded,
     shortDescription: shortDescription,
     headquarterCity: headquarterCity,
-    pointOfContact: pointOfContact,
+    pointOfContact: req.body.pointOfContact.hasOwnProperty('title')
+      ? {
+          name: req.body.pointOfContact.name,
+          title: req.body.pointOfContact.title,
+          email: req.body.pointOfContact.email,
+        }
+      : {
+          name: req.body.pointOfContact.name,
+          email: req.body.pointOfContact.email,
+        },
     contactEmail: contactEmail,
     website: website,
     industryFocus: industryFocus,
     programTypes: programTypes,
-    logo: logo,
+    logoURL: logoURL,
   });
 
   if (req.hasOwnProperty('longDescription')) {
@@ -66,9 +73,15 @@ router.post('/create/organization', async (req, res) => {
     newOrganization.businessStages = businessStages;
   }
   if (req.hasOwnProperty('signatureProgram')) {
-    const { signatureProgram } = req.body;
-    newOrganization.signatureProgram = signatureProgram;
+    if (req.body.signatureProgram.hasOwnProperty('imageURL')) {
+      newOrganization.signatureProgram.imageURL =
+        req.body.signatureProgram.imageURL;
+      awsUpload(req.body.signatureProgram.imageURL);
+    }
+    newOrganization.signatureProgram.description =
+      req.body.signatureProgram.description;
   }
+  awsUpload(logoURL);
   return newOrganization
     .save()
     .then(() => res.status(200).json({ success: true }))
@@ -88,7 +101,7 @@ router.get('/find/:organizationName', (req, res) => {
     .catch((err) => errorHandler(res, err.message));
 });
 
-/* update an individaul organization */
+/* update an individual organization */
 router.post('/update:organizationName', async (req, res) => {
   const { organizationName } = req.params;
   const organization = await Organization.findOne({ organizationName });
@@ -97,83 +110,92 @@ router.post('/update:organizationName', async (req, res) => {
 
   if (req.hasOwnProperty('organizationName')) {
     const { organizationName } = req.body;
-    organization.update({ organizationName: organizationName });
+    organization.organizationName = organizationName;
   }
   if (req.hasOwnProperty('yearFounded')) {
     const { yearFounded } = req.body;
-    organization.update({ yearFounded: yearFounded });
+    organization.yearFounded = yearFounded;
   }
   if (req.hasOwnProperty('shortDescription')) {
     const { shortDescription } = req.body;
-    organization.update({ shortDescription: shortDescription });
+    organization.shortDescription = shortDescription;
   }
   if (req.hasOwnProperty('longDescription')) {
     const { longDescription } = req.body;
-    organization.update({ longDescription: longDescription });
+    organization.longDescription = longDescription;
   }
   if (req.hasOwnProperty('headquarterCity')) {
     const { headquarterCity } = req.body;
-    organization.update({ headquarterCity: headquarterCity });
+    organization.headquarterCity = headquarterCity;
   }
   if (req.hasOwnProperty('pointOfContact')) {
-    const { pointOfContact } = req.body;
-    organization.update({ pointOfContact: pointOfContact });
+    organization.pointOfContact.name = req.body.pointOfContact.name;
+    if (req.body.pointOfContact.hasOwnProperty('image')) {
+      organization.pointOfContact.title = req.body.pointOfContact.title;
+    }
+    organization.pointOfContact.email = req.body.pointOfContact.email;
   }
   if (req.hasOwnProperty('contactEmail')) {
     const { contactEmail } = req.body;
-    organization.update({ contactEmail: contactEmail });
+    organization.contactEmail = contactEmail;
   }
   if (req.hasOwnProperty('website')) {
     const { website } = req.body;
-    organization.update({ website: website });
+    organization.website = website;
   }
   if (req.hasOwnProperty('twitter')) {
     const { twitter } = req.body;
-    organization.update({ twitter: twitter });
+    organization.twitter = twitter;
   }
   if (req.hasOwnProperty('facebook')) {
     const { facebook } = req.body;
-    organization.update({ facebook: facebook });
+    organization.facebook = facebook;
   }
   if (req.hasOwnProperty('instagram')) {
     const { instagram } = req.body;
-    organization.update({ instagram: instagram });
+    organization.instagram = instagram;
   }
   if (req.hasOwnProperty('linkedIn')) {
     const { linkedIn } = req.body;
-    organization.update({ linkedIn: linkedIn });
+    organization.linkedIn = linkedIn;
   }
   if (req.hasOwnProperty('innovatorTypes')) {
     const { innovatorTypes } = req.body;
-    organization.update({ innovatorTypes: innovatorTypes });
+    organization.innovatorTypes = innovatorTypes;
   }
   if (req.hasOwnProperty('businessStages')) {
     const { businessStages } = req.body;
-    organization.update({ businessStages: businessStages });
+    organization.businessStages = businessStages;
   }
   if (req.hasOwnProperty('industryFocus')) {
     const { industryFocus } = req.body;
-    organization.update({ industryFocus: industryFocus });
+    organization.industryFocus = industryFocus;
   }
   if (req.hasOwnProperty('programTypes')) {
     const { programTypes } = req.body;
-    organization.update({ programTypes: programTypes });
+    organization.programTypes = programTypes;
   }
   if (req.hasOwnProperty('focusArea')) {
     const { focusArea } = req.body;
-    organization.update({ focusArea: focusArea });
+    organization.focusArea = focusArea;
   }
   if (req.hasOwnProperty('profitStatus')) {
     const { profitStatus } = req.body;
-    organization.update({ profitStatus: profitStatus });
+    organization.profitStatus = profitStatus;
   }
   if (req.hasOwnProperty('logo')) {
-    const { logo } = req.body;
-    organization.update({ logo: logo });
+    const { logoURL } = req.body;
+    organization.logoURL = logoURL;
+    awsUpload(logoURL);
   }
   if (req.hasOwnProperty('signatureProgram')) {
-    const { signatureProgram } = req.body;
-    organization.update({ signatureProgram: signatureProgram });
+    if (req.body.signatureProgram.hasOwnProperty('image')) {
+      organization.signatureProgram.imageURL =
+        req.body.signatureProgram.imageURL;
+      awsUpload(req.body.signatureProgram.imageURL);
+    }
+    organization.signatureProgram.description =
+      req.body.signatureProgram.description;
   }
 
   return organization
