@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import '../map.css';
 
 mapboxgl.accessToken =
@@ -12,37 +13,38 @@ const Map = () => {
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
-      // styles: https://docs.mapbox.com/api/maps/#styles
-      style: 'mapbox://styles/mapbox/dark-v10',
-      center: [-98.5795, 39.8283],
-      zoom: 4.25,
+      style: 'mapbox://styles/jk60606060/cknh2goxk0d6717o5fv913vam',
+      center: [0, 0],
+      zoom: 4,
     });
 
     map.on('load', function () {
-      // custom marker imag
-      map.loadImage(
-        'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
-        function (error, image) {
-          if (error) throw error;
-          map.addImage('custom-marker', image);
-          map.addSource('earthquakes', {
-            type: 'geojson',
-            // random earthquake geojson file with points yay
-            data:
-              'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson',
-          });
+      // custom marker image
+      map.loadImage(process.env.PUBLIC_URL + '/img/marker.png', function (
+        error,
+        image
+      ) {
+        if (error) throw error;
+        map.addImage(process.env.PUBLIC_URL + '/img/marker.png', image);
+        map.addSource('earthquakes', {
+          type: 'geojson',
+          // random earthquake geojson file with points yay
+          data:
+            'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson',
+        });
 
-          // Marker Layer
-          map.addLayer({
-            id: 'earthquakes',
-            type: 'symbol',
-            source: 'earthquakes',
-            layout: {
-              'icon-image': 'custom-marker',
-            },
-          });
-        }
-      );
+        map.addControl(new mapboxgl.NavigationControl());
+
+        // Marker Layer
+        map.addLayer({
+          id: 'earthquakes',
+          type: 'symbol',
+          source: 'earthquakes',
+          layout: {
+            'icon-image': process.env.PUBLIC_URL + '/img/marker.png',
+          },
+        });
+      });
     });
 
     map.on('click', 'earthquakes', function (e) {
