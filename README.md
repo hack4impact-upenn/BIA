@@ -1,8 +1,3 @@
-
-
-
-
-
 # Black Innovation Alliance
 
 Interactive map to showcae Black Innovation Alliance Partner Orginzations.
@@ -10,10 +5,11 @@ Interactive map to showcae Black Innovation Alliance Partner Orginzations.
 **Project Manager/Technical Lead:** Eric Chen, Matthew Dong, Mohamed Abaker.
 
 **Team Members:**
-* Ben Demmers
-* Daniel Barra
-* Janice Kim
-* Ria Sharma
+
+- Ben Demmers
+- Daniel Barra
+- Janice Kim
+- Ria Sharma
 
 ## Setting Up
 
@@ -24,7 +20,6 @@ Interactive map to showcae Black Innovation Alliance Partner Orginzations.
 - Create a [Heroku account](https://www.heroku.com/)
 - Install [Node.JS](https://nodejs.org/en/download/)
 - Install [Yarn Package Manager](https://classic.yarnpkg.com/en/docs/install/#mac-stable)
-
 
 ##### Configuring Enviromental Variable
 
@@ -47,10 +42,10 @@ Finally, create another file called ".env.development.local" in "src/client", it
 REACT_APP_MAPBOX_TOKEN=mapbox-access-token-placeholder
 ```
 
-
 #### Running Project
 
 For the first time after cloning only:
+
 ```bash
 $ # setup yarn
 $ yarn setup
@@ -66,4 +61,3 @@ $ yarn client
 ```
 
 Also, check tech guide: https://docs.google.com/document/d/1dZNvzUHPvmHiqaZH-xlCIaL21l8yvS9uMMplBd8stu4/edit#heading=h.h22nu89ch4po for more information
-
