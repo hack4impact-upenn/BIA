@@ -14,6 +14,16 @@ const Titlebar = styled.div`
   color: ${Colors.PURPLE};
 `;
 
+const HomeContainer = styled.div`
+  padding: 10px;
+  position: relative;
+  overflow-x: hidden;
+  max-width: 100vw;
+  @media screen and (max-width: 768px) {
+    padding: 2px;
+  }
+`;
+
 function IndexPage() {
   const { isLoading, error, data } = useQuery('users', () =>
     api.get('/api/users').then((res) => {
@@ -22,7 +32,7 @@ function IndexPage() {
   );
 
   return (
-    <div style={{ padding: '10px' }}>
+    <HomeContainer>
       <Titlebar>Partner Map</Titlebar>
 
       <div className="columns">
@@ -33,7 +43,7 @@ function IndexPage() {
           <Map />
         </div>
       </div>
-    </div>
+    </HomeContainer>
   );
 }
 
