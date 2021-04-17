@@ -20,6 +20,11 @@ const Container = styled.div`
     box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
     transition-duration: 0.5s;
   }
+
+  @media screen and (max-width: 768px) {
+    max-width: 75vw;
+    padding: 8px;
+  }
 `;
 
 const Titlebar = styled.div`
@@ -31,6 +36,10 @@ const InfoDiv = styled.div`
   display: inline-block;
   margin-left: 20px;
   margin-bottom: 8px;
+  @media screen and (max-width: 768px) {
+    margin-left: 16px;
+    margin-bottom: 6px;
+  }
 `;
 
 const Avatar = styled.img`
@@ -40,6 +49,10 @@ const Avatar = styled.img`
   background: black;
   border-radius: 50%;
   border: 2px solid white;
+  @media screen and (max-width: 768px) {
+    width: 45px;
+    height: 45px;
+  }
 `;
 
 const OrgName = styled.span`
@@ -47,18 +60,29 @@ const OrgName = styled.span`
   font-size: 20px;
   font-weight: 500;
   color: ${colors.YELLOW};
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+    font-weight: 50;
+  }
 `;
 
 const OrgCity = styled.span`
   font-size: 14px;
   font-weight: 500;
   color: white;
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+    font-weight: 40;
+  }
 `;
 const OrgDescription = styled.p`
   text-align: start;
   color: white;
   font-size: 10px;
   margin-bottom: 6px;
+  @media screen and (max-width: 768px) {
+    font-size: 8px;
+  }
 `;
 
 const dummyOrg = {

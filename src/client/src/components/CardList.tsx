@@ -7,14 +7,21 @@ import { moveCursor } from 'node:readline';
 
 const Container = styled.div`
   border-radius: 10px;
-  height: 795px;
-  overflow-y: auto;
+  max-height: 80vh;
+  overflow-y: scroll;
   width: 440px;
   padding: 10px;
   justify-content: center;
   align-items: center;
   margin: auto;
   position: relative;
+
+  @media screen and (max-width: 768px) {
+    max-width: 80vw;
+    padding: 4px;
+    margin: 0px;
+    overflow-x: hidden;
+  }
 `;
 
 const dummyOrg1 = {
