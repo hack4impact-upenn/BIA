@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 interface IOrganization extends mongoose.Document {
+  _id: string;
   organizationName: string;
   yearFounded: number;
   shortDescription: string;
@@ -25,9 +26,9 @@ interface IOrganization extends mongoose.Document {
   programTypes: string[];
   focusArea: string;
   profitStatus: string;
-  logo: Buffer;
+  logoURL: string;
   signatureProgram: {
-    image: Buffer;
+    imageURL: string;
     description?: string;
   };
 }
@@ -42,7 +43,6 @@ const OrganizationSchema = new Schema({
     name: { type: String, required: true },
     title: { type: String, required: false },
     email: { type: String, required: true },
-    required: true,
   },
   contactEmail: { type: String, required: true },
   website: { type: String, required: true },
@@ -54,13 +54,12 @@ const OrganizationSchema = new Schema({
   businessStages: { type: [String], required: false },
   industryFocus: { type: [String], required: true },
   programTypes: { type: [String], required: true },
-  focusArea: { type: String, required: true },
-  profitStatus: { type: String, required: true },
-  logo: { type: Buffer, required: true },
+  focusArea: { type: String, required: false },
+  profitStatus: { type: String, required: false },
+  logoURL: { type: String, required: false },
   signatureProgram: {
-    image: { type: Buffer, required: false },
-    description: { type: String, required: true },
-    required: false,
+    imageURL: { type: String, required: false },
+    description: { type: String, required: false },
   },
 });
 
