@@ -8,8 +8,6 @@ import multer from 'multer';
 
 const router = express.Router();
 
-const storage = multer.memoryStorage();
-
 /* create a new organization*/
 router.post('/', async (req, res) => {
   const { organizationName } = req.body;
@@ -47,10 +45,18 @@ router.post('/', async (req, res) => {
   });
 
   if (req.body.logo) {
-    const key = `${uuidv4()}_${organizationName}`;
+    var key = `${uuidv4()}_${organizationName}`;
     const data = Buffer.from(req.body.logo).toString('base64');
     var mime = req.body.logo.match(/data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+).*,.*/);
-    mime = mime[1];
+    if (mime && mime.length > 0) {
+      mime = mime[1];
+      console.log(mime[1]);
+      mime = mime.split('/');
+      console.log(mime);
+      if (mime && mime.lenght > 0) {
+        key = key + `.${mime[1]}`;
+      }
+    }
     awsUpload(key, data);
     newOrganization.logoURL = key;
   }

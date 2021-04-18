@@ -11,9 +11,6 @@ const awsUpload = (key: string, body: Buffer) => {
     Key: key,
     Body: body,
   };
-  console.log('*****\n');
-  console.log(params);
-  console.log('*****\n');
   s3.upload(params, (err: any, data: any) => {
     if (err) {
       return { success: false, data: err };
