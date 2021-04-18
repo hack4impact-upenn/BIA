@@ -1,13 +1,17 @@
 import express from 'express';
 import errorHandler from './error';
 import { Organization, IOrganization } from '../models/organization.model';
+import { v4 as uuidv4 } from 'uuid';
 
 const { awsUpload, awsGet } = require('../utils/aws');
+import multer from 'multer';
 
 const router = express.Router();
 
+const storage = multer.memoryStorage();
+
 /* create a new organization*/
-router.post('/create/organization', async (req, res) => {
+router.post('/', async (req, res) => {
   const { organizationName } = req.body;
   const { yearFounded } = req.body;
   const { shortDescription } = req.body;
@@ -16,7 +20,6 @@ router.post('/create/organization', async (req, res) => {
   const { website } = req.body;
   const { industryFocus } = req.body;
   const { programTypes } = req.body;
-  const { logoURL } = req.body;
 
   if (await Organization.findOne({ organizationName })) {
     return errorHandler(res, 'Organization already exists.');
@@ -41,8 +44,16 @@ router.post('/create/organization', async (req, res) => {
     website: website,
     industryFocus: industryFocus,
     programTypes: programTypes,
-    logoURL: logoURL,
   });
+
+  if (req.body.logo) {
+    const key = `${uuidv4()}_${organizationName}`;
+    const data = Buffer.from(req.body.logo).toString('base64');
+    var mime = req.body.logo.match(/data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+).*,.*/);
+    mime = mime[1];
+    awsUpload(key, data);
+    newOrganization.logoURL = key;
+  }
 
   if (req.hasOwnProperty('longDescription')) {
     const { longDescription } = req.body;
@@ -76,12 +87,14 @@ router.post('/create/organization', async (req, res) => {
     if (req.body.signatureProgram.hasOwnProperty('imageURL')) {
       newOrganization.signatureProgram.imageURL =
         req.body.signatureProgram.imageURL;
-      awsUpload(req.body.signatureProgram.imageURL);
+      // awsUpload(req.body.signatureProgram.imageURL);
     }
     newOrganization.signatureProgram.description =
       req.body.signatureProgram.description;
   }
-  awsUpload(logoURL);
+
+  //awsUpload(logoURL);
+
   return newOrganization
     .save()
     .then(() => res.status(200).json({ success: true }))
@@ -89,7 +102,7 @@ router.post('/create/organization', async (req, res) => {
 });
 
 /* fetch organization info */
-router.get('/find/:organizationName', (req, res) => {
+router.get('/:organizationName', (req, res) => {
   const { organizationName } = req.params;
 
   return Organization.findOne({ organizationName })
@@ -102,7 +115,7 @@ router.get('/find/:organizationName', (req, res) => {
 });
 
 /* update an individual organization */
-router.post('/update:organizationName', async (req, res) => {
+router.put('/:organizationName', async (req, res) => {
   const { organizationName } = req.params;
   const organization = await Organization.findOne({ organizationName });
 
@@ -186,12 +199,14 @@ router.post('/update:organizationName', async (req, res) => {
   if (req.hasOwnProperty('logo')) {
     const { logoURL } = req.body;
     organization.logoURL = logoURL;
+    console.log('\n\n ******about to post an image \n\n ******');
     awsUpload(logoURL);
   }
   if (req.hasOwnProperty('signatureProgram')) {
     if (req.body.signatureProgram.hasOwnProperty('image')) {
       organization.signatureProgram.imageURL =
         req.body.signatureProgram.imageURL;
+
       awsUpload(req.body.signatureProgram.imageURL);
     }
     organization.signatureProgram.description =
@@ -205,7 +220,7 @@ router.post('/update:organizationName', async (req, res) => {
 });
 
 /* delete individaul organization */
-router.delete('/delete/:organizationName', (req, res) => {
+router.delete('/:organizationName', (req, res) => {
   const { organizationName } = req.params;
 
   return Organization.deleteOne({ organizationName })
@@ -231,3 +246,5 @@ router.delete('/', (_, res) => {
     .then(() => res.status(200).json({ success: true }))
     .catch((e) => errorHandler(res, e));
 });
+
+export default router;

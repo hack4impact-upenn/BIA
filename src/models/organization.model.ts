@@ -43,7 +43,6 @@ const OrganizationSchema = new Schema({
     name: { type: String, required: true },
     title: { type: String, required: false },
     email: { type: String, required: true },
-    required: true,
   },
   contactEmail: { type: String, required: true },
   website: { type: String, required: true },
@@ -55,13 +54,12 @@ const OrganizationSchema = new Schema({
   businessStages: { type: [String], required: false },
   industryFocus: { type: [String], required: true },
   programTypes: { type: [String], required: true },
-  focusArea: { type: String, required: true },
-  profitStatus: { type: String, required: true },
-  logoURL: { type: String, required: true },
+  focusArea: { type: String, required: false },
+  profitStatus: { type: String, required: false },
+  logoURL: { type: String, required: false },
   signatureProgram: {
     imageURL: { type: String, required: false },
-    description: { type: String, required: true },
-    required: false,
+    description: { type: String, required: false },
   },
 });
 
