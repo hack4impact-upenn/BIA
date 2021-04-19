@@ -102,6 +102,7 @@
     "react-table": "^7.6.1",
     "shortid": "^2.2.16",
     "socket.io": "^2.3.0",
+    "styled-components": "^5.2.3",
     "swiper": "^6.3.5",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5",
