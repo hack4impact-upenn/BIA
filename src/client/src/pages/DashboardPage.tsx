@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import Dropdown from '../components/Dropdown.tsx';
-import Dropdown2 from '../components/Dropdown2.tsx';
+import { Dropdown, Option } from '../components/Dropdown2.tsx';
 
 const DashboardPage: React.FC = () => {
   return (
@@ -11,12 +10,26 @@ const DashboardPage: React.FC = () => {
         <div className="columns">
           <div className="column">
             <Subtitle>Upload CSV</Subtitle>
-            <ExportButton>Export to CSV</ExportButton>
+            <FileSelector
+              onLoadFile={(files: FileList) => console.log(files)}
+            />
             <div> Uploaded_File_Name </div>
+            <ExportButton>Export to CSV</ExportButton>
           </div>
           <div className="column">
             <Subtitle>Partner</Subtitle>
-            <Dropdown></Dropdown>
+            <Dropdown
+              formLabel="Choose a service"
+              buttonText="Send form"
+              onChange={handleSelect}
+              action="https://jsonplaceholder.typicode.com/posts"
+            >
+              <Option selected value="Click to see options" />
+              <Option value="Option 1" />
+              <Option value="Option 2" />
+              <Option value="Option 3" />
+            </Dropdown>
+            <p>You selected {optionValue} </p>
           </div>
           <div className="column">
             <Subtitle>Update Logo</Subtitle>
@@ -89,5 +102,21 @@ const ExportButton = styled.button`
     border: none !important;
   }
 `;
+
+const FileSelector = (props: { onLoadFile: (files: FileList) => void }) => (
+  <input
+    type="file"
+    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+      props.onLoadFile(e.target.files)
+    }
+  />
+);
+
+const [optionValue, setOptionValue] = useState('');
+
+const handleSelect = (e) => {
+  console.log(e.target.value);
+  setOptionValue(e.target.value);
+};
 
 export default DashboardPage;
