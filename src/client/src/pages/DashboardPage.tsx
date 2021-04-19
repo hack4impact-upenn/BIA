@@ -18,17 +18,7 @@ const DashboardPage: React.FC = () => {
           </div>
           <div className="column">
             <Subtitle>Partner</Subtitle>
-            <Dropdown
-              formLabel="Choose a service"
-              buttonText="Send form"
-              onChange={handleSelect}
-              action="https://jsonplaceholder.typicode.com/posts"
-            >
-              <Option selected value="Click to see options" />
-              <Option value="Option 1" />
-              <Option value="Option 2" />
-              <Option value="Option 3" />
-            </Dropdown>
+            <Dropdown></Dropdown>
             <p>You selected {optionValue} </p>
           </div>
           <div className="column">
