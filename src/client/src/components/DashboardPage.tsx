@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+<<<<<<< HEAD:src/client/src/components/DashboardPage.tsx
 import Dropdown2 from '../components/Dropdown2.tsx';
+=======
+import { Dropdown, Option } from '../components/Dropdown2.tsx';
+>>>>>>> 7d57dc8d3845024252c2a45ed969d5e989e65185:src/client/src/pages/DashboardPage.tsx
 
 const DashboardPage: React.FC = () => {
   return (
@@ -10,12 +14,20 @@ const DashboardPage: React.FC = () => {
         <div className="columns">
           <div className="column">
             <Subtitle>Upload CSV</Subtitle>
-            <ExportButton>Export to CSV</ExportButton>
+            <FileSelector
+              onLoadFile={(files: FileList) => console.log(files)}
+            />
             <div> Uploaded_File_Name </div>
+            <ExportButton>Export to CSV</ExportButton>
           </div>
           <div className="column">
             <Subtitle>Partner</Subtitle>
+<<<<<<< HEAD:src/client/src/components/DashboardPage.tsx
             <Dropdown2></Dropdown2>
+=======
+            <Dropdown></Dropdown>
+            <p>You selected {optionValue} </p>
+>>>>>>> 7d57dc8d3845024252c2a45ed969d5e989e65185:src/client/src/pages/DashboardPage.tsx
           </div>
           <div className="column">
             <Subtitle>Update Logo</Subtitle>
@@ -88,5 +100,21 @@ const ExportButton = styled.button`
     border: none !important;
   }
 `;
+
+const FileSelector = (props: { onLoadFile: (files: FileList) => void }) => (
+  <input
+    type="file"
+    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+      props.onLoadFile(e.target.files)
+    }
+  />
+);
+
+const [optionValue, setOptionValue] = useState('');
+
+const handleSelect = (e) => {
+  console.log(e.target.value);
+  setOptionValue(e.target.value);
+};
 
 export default DashboardPage;
