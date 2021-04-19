@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Dropdown from '../components/Dropdown.tsx';
 import Dropdown2 from '../components/Dropdown2.tsx';
 
 const DashboardPage: React.FC = () => {
@@ -16,7 +15,7 @@ const DashboardPage: React.FC = () => {
           </div>
           <div className="column">
             <Subtitle>Partner</Subtitle>
-            <Dropdown></Dropdown>
+            <Dropdown2></Dropdown2>
           </div>
           <div className="column">
             <Subtitle>Update Logo</Subtitle>

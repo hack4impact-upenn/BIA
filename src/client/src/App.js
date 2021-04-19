@@ -13,7 +13,7 @@ import LoginPage from './pages/authflow/LoginPage.tsx';
 import RegisterPage from './pages/authflow/RegisterPage.tsx';
 import IndexPage from './pages/IndexPage.tsx';
 import NotFoundPage from './pages/NotFoundPage.tsx';
-import DashboardPage from './pages/DashboardPage.tsx';
+import DashboardPage from './components/DashboardPage.tsx';
 import Map from './components/Map.tsx';
 import Card from './components/Card.tsx';
 import CardList from './components/CardList.tsx';
