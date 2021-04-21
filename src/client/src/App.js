@@ -16,6 +16,10 @@ import NotFoundPage from './pages/NotFoundPage.tsx';
 import DashboardPage from './pages/DashboardPage.tsx';
 import Map from './components/Map.tsx';
 import Card from './components/Card.tsx';
+import CardList from './components/CardList.tsx';
+import ExpandedCard from './components/ExpandedCard.tsx';
+import CardWrapper from './components/CardWrapper.tsx';
+import ToolBar from './components/ToolBar.tsx';
 
 const queryCache = new QueryCache();
 
@@ -53,12 +57,18 @@ function App() {
                 <PublicRoute exact path="/login" component={LoginPage} />
                 <PublicRoute exact path="/register" component={RegisterPage} />
                 <PublicRoute exact path="/map" component={Map} />
-                <PublicRoute exact path="/card" component={Card} />
+
+                <PublicRoute
+                  exact
+                  path="/cardwrapper"
+                  component={CardWrapper}
+                />
                 <PrivateRoute
                   exact
                   path="/dashboard"
                   component={DashboardPage}
                 />
+                <PublicRoute exact path="/toolBar" component={ToolBar} />
                 <Route exact={false} component={NotFoundPage} />
               </Switch>
             </main>

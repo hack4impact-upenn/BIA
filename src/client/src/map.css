@@ -1,0 +1,30 @@
+.map-container {
+  position: relative;
+  top: 5px;
+  bottom: 10px;
+}
+
+.mapboxgl-canvas {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mapboxgl-ctrl-group {
+  border-radius: 4px;
+  background: #faab18;
+}
+
+.mapboxgl-ctrl-group button + button {
+  border-top: 2px solid #1d1e68;
+}

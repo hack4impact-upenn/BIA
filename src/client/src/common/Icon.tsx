@@ -10,6 +10,10 @@ type IconWrapperProps = {
 
 const IconWrapper = styled.span<IconWrapperProps>`
   display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   vertical-align: ${({ noAlign }) => (noAlign ? 'baseline' : 'middle')};
 
   .button &,
@@ -38,7 +42,7 @@ type IconProps = {
 export const Icon = ({
   name,
   show = true,
-  size = '1rem',
+  size,
   noMargin,
   noAlign,
   ...props
@@ -52,9 +56,11 @@ export const Icon = ({
     <IconWrapper noAlign={noAlign} noMargin={noMargin}>
       {svg.default({
         preserveAspectRatio: 'xMidYMid meet',
-        width: 30,
-        height: 30,
-        viewBox: `0 0 ${30} ${30}`,
+        width: iconInfo.width ? iconInfo.width : 30,
+        height: iconInfo.height ? iconInfo.height : 30,
+        viewBox: `0 0 ${iconInfo.width ? iconInfo.width : 30} ${
+          iconInfo.height ? iconInfo.height : 30
+        }`,
         ...props,
       })}
     </IconWrapper>
