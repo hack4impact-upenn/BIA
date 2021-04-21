@@ -5,6 +5,7 @@ import Map from '../components/Map.tsx';
 import CardWrapper from '../components/CardWrapper.tsx';
 import styled from 'styled-components';
 import Colors from '../common/Colors';
+import ToolBar from '../components/ToolBar.tsx';
 
 const Titlebar = styled.div`
   font-size: 48px;
@@ -22,6 +23,9 @@ const HomeContainer = styled.div`
   @media screen and (max-width: 768px) {
     padding: 2px;
   }
+  `
+const Tbar = styled.div`
+  width: 550px;
 `;
 
 function IndexPage() {
@@ -31,12 +35,20 @@ function IndexPage() {
     })
   );
 
+  const handleSearchChange = (searchQuery) => {};
+  const handleFilterChange = (filter) => {};
+
   return (
     <HomeContainer>
       <Titlebar>Partner Map</Titlebar>
-
+      <Tbar>
+        <ToolBar
+          changeSearch={handleSearchChange}
+          changeFilter={handleFilterChange}
+        />
+      </Tbar>
       <div className="columns">
-        <div className="column is-one-third">
+        <div className="column is-one-third" style={{height: "70vh"}}>
           <CardWrapper />
         </div>
         <div className="column">
