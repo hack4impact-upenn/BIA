@@ -19,6 +19,7 @@ import Card from './components/Card.tsx';
 import CardList from './components/CardList.tsx';
 import ExpandedCard from './components/ExpandedCard.tsx';
 import CardWrapper from './components/CardWrapper.tsx';
+import ToolBar from './components/ToolBar.tsx';
 
 const queryCache = new QueryCache();
 
@@ -67,6 +68,7 @@ function App() {
                   path="/dashboard"
                   component={DashboardPage}
                 />
+                <PublicRoute exact path="/toolBar" component={ToolBar} />
                 <Route exact={false} component={NotFoundPage} />
               </Switch>
             </main>
