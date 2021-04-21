@@ -9,54 +9,43 @@ import MapGL, {
   GeolocateControl,
 } from 'react-map-gl';
 import Pins from './Pins.tsx';
-
-console.log(process.env);
+var d3 = require('d3-geo');
+import { getPartners } from '../api/fetch.ts';
+import { useQuery } from 'react-query';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN; // Set your mapbox token here
 
 const CITIES = [
   {
     city: 'New York',
-    latitude: 40.6643,
-    longitude: -73.9385,
+    latitude: 40.7127837,
+    longitude: -74.0059413,
   },
   {
-    city: 'Philadelphia',
-    latitude: 40.0094,
-    longitude: -75.1333,
+    city: 'Chicago',
+    latitude: 41.8781136,
+    longitude: -87.6297982,
   },
 ];
 
 function Map() {
   const [viewport, setViewport] = useState({
-    latitude: 39.9,
-    longitude: -75.16,
-    zoom: 5,
+    latitude: 0,
+    longitude: 0,
+    zoom: 4.5,
     bearing: 0,
     pitch: 0,
   });
 
-  const geolocateStyle = {
-    top: 0,
-    left: 0,
-    padding: '10px',
-  };
-
-  const fullscreenControlStyle = {
-    top: 36,
-    left: 0,
-    padding: '10px',
-  };
-
   const navStyle = {
-    top: 72,
+    top: 5,
     left: 0,
     padding: '10px',
   };
 
   const scaleControlStyle = {
     bottom: 36,
-    left: 0,
+    right: 0,
     padding: '10px',
   };
 
@@ -64,21 +53,25 @@ function Map() {
     console.log(city);
   };
 
+  const partnerQuery = useQuery(['getPartners'], getPartners, {
+    refetchOnWindowFocus: false,
+  });
+  console.log(partnerQuery.data);
   return (
     <>
       <MapGL
         {...viewport}
         width="100vw"
         height="100vh"
-        mapStyle="mapbox://styles/mapbox/dark-v9"
+        mapStyle="mapbox://styles/bndemers/ckmxqsh18137317lkh1ukwfxx"
         onViewportChange={setViewport}
         mapboxApiAccessToken={MAPBOX_TOKEN}
       >
-        <Pins data={CITIES} onClick={print_marker} />
-        <GeolocateControl style={geolocateStyle} />
-        <FullscreenControl style={fullscreenControlStyle} />
+        {partnerQuery.data && (
+          <Pins data={partnerQuery.data} onClick={print_marker} />
+        )}
+
         <NavigationControl style={navStyle} />
-        <ScaleControl style={scaleControlStyle} />
       </MapGL>
     </>
   );
