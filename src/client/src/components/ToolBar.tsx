@@ -67,11 +67,11 @@ const sortOptions = [
   { value: 'alphabetical', label: 'Alphabetical' },
 ];
 const programOptions = [
-  { value: 'size', label: 'Size' },
-  { value: 'focus', label: 'Focus' },
-  { value: 'type', label: 'Type' },
-  { value: 'stage', label: 'Stage' },
-  { value: 'scope', label: 'Scope' },
+  { value: 'type 1', label: 'Type 1' },
+  { value: 'type 2', label: 'Type 2' },
+  //{ value: 'type', label: 'Type' },
+  // { value: 'stage', label: 'Stage' },
+  //{ value: 'scope', label: 'Scope' },
 ];
 
 const sortSelect = styled.select`
@@ -109,7 +109,13 @@ const ToolBar = ({
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
+    changeSearch(e.target.value);
   };
+
+  const handleFilterChange = (e) => {
+    changeFilter(e.map((item) => item.value));
+  };
+
   return (
     <Container>
       <div
@@ -129,10 +135,10 @@ const ToolBar = ({
         </div>
         <div className="flex-item">
           <Select
-            defaultValue={programOptions[0]}
             isMulti
             components={components}
             styles={styles}
+            onChange={handleFilterChange}
             name="colors"
             options={programOptions}
             placeholder="program"

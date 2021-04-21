@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import api from '../api';
 import Map from '../components/Map.tsx';
@@ -23,7 +23,7 @@ const HomeContainer = styled.div`
   @media screen and (max-width: 768px) {
     padding: 2px;
   }
-  `
+`;
 const Tbar = styled.div`
   width: 550px;
 `;
@@ -35,8 +35,17 @@ function IndexPage() {
     })
   );
 
-  const handleSearchChange = (searchQuery) => {};
-  const handleFilterChange = (filter) => {};
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filter, setFilter] = useState('');
+
+  const handleSearchChange = (searchQuery) => {
+    setSearchQuery(searchQuery);
+  };
+  const handleFilterChange = (filter) => {
+    setFilter(filter);
+  };
+
+  console.log(searchQuery);
 
   return (
     <HomeContainer>
@@ -48,10 +57,10 @@ function IndexPage() {
         />
       </Tbar>
       <div className="columns">
-        <div className="column is-one-third" style={{height: "70vh"}}>
-          <CardWrapper />
+        <div className="column is-one-third" style={{ height: '70vh' }}>
+          <CardWrapper searchQuery={searchQuery} filter={filter} />
         </div>
-        <div className="column">
+        <div className="column" style={{ height: '70vh' }}>
           <Map />
         </div>
       </div>
