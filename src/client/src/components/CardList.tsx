@@ -104,7 +104,7 @@ const dummyOrg6 = {
   programType: 'type 2',
   longDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
-  location: 'Philadelphia, PA',
+  location: 'Washington, DC',
   tags: ['HealthCare', 'Entrepreneuership'],
   shortDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
@@ -121,7 +121,7 @@ const dummyOrg7 = {
   programType: 'type 1',
   longDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
-  location: 'Philadelphia, PA',
+  location: 'New York, NY',
   tags: ['HealthCare', 'Entrepreneuership'],
   shortDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
@@ -160,13 +160,15 @@ const CardsList = (props) => {
   const [renderedArray, setArray] = useState(dummyOrgs);
 
   useEffect(() => {
-    console.log(filter);
     const searchedArray = dummyOrgs.filter((item) => {
       if (!searchQuery || searchQuery.length < 3) {
         return true;
       }
-      const string = item.name;
-      return string.toLowerCase().startsWith(searchQuery.toLowerCase());
+      const strings = [item.name, item.longDisc, item.shortDisc, item.location];
+
+      return strings.some((string) =>
+        string.toLowerCase().startsWith(searchQuery.toLowerCase())
+      );
     });
     const filteredArray = searchedArray.filter((item) => {
       if (!filter || filter.length < 1) {
@@ -175,7 +177,6 @@ const CardsList = (props) => {
       const string = item.programType;
       return filter.some((f) => {
         console.log(string);
-        console.log(f);
         return (
           f && f.length > 2 && string.toLowerCase().startsWith(f.toLowerCase())
         );

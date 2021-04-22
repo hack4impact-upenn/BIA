@@ -129,7 +129,7 @@ const ToolBar = ({
           <Input
             className="input"
             value={searchQuery}
-            placeholder={`Search by state entries`}
+            placeholder={`Search by Name or State`}
             onChange={handleSearchChange}
           />
         </div>
@@ -141,16 +141,16 @@ const ToolBar = ({
             onChange={handleFilterChange}
             name="colors"
             options={programOptions}
-            placeholder="program"
+            placeholder="Search by Program Type"
             className="basic-multi-select"
             classNamePrefix="select"
             theme={(theme) => ({
               ...theme,
               colors: {
                 ...theme.colors,
-                neutral50: colors.PURPLE,
-                neutral150: colors.PURPLE,
-                primary: colors.PURPLE,
+                //neutral50: colors.PURPLE,
+                //neutral150: colors.PURPLE,
+                //primary: colors.PURPLE,
               },
             })}
           />
