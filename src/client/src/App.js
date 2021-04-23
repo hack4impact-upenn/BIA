@@ -57,7 +57,7 @@ function App() {
                 <PublicRoute exact path="/login" component={LoginPage} />
                 <PublicRoute exact path="/register" component={RegisterPage} />
                 <PublicRoute exact path="/map" component={Map} />
-                
+
                 <PublicRoute
                   exact
                   path="/cardwrapper"

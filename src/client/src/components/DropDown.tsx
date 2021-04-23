@@ -1,6 +1,6 @@
-import React, { Component,  useState, useEffect }from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Select from "react-dropdown-select";
+import Select from 'react-dropdown-select';
 import colors from '../common/Colors';
 
 const Container = styled.div`
@@ -19,23 +19,24 @@ const Container = styled.div`
     box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
     transition-duration: 0.5s;
   }
-  
 `;
 
-
 const DropDown = (opts) => {
-    return (
-        <div className="is-pulled-left"
-        style={{ marginTop: '100px', marginLeft: '10px', marginRight: '10px' }}>
-            <Container>
-            <Select options = {opts.down} values={[]} 
-            placeholder = {opts.placeHolder}
-            onChange={(value) => console.log(value)}/>
-            </Container>
-        </div>
-    );
+  return (
+    <div
+      className="is-pulled-left"
+      style={{ marginTop: '100px', marginLeft: '10px', marginRight: '10px' }}
+    >
+      <Container>
+        <Select
+          options={opts.down}
+          values={[]}
+          placeholder={opts.placeHolder}
+          onChange={(value) => console.log(value)}
+        />
+      </Container>
+    </div>
+  );
+};
 
-    
-}
-
-export default DropDown
+export default DropDown;
