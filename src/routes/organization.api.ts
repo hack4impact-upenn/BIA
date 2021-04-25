@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const { awsUpload, awsGet } = require('../utils/aws');
 import multer from 'multer';
+import database from 'src/utils/database';
 
 const router = express.Router();
 
@@ -46,18 +47,21 @@ router.post('/', async (req, res) => {
 
   if (req.body.logo) {
     var key = `${uuidv4()}_${organizationName}`;
-    const data = Buffer.from(req.body.logo).toString('base64');
+    const data = Buffer.from(
+      req.body.logo.replace(/^data:image\/\w+;base64,/, ''),
+      'base64'
+    );
     var mime = req.body.logo.match(/data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+).*,.*/);
     if (mime && mime.length > 0) {
       mime = mime[1];
-      console.log(mime[1]);
       mime = mime.split('/');
-      console.log(mime);
-      if (mime && mime.lenght > 0) {
+      if (mime && mime.length > 0) {
         key = key + `.${mime[1]}`;
       }
     }
-    awsUpload(key, data);
+    const type = mime && mime[0] ? mime[0] : 'image';
+    const mime1 = mime && mime[1] ? mime[1] : 'jpeg';
+    awsUpload(key, data, type, mime1);
     newOrganization.logoURL = key;
   }
 
@@ -108,16 +112,16 @@ router.post('/', async (req, res) => {
 });
 
 /* fetch organization info */
-router.get('/:organizationName', (req, res) => {
+router.get('/:organizationName', async (req, res) => {
   const { organizationName } = req.params;
-
-  return Organization.findOne({ organizationName })
-    .then((organization) => {
-      if (!organization) return errorHandler(res, 'User does not exist.');
-
-      return res.status(200).json({ success: true, data: organization });
-    })
-    .catch((err) => errorHandler(res, err.message));
+  try {
+    const org = await Organization.findOne({ organizationName });
+    const imageString = org && org.logoURL ? await awsGet(org.logoURL) : '';
+    const docs = { ...org, imageString };
+    res.status(200).json({ success: true, data: docs });
+  } catch {
+    res.status(400).json({ success: false, message: 'unknown error' });
+  }
 });
 
 /* update an individual organization */
