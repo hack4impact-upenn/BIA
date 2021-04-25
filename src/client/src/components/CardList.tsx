@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 //import SocialsList from './SocialsList.tsx';
-import Card from './Card.tsx';
+import Card from './Card';
 
 const Container = styled.div`
   border-radius: 10px;
@@ -186,16 +186,16 @@ const CardsList = (props) => {
     setArray(filteredArray);
   }, [filter, searchQuery]);
 
-  const cardArray = renderedArray.map((curr) => (
-    <div key={curr._id}>
-      <Card org={curr} handleClick={() => props.switch(curr)} />
-    </div>
-  ));
-  return (
-    <div>
-      <Container>{cardArray}</Container>
-    </div>
-  );
+  // const cardArray = renderedArray.map((curr) => (
+  //   <div key={curr._id}>
+  //     <Card org={curr} handleClick={() => props.switch(curr)} />
+  //   </div>
+  // ));
+  // return (
+  //   <div>
+  //     <Container>{cardArray}</Container>
+  //   </div>
+  // );
 };
 
 export default CardsList;

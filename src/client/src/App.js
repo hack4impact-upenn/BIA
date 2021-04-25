@@ -63,7 +63,7 @@ function App() {
                   path="/cardwrapper"
                   component={CardWrapper}
                 />
-                <PrivateRoute
+                <PublicRoute
                   exact
                   path="/dashboard"
                   component={DashboardPage}
