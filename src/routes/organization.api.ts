@@ -116,10 +116,8 @@ router.get('/:organizationName', async (req, res) => {
   const { organizationName } = req.params;
   try {
     const org = await Organization.findOne({ organizationName });
-    console.log('this?');
     const imageString = org && org.logoURL ? await awsGet(org.logoURL) : '';
     const docs = { ...org, imageString };
-    //console.log(docs)
     res.status(200).json({ success: true, data: docs });
   } catch {
     res.status(400).json({ success: false, message: 'unknown error' });

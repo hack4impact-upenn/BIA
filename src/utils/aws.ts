@@ -41,15 +41,7 @@ const awsGet = async (key: string) => {
     Key: key,
   };
 
-  var docs = await s3.getObject(params, (err: any, data: any) => {
-    if (err) {
-      return { success: false, data: err };
-    }
-    //console.log(data)
-    return data;
-  });
-  //console.log(docs)
-  //return docs
+  return await s3.getSignedUrlPromise('getObject', params);
 };
 
 module.exports = { awsUpload, awsGet };
