@@ -124,6 +124,16 @@ router.get('/:organizationName', async (req, res) => {
   }
 });
 
+/* fetch organization info */
+router.get('/', async (req, res) => {
+  try {
+    const orgs = await Organization.find();
+    res.status(200).send({ success: true, data: orgs });
+  } catch {
+    res.status(400).json({ success: false, message: 'unknown error' });
+  }
+});
+
 /* update an individual organization */
 router.put('/:organizationName', async (req, res) => {
   const { organizationName } = req.params;
