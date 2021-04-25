@@ -47,6 +47,8 @@
   },
   "dependencies": {
     "@creativebulma/bulma-divider": "^1.1.0",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@react-icons/all-files": "^4.1.0",
     "@sendgrid/mail": "^7.4.0",
     "@svgr/webpack": "^5.5.0",
@@ -85,6 +87,8 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.19",
     "mapbox-gl": "^2.2.0",
+    "material-ui": "^0.20.2",
+    "material-ui-dropzone": "^3.5.0",
     "mathjs": "^8.0.1",
     "mongodb-memory-server": "^6.9.2",
     "mongoose": "^5.9.21",

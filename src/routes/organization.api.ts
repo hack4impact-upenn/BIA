@@ -103,6 +103,8 @@ router.post('/', async (req, res) => {
       req.body.signatureProgram.description;
   }
 
+  // TODO only logs right now
+
   //awsUpload(logoURL);
 
   return newOrganization
@@ -110,6 +112,14 @@ router.post('/', async (req, res) => {
     .then(() => res.status(200).json({ success: true }))
     .catch((e) => errorHandler(res, e.message));
 });
+
+const csv = {
+  uploadCardsCSV: (file: any) => {
+    const data = new FormData();
+    data.append('files', file.data);
+    return console.log(data);
+  },
+};
 
 /* fetch organization info */
 router.get('/:organizationName', async (req, res) => {
