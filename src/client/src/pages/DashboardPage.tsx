@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Select from 'react-select';
 import colors from '../common/Colors';
+import api from '../api/index.js';
 
 const styles = {
   control: ({ background, ...base }) => {
@@ -35,18 +36,12 @@ const components = {
   IndicatorSeparator: () => null,
 };
 
-//todo: get partner data from backend
-const partners = [
-  { value: 'type 1', label: 'Type 1' },
-  { value: 'type 2', label: 'Type 2' },
-  //{ value: 'type', label: 'Type' },
-  // { value: 'stage', label: 'Stage' },
-  //{ value: 'scope', label: 'Scope' },
-];
-
 const DashboardPage: React.FC = () => {
   const [file, setFile] = useState<any>(null);
   const [error, setError] = useState<any>(null);
+  const [partners, setPartners] = useState<any>(null);
+  const [options, setOptions] = useState<any>([]);
+
   const upload = () => {
     if (
       !file.type ||
@@ -66,6 +61,29 @@ const DashboardPage: React.FC = () => {
       upload();
     }
   }, [file]);
+
+  const fetchData = async () => {
+    try {
+      const { data } = await api.get('/api/org');
+      setPartners(data.result);
+      setOptions(
+        data.result && data.result.length > 0
+          ? data.result.map((partner) => {
+              return {
+                value: partner.organizationName,
+                label: partner.organizationName,
+              };
+            })
+          : []
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <DashboardContainer>
@@ -93,7 +111,7 @@ const DashboardPage: React.FC = () => {
               //todo: change backend route for proper image
               onChange={() => console.log('success')}
               name="colors"
-              options={partners}
+              options={options}
               placeholder="Search by Program Type"
               className="basic-multi-select"
               classNamePrefix="select"
