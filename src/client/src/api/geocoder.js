@@ -31,7 +31,7 @@ class Locator {
         const location = {};
         location.lng = resp.data.features[0].center[0];
         location.lat = resp.data.features[0].center[1];
-        const rad = 200;
+        const rad = 5000;
         return this.generateRandomPoint(location, rad);
       });
   }

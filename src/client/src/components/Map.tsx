@@ -10,12 +10,41 @@ import MapGL, {
 } from 'react-map-gl';
 import Pins from './Pins.tsx';
 var d3 = require('d3-geo');
-import { getPartners } from '../api/fetch.ts';
 import { useQuery } from 'react-query';
-
+import axios from 'axios';
+import geocoder from '../api/geocoder';
+import locator from '../api/geocoder';
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN; // Set your mapbox token here
 
+const R = 6378137.0; // radius of Earth in meters
+const projection = d3.geoAlbersUsa().translate([0, 0]).scale(R);
+const projectionMercartor = d3.geoMercator().translate([0, 0]).scale(R);
+
+function convertToAlbers(city) {
+  const location = geocoder.getLocation(city.city);
+  location.then((resp) => {
+    const converted = projectionMercartor.invert(
+      projection([resp.lng, resp.lat])
+    );
+    const newlng = converted[0];
+    const newlat = converted[1];
+    city.newlng = newlng;
+    city.newlat = newlat;
+    return city;
+  });
+}
+
 const CITIES = [
+  {
+    city: 'New York',
+    latitude: 40.7127837,
+    longitude: -74.0059413,
+  },
+  {
+    city: 'New York',
+    latitude: 40.7127837,
+    longitude: -74.0059413,
+  },
   {
     city: 'New York',
     latitude: 40.7127837,
@@ -27,6 +56,8 @@ const CITIES = [
     longitude: -87.6297982,
   },
 ];
+
+CITIES.map(convertToAlbers);
 
 function Map() {
   const [viewport, setViewport] = useState({
@@ -53,10 +84,12 @@ function Map() {
     console.log(city);
   };
 
-  const partnerQuery = useQuery(['getPartners'], getPartners, {
-    refetchOnWindowFocus: false,
-  });
-  console.log(partnerQuery.data);
+  const { isLoading, error, data } = useQuery('users', () =>
+    axios.get('/api/org/').then((res) => {
+      return res.data;
+    })
+  );
+
   return (
     <>
       <MapGL
@@ -67,9 +100,7 @@ function Map() {
         onViewportChange={setViewport}
         mapboxApiAccessToken={MAPBOX_TOKEN}
       >
-        {partnerQuery.data && (
-          <Pins data={partnerQuery.data} onClick={print_marker} />
-        )}
+        {!isLoading && <Pins data={CITIES} onClick={print_marker} />}
 
         <NavigationControl style={navStyle} />
       </MapGL>
