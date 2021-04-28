@@ -128,14 +128,14 @@ const ExpandedCard = (props) => {
       <Container>
         <TopBar>
           <FaArrowLeft size={20} onClick={props.switchToList()} />
-          <OrgTitle>{props.org.name}</OrgTitle>
+          <OrgTitle>{props.org.organizationName}</OrgTitle>
         </TopBar>
         <Titlebar>
           <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
           <InfoDiv>
-            <OrgName>{props.org.name}</OrgName>
+            <OrgName>{props.org.organizationName}</OrgName>
             <OrgYear>Established: {props.org.yearFounded}</OrgYear>
-            <OrgCity>{props.org.location}</OrgCity>
+            <OrgCity>{props.org.headquarterCity}</OrgCity>
             <OrgWebsite> Website: {props.org.website}</OrgWebsite>
           </InfoDiv>
         </Titlebar>
@@ -143,7 +143,7 @@ const ExpandedCard = (props) => {
           <OrgDescription>{props.org.longDisc}</OrgDescription>
         </DescriptionDiv>
         <TagBar>
-          <Tags tags={props.org.tags}></Tags>
+          <Tags tags={props.org.programTypes}></Tags>
         </TagBar>
         <SocialsList org={props.org} />
       </Container>

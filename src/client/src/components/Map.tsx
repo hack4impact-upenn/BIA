@@ -6,7 +6,9 @@ import '../map.css';
 mapboxgl.accessToken =
   'pk.eyJ1Ijoiams2MDYwNjA2MCIsImEiOiJja2J4Nm4yd3kwampvMnJwZ2l6a2hrY3RjIn0.7WBReAD5vV1__FmyUaPMbA';
 
-const Map = () => {
+const Map = (data) => {
+  //log the first org name to ensure it is working
+  console.log(data.data.result[0].organizationName);
   const mapContainerRef = useRef(null);
 
   // initialize map

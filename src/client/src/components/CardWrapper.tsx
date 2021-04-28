@@ -16,6 +16,7 @@ let currOrg = {
 };
 
 const CardWrapper = (props) => {
+  const { data } = props;
   const { searchQuery } = props;
   const { filter } = props;
   const [state, setState] = useState('list');
@@ -31,6 +32,7 @@ const CardWrapper = (props) => {
     <div>
       {state === 'list' && (
         <CardsList
+          data={data.result}
           searchQuery={searchQuery}
           filter={filter}
           switch={(o) => switchToExpanded(o)}
