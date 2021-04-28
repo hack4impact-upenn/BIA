@@ -4,14 +4,11 @@ import { useState } from 'react';
 import styled from 'styled-components';
 //import SocialsList from './SocialsList.tsx';
 import Card from './Card.tsx';
-import ReactPaginate from "react-paginate";
+import ReactPaginate from 'react-paginate';
 
-  
-
-  
 const Container = styled.div`
   border-radius: 10px;
-  max-height: 80vh;
+  max-height: 68vh;
   overflow-y: scroll;
   width: 440px;
   padding: 10px;
@@ -22,8 +19,8 @@ const Container = styled.div`
 
   @media screen and (max-width: 768px) {
     max-width: 80vw;
-    padding: 4px;
-    margin: 0px;
+    margin: auto;
+    align-items: center;
     overflow-x: hidden;
   }
 `;
@@ -158,7 +155,6 @@ const dummyOrgs = [
   dummyOrg7,
   dummyOrg8,
 ];
-//const dummyCards = dummyOrgs.map((org) => Card(org));
 
 const CardsList = (props) => {
   const { searchQuery } = props;
@@ -172,7 +168,6 @@ const CardsList = (props) => {
   }
   const PER_PAGE = 5;
   const offset = currentPage * PER_PAGE;
-  
 
   useEffect(() => {
     console.log(filter);
@@ -204,26 +199,25 @@ const CardsList = (props) => {
     <div key={curr._id}>
       <Card org={curr} handleClick={() => props.switch(curr)} />
     </div>
-    
   ));
   const pageCount = Math.ceil(cardArray.length / PER_PAGE);
-  const currentPageData = cardArray
-    .slice(offset, offset + PER_PAGE)
+  const currentPageData = cardArray.slice(offset, offset + PER_PAGE);
   return (
     <div>
       <Container>
         <ReactPaginate
-        previousLabel={"← Previous"}
-        nextLabel={"Next →"}
-        pageCount={pageCount}
-        onPageChange={handlePageClick}
-        containerClassName={"pagination"}
-        previousLinkClassName={"pagination__link"}
-        nextLinkClassName={"pagination__link"}
-        disabledClassName={"pagination__link--disabled"}
-        activeClassName={"pagination__link--active"}
-      />
-      {currentPageData}</Container>
+          previousLabel={'← Previous'}
+          nextLabel={'Next →'}
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          previousLinkClassName={'pagination__link'}
+          nextLinkClassName={'pagination__link'}
+          disabledClassName={'pagination__link--disabled'}
+          activeClassName={'pagination__link--active'}
+        />
+        {currentPageData}
+      </Container>
     </div>
   );
 };

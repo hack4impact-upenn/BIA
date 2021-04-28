@@ -19,9 +19,27 @@ const HomeContainer = styled.div`
   padding: 10px;
   position: relative;
   overflow-x: hidden;
+  overflow-y: hidden;
   max-width: 100vw;
   @media screen and (max-width: 768px) {
     padding: 2px;
+  }
+`;
+const IsNotPhone = styled.div`
+  @media screen and (max-width: 768px) {
+     {
+      display: none;
+    }
+  }
+`;
+const IsPhone = styled.div`
+   {
+    display: none;
+  }
+  @media screen and (max-width: 768px) {
+     {
+      display: block;
+    }
   }
 `;
 const Tbar = styled.div`
@@ -56,14 +74,19 @@ function IndexPage() {
           changeFilter={handleFilterChange}
         />
       </Tbar>
-      <div className="columns">
-        <div className="column is-one-third" style={{ height: '70vh' }}>
-          <CardWrapper searchQuery={searchQuery} filter={filter} />
+      <IsNotPhone>
+        <div className="columns">
+          <div className="column is-one-third" style={{ height: '70vh' }}>
+            <CardWrapper searchQuery={searchQuery} filter={filter} />
+          </div>
+          <div className="column" style={{ height: '70vh' }}>
+            <Map />
+          </div>
         </div>
-        <div className="column" style={{ height: '70vh' }}>
-          <Map />
-        </div>
-      </div>
+      </IsNotPhone>
+      <IsPhone>
+        <CardWrapper searchQuery={searchQuery} filter={filter} />
+      </IsPhone>
     </HomeContainer>
   );
 }

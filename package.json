@@ -97,6 +97,7 @@
     "react-icons": "^4.2.0",
     "react-native-ionicons": "^4.6.5",
     "react-native-vector-icons": "^8.1.0",
+    "react-paginate": "^7.1.2",
     "react-query": "^2.26.3",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.3.1",

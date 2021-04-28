@@ -20,11 +20,20 @@ const Container = styled.div`
     box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
     transition-duration: 0.5s;
   }
+  @media screen and (max-width: 768px) {
+    max-width: 80vw;
+    max-height: 120vw;
+    padding: 8px;
+    overflow-x: none;
+  }
 `;
 
 const Titlebar = styled.div`
   padding: 0px;
   positon: relative;
+  @media screen and (max-width: 768px) {
+    max-width: 80vw;
+  }
 `;
 
 const TopBar = styled.div`
@@ -36,12 +45,18 @@ const TopBar = styled.div`
   margin-left: -10px;
   margin-top: -10px;
   margin-bottom: 15px;
+  @media screen and (max-width: 768px) {
+    max-width: 100vw;
+  }
 `;
 
 const InfoDiv = styled.div`
   display: inline-block;
   margin-left: 20px;
   margin-bottom: 8px;
+  @media screen and (max-width: 768px) {
+    max-width: 80vw;
+  }
 `;
 
 const DescriptionDiv = styled.div`
@@ -50,6 +65,9 @@ const DescriptionDiv = styled.div`
   padding: 10px;
   margin-left: 20px;
   margin-bottom: 8px;
+  @media screen and (max-width: 768px) {
+    max-width: 80vw;
+  }
 `;
 
 const Avatar = styled.img`
@@ -79,6 +97,10 @@ const OrgTitle = styled.span`
   font-size: 25px;
   font-weight: 500;
   color: ${colors.WHITE};
+  @media screen and (max-width: 768px) {
+    max-width: 80vw;
+    font-size: 22px;
+  }
 `;
 
 const OrgName = styled.span`
@@ -114,12 +136,18 @@ const OrgDescription = styled.p`
   color: white;
   font-size: 10px;
   margin-bottom: 6px;
+  @media screen and (max-width: 768px) {
+    max-width: 80vw;
+  }
 `;
 const TagBar = styled.div`
   padding: 0px;
   height: 50px;
   margin-top: 10px;
   positon: absolute;
+  @media screen and (max-width: 768px) {
+    max-width: 80vw;
+  }
 `;
 
 const ExpandedCard = (props) => {

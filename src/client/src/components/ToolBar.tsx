@@ -2,7 +2,6 @@ import React, { Component, useState, useEffect, ReactElement } from 'react';
 import styled from 'styled-components';
 import colors from '../common/Colors';
 import Select from 'react-select';
-import Icon from '../common/Icon';
 
 const styles = {
   control: ({ background, ...base }) => {
@@ -11,7 +10,7 @@ const styles = {
       boxShadow: 'none',
       color: colors.PURPLE,
       background: colors.GREY,
-      width: `250px`,
+      width: `150px`,
     };
   },
   option: ({ background, ...base }, { isFocused, isSelected }) => {
@@ -40,7 +39,9 @@ const Container = styled.div`
   padding: 20px;
   justify-content: center;
   align-items: center;
-  margin: auto;
+  @media screen and (max-width: 768px) {
+    max-width: 80vw;
+  }
 `;
 
 const Input = styled.input`
@@ -59,6 +60,10 @@ const Input = styled.input`
     background: ${colors.GREY};
     border: none;
     border-radius: none;
+  }
+  @media screen and (max-width: 768px) {
+    max-width: 80vw;
+    width: 150px;
   }
 `;
 
@@ -79,6 +84,9 @@ const sortSelect = styled.select`
   font-size: 20px;
   font-weight: 500;
   color: ${colors.PURPLE};
+  @media screen and (max-width: 768px) {
+    max-width: 80vw;
+  }
 `;
 
 const ButtonContainer = styled.button`
@@ -92,6 +100,9 @@ const ButtonContainer = styled.button`
   &:hover {
     box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
     transition-duration: 0.5s;
+  }
+  @media screen and (max-width: 768px) {
+    max-width: 80vw;
   }
 `;
 
@@ -125,7 +136,7 @@ const ToolBar = ({
           justifyContent: 'space-between',
         }}
       >
-        <div className="flex-item">
+        <div className="flex">
           <Input
             className="input"
             value={searchQuery}
@@ -133,7 +144,7 @@ const ToolBar = ({
             onChange={handleSearchChange}
           />
         </div>
-        <div className="flex-item">
+        <div className="flex" style={{ marginLeft: '50px' }}>
           <Select
             isMulti
             components={components}
