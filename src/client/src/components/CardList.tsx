@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+
 import styled from 'styled-components';
 //import SocialsList from './SocialsList.tsx';
 import Card from './Card.tsx';
+import ReactPaginate from "react-paginate";
 
+  
+
+  
 const Container = styled.div`
   border-radius: 10px;
   max-height: 80vh;
@@ -104,7 +110,7 @@ const dummyOrg6 = {
   programType: 'type 2',
   longDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
-  location: 'Washington, DC',
+  location: 'Philadelphia, PA',
   tags: ['HealthCare', 'Entrepreneuership'],
   shortDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
@@ -121,7 +127,7 @@ const dummyOrg7 = {
   programType: 'type 1',
   longDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
-  location: 'New York, NY',
+  location: 'Philadelphia, PA',
   tags: ['HealthCare', 'Entrepreneuership'],
   shortDisc:
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
@@ -158,17 +164,24 @@ const CardsList = (props) => {
   const { searchQuery } = props;
   const { filter } = props;
   const [renderedArray, setArray] = useState(dummyOrgs);
+  const [currentPage, setCurrentPage] = useState(0);
+  //const [data, setData] = useState([]);
+
+  function handlePageClick({ selected: selectedPage }) {
+    setCurrentPage(selectedPage);
+  }
+  const PER_PAGE = 5;
+  const offset = currentPage * PER_PAGE;
+  
 
   useEffect(() => {
+    console.log(filter);
     const searchedArray = dummyOrgs.filter((item) => {
       if (!searchQuery || searchQuery.length < 3) {
         return true;
       }
-      const strings = [item.name, item.longDisc, item.shortDisc, item.location];
-
-      return strings.some((string) =>
-        string.toLowerCase().startsWith(searchQuery.toLowerCase())
-      );
+      const string = item.name;
+      return string.toLowerCase().startsWith(searchQuery.toLowerCase());
     });
     const filteredArray = searchedArray.filter((item) => {
       if (!filter || filter.length < 1) {
@@ -177,6 +190,7 @@ const CardsList = (props) => {
       const string = item.programType;
       return filter.some((f) => {
         console.log(string);
+        console.log(f);
         return (
           f && f.length > 2 && string.toLowerCase().startsWith(f.toLowerCase())
         );
@@ -190,10 +204,26 @@ const CardsList = (props) => {
     <div key={curr._id}>
       <Card org={curr} handleClick={() => props.switch(curr)} />
     </div>
+    
   ));
+  const pageCount = Math.ceil(cardArray.length / PER_PAGE);
+  const currentPageData = cardArray
+    .slice(offset, offset + PER_PAGE)
   return (
     <div>
-      <Container>{cardArray}</Container>
+      <Container>
+        <ReactPaginate
+        previousLabel={"← Previous"}
+        nextLabel={"Next →"}
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        containerClassName={"pagination"}
+        previousLinkClassName={"pagination__link"}
+        nextLinkClassName={"pagination__link"}
+        disabledClassName={"pagination__link--disabled"}
+        activeClassName={"pagination__link--active"}
+      />
+      {currentPageData}</Container>
     </div>
   );
 };
