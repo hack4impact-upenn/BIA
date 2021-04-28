@@ -32,7 +32,7 @@ const CardWrapper = (props) => {
     <div>
       {state === 'list' && (
         <CardsList
-          data={data.result}
+          data={data}
           searchQuery={searchQuery}
           filter={filter}
           switch={(o) => switchToExpanded(o)}

@@ -166,7 +166,12 @@ const CardsList = (props) => {
       if (!searchQuery || searchQuery.length < 3) {
         return true;
       }
-      const strings = [item.name, item.longDisc, item.shortDisc, item.location];
+      const strings = [
+        item.organizationName,
+        item.longDisc,
+        item.shortDisc,
+        item.headquarterCity,
+      ];
 
       return strings.some((string) =>
         string.toLowerCase().startsWith(searchQuery.toLowerCase())

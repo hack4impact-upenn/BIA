@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
 
-// work here for task 1.2
-
 const Container = styled.div`
   border-radius: 10px;
   height: 200px;

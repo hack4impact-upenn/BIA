@@ -32,7 +32,7 @@ function IndexPage() {
   //load data org data fron the API
   const { isLoading, error, data } = useQuery('organizations', () =>
     api.get('/api/org/').then((res) => {
-      return res.data;
+      return res.data.result;
     })
   );
 
