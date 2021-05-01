@@ -93,6 +93,7 @@ const dummyOrg = {
   website: 'hack4impact.org/',
 };
 //we will provide an org to this component, but for now we are using the dummy org object to fill these fields
+
 const Card = (props) => {
   return (
     <div
@@ -102,7 +103,14 @@ const Card = (props) => {
       <Container>
         <div onClick={() => props.handleClick()}>
           <Titlebar>
-            <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
+            <Avatar
+              src={
+                'https://' +
+                  process.env.AWS_BUCKET_NAME +
+                  '.s3.amazonaws.com/' +
+                  props.org.logoURL || process.env.PUBLIC_URL + '/img/BIA.jpeg'
+              }
+            />
             <InfoDiv>
               <OrgName>{props.org.organizationName}</OrgName>
               <OrgCity>{props.org.headquarterCity}</OrgCity>
