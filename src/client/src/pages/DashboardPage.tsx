@@ -37,30 +37,50 @@ const components = {
 };
 
 const DashboardPage: React.FC = () => {
-  const [file, setFile] = useState<any>(null);
-  const [error, setError] = useState<any>(null);
+  const [fileCSV, setFileCSV] = useState<any>(null);
+  const [fileLogo, setFileLogo] = useState<any>(null);
+  const [errorCSV, setErrorCSV] = useState<any>(null);
+  const [errorLogo, setErrorLogo] = useState<any>(null);
   const [partners, setPartners] = useState<any>(null);
   const [options, setOptions] = useState<any>([]);
 
-  const upload = () => {
+  const uploadCSV = () => {
     if (
-      !file.type ||
-      (file.type != 'text/csv' && file.type != 'application/vnd.ms-excel')
+      !fileCSV.type ||
+      (fileCSV.type != 'text/csv' && fileCSV.type != 'application/vnd.ms-excel')
     ) {
-      setError({ message: 'invalid file type' });
+      setErrorCSV({ message: 'invalid file type. Please upload a .csv file.' });
       return;
     }
+    setErrorCSV(null);
+    //api.post('path', file) todo
+  };
 
-    setError(null);
-
+  const uploadLogo = () => {
+    if (
+      !fileLogo.type ||
+      (fileLogo.type != 'image/png' && fileLogo.type != 'image/jpg')
+    ) {
+      setErrorLogo({
+        message: 'invalid image format. Please upload a .png or .jpg image.',
+      });
+      return;
+    }
+    setErrorLogo(null);
     //api.post('path', file) todo
   };
 
   useEffect(() => {
-    if (file) {
-      upload();
+    if (fileCSV) {
+      uploadCSV();
     }
-  }, [file]);
+  }, [fileCSV]);
+
+  useEffect(() => {
+    if (fileLogo) {
+      uploadLogo();
+    }
+  }, [fileLogo]);
 
   const fetchData = async () => {
     try {
@@ -94,38 +114,51 @@ const DashboardPage: React.FC = () => {
             <Subtitle>Upload CSV</Subtitle>
             <FileSelector
               onLoadFile={(files: FileList) => {
+                alert('you uploaded partner data. good job');
                 console.log(files[0]);
-                setFile(files[0]);
+                setFileCSV(files[0]);
               }}
-              file={file}
+              file={fileCSV}
             />
-            {error && <div>Cannot submit {error.message}</div>}
+            {errorCSV && <div>Cannot submit {errorCSV.message}</div>}
             <ExportButton>Export to CSV</ExportButton>
           </div>
-          <div className="column">
-            <Subtitle>Update Logo</Subtitle>
-            <Select
-              isClearable
-              components={components}
-              styles={styles}
-              //todo: change backend route for proper image
-              onChange={() => console.log('success')}
-              name="colors"
-              options={options}
-              placeholder="Search by Program Type"
-              className="basic-multi-select"
-              classNamePrefix="select"
-              theme={(theme) => ({
-                ...theme,
-                colors: {
-                  ...theme.colors,
-                  //neutral50: colors.PURPLE,
-                  //neutral150: colors.PURPLE,
-                  //primary: colors.PURPLE,
-                },
-              })}
-            />
-          </div>
+          <Container>
+            <div className="column">
+              <Subtitle>Update Logo</Subtitle>
+              <Select
+                isClearable
+                components={components}
+                styles={styles}
+                //todo: change variable to use in backend route for proper image
+                //todo: clear current file upload name
+                onChange={() => console.log('success')}
+                name="colors"
+                options={options}
+                placeholder="Search by Program Type"
+                className="basic-multi-select"
+                classNamePrefix="select"
+                theme={(theme) => ({
+                  ...theme,
+                  colors: {
+                    ...theme.colors,
+                    //neutral50: colors.PURPLE,
+                    //neutral150: colors.PURPLE,
+                    //primary: colors.PURPLE,
+                  },
+                })}
+              />
+              <FileSelector
+                onLoadFile={(files: FileList) => {
+                  alert('you uploaded a logo. good job');
+                  console.log(files[0]);
+                  setFileLogo(files[0]);
+                }}
+                file={fileLogo}
+              />
+              {errorLogo && <div>Cannot upload {errorLogo.message}</div>}
+            </div>
+          </Container>
         </div>
       </TableContainer>
     </DashboardContainer>
@@ -134,6 +167,11 @@ const DashboardPage: React.FC = () => {
 
 const DashboardContainer = styled.div`
   margin-left: 106px;
+`;
+
+const Container = styled.div`
+  width: 400 px;
+  margin-right: 406px;
 `;
 
 const TableContainer = styled.div`
