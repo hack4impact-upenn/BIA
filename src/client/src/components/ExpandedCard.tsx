@@ -7,7 +7,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 const Container = styled.div`
   border-radius: 10px;
-  height: 580px;
+  height: 550px;
   overflow-y: auto;
   width: 440px;
   padding: 10px;
