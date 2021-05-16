@@ -53,7 +53,9 @@ const DashboardPage: React.FC = () => {
       return;
     }
     setErrorCSV(null);
-    //api.post('path', file) todo
+    const data = new FormData();
+    data.append('fileCSV', fileCSV);
+    api.post('/api/org/csv', data);
   };
 
   const uploadLogo = () => {
