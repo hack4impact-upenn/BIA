@@ -8,6 +8,7 @@ import Colors from '../common/Colors';
 import ToolBar from '../components/ToolBar.tsx';
 
 const Titlebar = styled.div`
+  padding: 0px 10px;
   font-size: 48px;
   text-align: center;
   margin-top: 10px;
@@ -26,6 +27,7 @@ const HomeContainer = styled.div`
 `;
 const Tbar = styled.div`
   width: 550px;
+  padding: 0px 10px;
 `;
 
 function IndexPage() {
@@ -57,7 +59,7 @@ function IndexPage() {
           changeFilter={handleFilterChange}
         />
       </Tbar>
-      <div className="columns">
+      <div className="columns" style={{ padding: '10px' }}>
         <div className="column is-one-third" style={{ height: '70vh' }}>
           {isLoading ? (
             'Loading'

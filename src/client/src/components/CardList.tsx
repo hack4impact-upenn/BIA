@@ -8,15 +8,15 @@ const Container = styled.div`
   max-height: 80vh;
   overflow-y: scroll;
   width: 440px;
-  padding: 10px;
+  padding: 5px 10px;
   justify-content: center;
   align-items: center;
-  margin: auto;
+  margin: 0 auto;
   position: relative;
 
   @media screen and (max-width: 768px) {
     max-width: 80vw;
-    padding: 4px;
+    padding: 2px 4px;
     margin: 0px;
     overflow-x: hidden;
   }
