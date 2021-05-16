@@ -93,7 +93,9 @@ const dummyOrg = {
   website: 'hack4impact.org/',
 };
 //we will provide an org to this component, but for now we are using the dummy org object to fill these fields
+
 const Card = (props) => {
+  console.log(process.env);
   return (
     <div
       className="is-pulled-left"
@@ -102,7 +104,15 @@ const Card = (props) => {
       <Container>
         <div onClick={() => props.handleClick()}>
           <Titlebar>
-            <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
+            <Avatar
+              src={
+                'https://' +
+                  //process.env.AWS_BUCKET_NAME +
+                  'bia-h4i' +
+                  '.s3.amazonaws.com/' +
+                  props.org.logoURL || process.env.PUBLIC_URL + '/img/BIA.jpeg'
+              }
+            />
             <InfoDiv>
               <OrgName>{props.org.organizationName}</OrgName>
               <OrgCity>{props.org.headquarterCity}</OrgCity>

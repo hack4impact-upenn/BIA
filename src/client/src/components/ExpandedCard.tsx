@@ -131,7 +131,15 @@ const ExpandedCard = (props) => {
           <OrgTitle>{props.org.organizationName}</OrgTitle>
         </TopBar>
         <Titlebar>
-          <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
+          <Avatar
+            src={
+              'https://' +
+                //process.env.AWS_BUCKET_NAME +
+                'bia-h4i' +
+                '.s3.amazonaws.com/' +
+                props.org.logoURL || process.env.PUBLIC_URL + '/img/BIA.jpeg'
+            }
+          />
           <InfoDiv>
             <OrgName>{props.org.organizationName}</OrgName>
             <OrgYear>Established: {props.org.yearFounded}</OrgYear>
