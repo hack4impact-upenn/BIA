@@ -2,12 +2,16 @@ import express from 'express';
 import errorHandler from './error';
 import { Organization, IOrganization } from '../models/organization.model';
 import { v4 as uuidv4 } from 'uuid';
+import csv from 'csv-parser';
+import multer from 'multer';
+import auth from '../middleware/auth';
+import fs from 'fs';
 
 const { awsUpload, awsGet } = require('../utils/aws');
-import multer from 'multer';
 import database from 'src/utils/database';
 
 const router = express.Router();
+const upload = multer({ dest: 'uploads/' });
 
 /* create a new organization*/
 router.post('/', async (req, res) => {
@@ -229,7 +233,7 @@ router.put('/:organizationName', async (req, res) => {
     .catch((e) => errorHandler(res, e.message));
 });
 
-/* delete individaul organization */
+/* delete individual organization */
 router.delete('/:organizationName', (req, res) => {
   const { organizationName } = req.params;
 
@@ -255,6 +259,67 @@ router.delete('/', (_, res) => {
   Organization.deleteMany({})
     .then(() => res.status(200).json({ success: true }))
     .catch((e) => errorHandler(res, e));
+});
+
+/* add/update all organizations by CSV */
+router.post('/api/org/csv', upload.single('file'), auth, async (req, res) => {
+  //deleting all existing organizations in the db  
+  const organizations = await Organization.find({}, {organizationName: 1} );
+  organizations.forEach((element) => {
+    Organization.deleteOne({element});
+  });
+
+  const results: any = [];
+  
+    
+  fs.createReadStream(req.file.path)
+    .pipe(csv(['OrganizationName', 'YearFounded', 'CityOfHeadquarters',
+              'PointOfContact', 'ContactEmail', 'Website',
+              'TwitterPage', 'FacebookPage', 'InstagramPage',
+              'LinkedinPage', 'TypeOfInnovator', 'StageOfBusiness',
+              'IndustryFocus', 'TypesOfPrograms', 'FocusArea',
+              'IdentifyAs', 'SignatureProgram']))
+    .on('data', (data) => results.push(data))
+    .on('end', () => {
+      // we create a new organization object from the csv data
+      // NOTE: many of these are placeholders right now (unspecified behavior)
+      results.forEach(async (organization: any) => {
+        const newOrganization = new Organization();
+        newOrganization.organizationName = organization.OrganizationName;
+        newOrganization.yearFounded = organization.YearFounded;
+        //need to change short and long description to actual short and long description
+        //for now we are using the signature program description because thats the only description in the data
+        newOrganization.shortDescription = organization.SignatureProgram;
+        newOrganization.longDescription = organization.SignatureProgram;
+        newOrganization.headquarterCity = organization.CityOfHeadquarters;
+        newOrganization.pointOfContact = {name : organization.PointOfContact, title : "Contact Person", email : organization.ContactEmail};
+        newOrganization.contactEmail = organization.ContactEmail;
+        newOrganization.website = organization.Website;
+        newOrganization.twitter = organization.TwitterPage;
+        newOrganization.facebook = organization.FacebookPage;
+        newOrganization.instagram = organization.InstagramPage;
+        newOrganization.linkedIn = organization.LinkedinPage;
+        newOrganization.innovatorTypes = [organization.TypeOfInnovator];
+        newOrganization.businessStages = [organization.StageOfBusiness];
+        //empty array for industry focus until data is standardized
+        newOrganization.industryFocus = [];
+        newOrganization.programTypes = organization.TypesOfPrograms.split(';');
+        newOrganization.focusArea = organization.FocusArea;
+        newOrganization.profitStatus = organization.IdentifyAs;
+        newOrganization.signatureProgram = {imageURL: "", description: organization.SignatureProgram};
+        try {
+          // upload organization object to MongoDB
+          await newOrganization.save();
+        } catch (err) {
+          return errorHandler(res, err);
+        }
+      });
+      // We are deleting the file that was uploaded from the server.
+      fs.unlink(req.file.path, (err) => {
+        if (err) console.error(err);
+      });
+      return res.status(200).json({ success: true });
+    });
 });
 
 export default router;
