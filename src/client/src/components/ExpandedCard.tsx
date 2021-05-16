@@ -134,7 +134,8 @@ const ExpandedCard = (props) => {
           <Avatar
             src={
               'https://' +
-                process.env.AWS_BUCKET_NAME +
+                //process.env.AWS_BUCKET_NAME +
+                'bia-h4i' +
                 '.s3.amazonaws.com/' +
                 props.org.logoURL || process.env.PUBLIC_URL + '/img/BIA.jpeg'
             }

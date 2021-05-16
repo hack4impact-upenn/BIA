@@ -172,20 +172,24 @@ const CardsList = (props) => {
         item.shortDisc,
         item.headquarterCity,
       ];
-
-      return strings.some((string) =>
-        string.toLowerCase().startsWith(searchQuery.toLowerCase())
+      return strings.some(
+        (string) =>
+          string && string.toLowerCase().startsWith(searchQuery.toLowerCase())
       );
     });
     const filteredArray = searchedArray.filter((item) => {
       if (!filter || filter.length < 1) {
         return true;
       }
-      const string = item.programType;
+
+      const string = item.programTypes[0];
       return filter.some((f) => {
-        console.log(string);
+        console.log(item);
         return (
-          f && f.length > 2 && string.toLowerCase().startsWith(f.toLowerCase())
+          f &&
+          f.length > 2 &&
+          string &&
+          string.toLowerCase().startsWith(f.toLowerCase())
         );
       });
       //return
