@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
 
-// work here for task 1.2
-
 const Container = styled.div`
   border-radius: 10px;
   height: 200px;
@@ -106,11 +104,11 @@ const Card = (props) => {
           <Titlebar>
             <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
             <InfoDiv>
-              <OrgName>{props.org.name}</OrgName>
-              <OrgCity>{props.org.location}</OrgCity>
+              <OrgName>{props.org.organizationName}</OrgName>
+              <OrgCity>{props.org.headquarterCity}</OrgCity>
             </InfoDiv>
           </Titlebar>
-          <OrgDescription>{props.org.shortDisc}</OrgDescription>
+          <OrgDescription>{props.org.shortDescription}</OrgDescription>
         </div>
         <SocialsList org={props.org} />
       </Container>

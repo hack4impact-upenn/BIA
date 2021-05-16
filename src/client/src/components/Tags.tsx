@@ -17,8 +17,8 @@ const Tags = ({ tags }) => {
   console.log(tags);
   return (
     <>
-      {tags.map((tag) => (
-        <Tag>{tag}</Tag>
+      {tags.map((tag, index) => (
+        <Tag key={index}>{tag}</Tag>
       ))}
     </>
   );

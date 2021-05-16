@@ -29,9 +29,10 @@ const Tbar = styled.div`
 `;
 
 function IndexPage() {
-  const { isLoading, error, data } = useQuery('users', () =>
-    api.get('/api/users').then((res) => {
-      return res.data;
+  //load data org data fron the API
+  const { isLoading, error, data } = useQuery('organizations', () =>
+    api.get('/api/org/').then((res) => {
+      return res.data.result;
     })
   );
 
@@ -58,10 +59,18 @@ function IndexPage() {
       </Tbar>
       <div className="columns">
         <div className="column is-one-third" style={{ height: '70vh' }}>
-          <CardWrapper searchQuery={searchQuery} filter={filter} />
+          {isLoading ? (
+            'Loading'
+          ) : (
+            <CardWrapper
+              data={data}
+              searchQuery={searchQuery}
+              filter={filter}
+            />
+          )}
         </div>
         <div className="column" style={{ height: '70vh' }}>
-          <Map />
+          {isLoading ? 'Loading' : <Map data={data} />}
         </div>
       </div>
     </HomeContainer>

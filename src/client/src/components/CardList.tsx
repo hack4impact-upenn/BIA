@@ -155,16 +155,23 @@ const dummyOrgs = [
 //const dummyCards = dummyOrgs.map((org) => Card(org));
 
 const CardsList = (props) => {
+  const { data } = props;
   const { searchQuery } = props;
   const { filter } = props;
-  const [renderedArray, setArray] = useState(dummyOrgs);
+
+  const [renderedArray, setArray] = useState(data);
 
   useEffect(() => {
-    const searchedArray = dummyOrgs.filter((item) => {
+    const searchedArray = data.filter((item) => {
       if (!searchQuery || searchQuery.length < 3) {
         return true;
       }
-      const strings = [item.name, item.longDisc, item.shortDisc, item.location];
+      const strings = [
+        item.organizationName,
+        item.longDisc,
+        item.shortDisc,
+        item.headquarterCity,
+      ];
 
       return strings.some((string) =>
         string.toLowerCase().startsWith(searchQuery.toLowerCase())
