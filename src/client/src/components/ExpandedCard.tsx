@@ -69,6 +69,7 @@ const Arrow = styled.button`
   border-radius: 50%;
   background: ${colors.YELLOW}
   color: black;
+  pointer: cursor;
 `;
 
 const OrgTitle = styled.span`
@@ -127,7 +128,11 @@ const ExpandedCard = (props) => {
     <div>
       <Container>
         <TopBar>
-          <FaArrowLeft size={20} onClick={props.switchToList()} />
+          <FaArrowLeft
+            size={20}
+            style={{ cursor: 'pointer' }}
+            onClick={props.switchToList()}
+          />
           <OrgTitle>{props.org.organizationName}</OrgTitle>
         </TopBar>
         <Titlebar>
