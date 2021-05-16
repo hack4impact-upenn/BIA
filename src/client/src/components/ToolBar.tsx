@@ -44,21 +44,18 @@ const Container = styled.div`
 `;
 
 const Input = styled.input`
-  outline: none;
-  color: ${colors.PURPLE};
+  color: black;
   width: 100%;
   font-size: 1em;
   display: inline;
   width: 200px;
-  padding: 8px 10px;
+  padding: 8px 8px;
   background: ${colors.GREY};
   border-radius: 5px;
   &:hover,
   &:active,
   &:focus {
-    background: ${colors.GREY};
-    border: none;
-    border-radius: none;
+    background: 0.5px ${colors.BORDER_BLUE} solid;
   }
 `;
 
@@ -127,7 +124,7 @@ const ToolBar = ({
       >
         <div className="flex-item">
           <Input
-            className="input"
+            className="input change"
             value={searchQuery}
             placeholder={`Search by Name or State`}
             onChange={handleSearchChange}
@@ -148,8 +145,8 @@ const ToolBar = ({
               ...theme,
               colors: {
                 ...theme.colors,
-                //neutral50: colors.PURPLE,
-                //neutral150: colors.PURPLE,
+                //neutral50: colors.GREY,
+                //neutral150: colors.GREY,
                 //primary: colors.PURPLE,
               },
             })}
