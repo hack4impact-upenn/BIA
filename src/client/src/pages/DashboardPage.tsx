@@ -69,7 +69,16 @@ const DashboardPage: React.FC = () => {
       return;
     }
     setErrorLogo(null);
-    //api.post('path', file) todo
+    var fileReader = new FileReader();
+    fileReader.onload = function (fileLoadedEvent) {
+      var srcData: string = fileLoadedEvent.target.result as string; // <--- data: base64
+
+      var newImage = document.createElement('img');
+      newImage.src = srcData;
+      console.log(srcData);
+      api.post('/api/org/addImage', srcData);
+    };
+    fileReader.readAsDataURL(fileLogo);
   };
 
   useEffect(() => {
