@@ -5,18 +5,18 @@ import Card from './Card.tsx';
 
 const Container = styled.div`
   border-radius: 10px;
-  max-height: 80vh;
+  max-height: 70vh;
   overflow-y: scroll;
   width: 440px;
-  padding: 10px;
+  padding: 5px 10px;
   justify-content: center;
   align-items: center;
-  margin: auto;
+  margin: 0 auto;
   position: relative;
 
   @media screen and (max-width: 768px) {
     max-width: 80vw;
-    padding: 4px;
+    padding: 2px 4px;
     margin: 0px;
     overflow-x: hidden;
   }

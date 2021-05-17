@@ -5,7 +5,7 @@ import colors from '../common/Colors';
 
 const Container = styled.div`
   border-radius: 10px;
-  height: 200px;
+  height: 180px;
   width: 400px;
   padding: 10px;
   background-color: ${colors.PURPLE};
@@ -76,7 +76,7 @@ const OrgCity = styled.span`
 const OrgDescription = styled.p`
   text-align: start;
   color: white;
-  font-size: 10px;
+  font-size: 12px;
   margin-bottom: 6px;
   @media screen and (max-width: 768px) {
     font-size: 8px;
@@ -99,7 +99,7 @@ const Card = (props) => {
   return (
     <div
       className="is-pulled-left"
-      style={{ marginBottom: '20px', marginLeft: '10px', marginRight: '10px' }}
+      style={{ marginBottom: '20px', marginLeft: '2px', marginRight: '10px' }}
     >
       <Container>
         <div onClick={() => props.handleClick()}>
