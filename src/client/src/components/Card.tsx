@@ -57,6 +57,7 @@ const OrgName = styled.span`
   display: block;
   font-size: 20px;
   font-weight: 500;
+  font-family: Poppins;
   color: ${colors.YELLOW};
   @media screen and (max-width: 768px) {
     font-size: 16px;

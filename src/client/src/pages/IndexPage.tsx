@@ -8,10 +8,12 @@ import Colors from '../common/Colors';
 import ToolBar from '../components/ToolBar.tsx';
 
 const Titlebar = styled.div`
-  font-size: 48px;
+  font-size: 60px;
+  font-family: Tenor Sans;
   text-align: center;
   margin-top: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  padding: 0px;
   color: ${Colors.PURPLE};
 `;
 
@@ -20,6 +22,7 @@ const HomeContainer = styled.div`
   position: relative;
   overflow-x: hidden;
   max-width: 100vw;
+  background: #E5E5E5;
   @media screen and (max-width: 768px) {
     padding: 2px;
   }
@@ -27,6 +30,8 @@ const HomeContainer = styled.div`
 const Tbar = styled.div`
   width: 550px;
 `;
+
+
 
 function IndexPage() {
   //load data org data fron the API

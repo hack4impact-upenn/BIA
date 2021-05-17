@@ -37,7 +37,7 @@ const components = {
 
 const Container = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 8px;
   justify-content: center;
   align-items: center;
   margin: auto;
