@@ -246,7 +246,6 @@ router.delete('/:organizationName', (req, res) => {
     .catch((err) => errorHandler(res, err.message));
 });
 
-/* TESTING ENDPOINTS BELOW (DELETE IN PRODUCTION) */
 /* fetch all users in database */
 router.get('/', (_, res) => {
   Organization.find({})
