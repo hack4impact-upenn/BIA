@@ -53,7 +53,6 @@ const DashboardPage: React.FC = () => {
       return;
     }
     setErrorCSV(null);
-    //console.log("Test 1");
     api.post('/api/org/csv', fileCSV);
   };
 

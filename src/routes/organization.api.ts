@@ -262,7 +262,7 @@ router.delete('/', (_, res) => {
 
 /* add/update all organizations by CSV */
 router.post('/csv', upload.single('fileCSV'), auth, async (req, res) => {
-  console.log("Test 2");
+  console.log('Test 2');
   //deleting all existing organizations in the db
   const organizations = await Organization.find({}, { organizationName: 1 });
   organizations.forEach((element) => {
@@ -270,8 +270,8 @@ router.post('/csv', upload.single('fileCSV'), auth, async (req, res) => {
   });
 
   const results: any = [];
-  
-  console.log({ req });
+
+  console.log(req.file);
   fs.createReadStream(req.file.path)
     .pipe(
       csv([
