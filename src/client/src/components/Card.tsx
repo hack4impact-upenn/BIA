@@ -5,7 +5,7 @@ import colors from '../common/Colors';
 
 const Container = styled.div`
   border-radius: 10px;
-  height: 180px;
+  height: 192px;
   width: 400px;
   padding: 10px;
   background-color: ${colors.PURPLE};

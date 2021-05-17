@@ -113,7 +113,7 @@ const OrgWebsite = styled.span`
 const OrgDescription = styled.p`
   text-align: start;
   color: white;
-  font-size: 10px;
+  font-size: 13px;
   margin-bottom: 6px;
 `;
 const TagBar = styled.div`
