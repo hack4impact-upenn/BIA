@@ -43,6 +43,7 @@ const DashboardPage: React.FC = () => {
   const [errorLogo, setErrorLogo] = useState<any>(null);
   const [partners, setPartners] = useState<any>(null);
   const [options, setOptions] = useState<any>([]);
+  const [targetOrg, setOrg] = useState<any>(null);
 
   const uploadCSV = () => {
     if (
@@ -60,7 +61,9 @@ const DashboardPage: React.FC = () => {
   const uploadLogo = () => {
     if (
       !fileLogo.type ||
-      (fileLogo.type != 'image/png' && fileLogo.type != 'image/jpg')
+      (fileLogo.type != 'image/png' &&
+        fileLogo.type != 'image/jpg' &&
+        fileLogo.type != 'image/jpeg')
     ) {
       setErrorLogo({
         message: 'invalid image format. Please upload a .png or .jpg image.',
@@ -71,7 +74,10 @@ const DashboardPage: React.FC = () => {
     var fileReader = new FileReader();
     fileReader.onload = function (fileLoadedEvent) {
       var srcData: string = fileLoadedEvent.target.result as string; // <--- data: base64
-      api.post('/api/org/addImage', srcData);
+      console.log(targetOrg);
+      if (targetOrg) {
+        api.post(`/api/org/addImage/${targetOrg}`, { logo: srcData });
+      }
     };
     fileReader.readAsDataURL(fileLogo);
   };
@@ -111,6 +117,12 @@ const DashboardPage: React.FC = () => {
     fetchData();
   }, []);
 
+  const handleOrgChange = (e) => {
+    if (e.label) {
+      setOrg(e.label);
+    }
+  };
+
   return (
     <DashboardContainer>
       <Title>Partner Map Admin Portal</Title>
@@ -138,7 +150,7 @@ const DashboardPage: React.FC = () => {
                 styles={styles}
                 //todo: change variable to use in backend route for proper image
                 //todo: clear current file upload name
-                onChange={() => console.log('success')}
+                onChange={handleOrgChange}
                 name="colors"
                 options={options}
                 placeholder="Search by Program Type"
