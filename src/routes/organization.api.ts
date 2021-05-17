@@ -301,7 +301,7 @@ router.post('/csv', upload.single('fileCSV'), auth, async (req, res) => {
 
   const results: any = [];
 
-  console.log({ req });
+  console.log(req.file);
   fs.createReadStream(req.file.path)
     .pipe(
       csv([
