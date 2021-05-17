@@ -261,23 +261,38 @@ router.delete('/', (_, res) => {
 });
 
 /* add/update all organizations by CSV */
-router.post('/api/org/csv', upload.single('file'), auth, async (req, res) => {
-  //deleting all existing organizations in the db  
-  const organizations = await Organization.find({}, {organizationName: 1} );
+router.post('/csv', upload.single('fileCSV'), auth, async (req, res) => {
+  //deleting all existing organizations in the db
+  const organizations = await Organization.find({}, { organizationName: 1 });
   organizations.forEach((element) => {
-    Organization.deleteOne({element});
+    //Organization.deleteOne({element});
   });
 
   const results: any = [];
-  
-    
+
+  console.log({ req });
   fs.createReadStream(req.file.path)
-    .pipe(csv(['OrganizationName', 'YearFounded', 'CityOfHeadquarters',
-              'PointOfContact', 'ContactEmail', 'Website',
-              'TwitterPage', 'FacebookPage', 'InstagramPage',
-              'LinkedinPage', 'TypeOfInnovator', 'StageOfBusiness',
-              'IndustryFocus', 'TypesOfPrograms', 'FocusArea',
-              'IdentifyAs', 'SignatureProgram']))
+    .pipe(
+      csv([
+        'OrganizationName',
+        'YearFounded',
+        'CityOfHeadquarters',
+        'PointOfContact',
+        'ContactEmail',
+        'Website',
+        'TwitterPage',
+        'FacebookPage',
+        'InstagramPage',
+        'LinkedinPage',
+        'TypeOfInnovator',
+        'StageOfBusiness',
+        'IndustryFocus',
+        'TypesOfPrograms',
+        'FocusArea',
+        'IdentifyAs',
+        'SignatureProgram',
+      ])
+    )
     .on('data', (data) => results.push(data))
     .on('end', () => {
       // we create a new organization object from the csv data
@@ -291,7 +306,11 @@ router.post('/api/org/csv', upload.single('file'), auth, async (req, res) => {
         newOrganization.shortDescription = organization.SignatureProgram;
         newOrganization.longDescription = organization.SignatureProgram;
         newOrganization.headquarterCity = organization.CityOfHeadquarters;
-        newOrganization.pointOfContact = {name : organization.PointOfContact, title : "Contact Person", email : organization.ContactEmail};
+        newOrganization.pointOfContact = {
+          name: organization.PointOfContact,
+          title: 'Contact Person',
+          email: organization.ContactEmail,
+        };
         newOrganization.contactEmail = organization.ContactEmail;
         newOrganization.website = organization.Website;
         newOrganization.twitter = organization.TwitterPage;
@@ -305,10 +324,15 @@ router.post('/api/org/csv', upload.single('file'), auth, async (req, res) => {
         newOrganization.programTypes = organization.TypesOfPrograms.split(';');
         newOrganization.focusArea = organization.FocusArea;
         newOrganization.profitStatus = organization.IdentifyAs;
-        newOrganization.signatureProgram = {imageURL: "", description: organization.SignatureProgram};
+        newOrganization.signatureProgram = {
+          imageURL: '',
+          description: organization.SignatureProgram,
+        };
+
+        console.log(newOrganization);
         try {
           // upload organization object to MongoDB
-          await newOrganization.save();
+          // await newOrganization.save();
         } catch (err) {
           return errorHandler(res, err);
         }
