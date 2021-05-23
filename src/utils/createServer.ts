@@ -19,7 +19,6 @@ const createServer = (): express.Express => {
     })
   );
   app.use(cors());
-  app.use(upload.none());
 
   // API Routes
   app.use('/api/users', userRouter);

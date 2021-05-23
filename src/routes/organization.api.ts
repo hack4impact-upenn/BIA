@@ -290,8 +290,7 @@ router.post('/addImage/:organizationName', async (req, res) => {
   res.send({ status: 'success' });
 });
 
-/* add/update all organizations by CSV */
-router.post('/csv', upload.single('fileCSV'), auth, async (req, res) => {
+router.post('/uploadCSV', upload.single('file'), auth, async (req, res) => {
   console.log('Test 2');
   //deleting all existing organizations in the db
   const organizations = await Organization.find({}, { organizationName: 1 });
@@ -375,5 +374,10 @@ router.post('/csv', upload.single('fileCSV'), auth, async (req, res) => {
       return res.status(200).json({ success: true });
     });
 });
+/* add/update all organizations by CSV */
 
 export default router;
+
+/*
+
+*/
