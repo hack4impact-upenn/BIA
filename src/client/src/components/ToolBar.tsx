@@ -65,13 +65,16 @@ const sortOptions = [
 const programOptions = [
   { value: 'accelerator', label: 'Accelerator' },
   { value: 'coaching', label: 'Coaching' },
-  { value: 'direct funding', label: 'Direct Funding' },
-  { value: 'Funder Matching', label: 'Funder Matching' },
+  { value: 'direct-funding', label: 'Direct Funding' },
+  { value: 'funder matching', label: 'Funder Matching' },
   { value: 'incubator', label: 'Incubator' },
   { value: 'mentoring', label: 'Mentoring' },
   { value: 'networking', label: 'Networking' },
   { value: 'pitch events', label: 'Pitch Events' },
-  { value: 'cohort-based programs', label: 'Cohort-based Programs' },
+  {
+    value: 'other cohort-based programming',
+    label: 'Other cohort-based programming',
+  },
 ];
 
 const sortSelect = styled.select`

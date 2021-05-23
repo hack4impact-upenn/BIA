@@ -72,14 +72,9 @@ const DashboardPage: React.FC = () => {
   };
 
   const uploadLogo = () => {
-    if (
-      !fileLogo.type ||
-      (fileLogo.type != 'image/png' &&
-        fileLogo.type != 'image/jpg' &&
-        fileLogo.type != 'image/jpeg')
-    ) {
+    if (!fileLogo.type || fileLogo.type != 'image/png') {
       setErrorLogo({
-        message: 'invalid image format. Please upload a .png or .jpg image.',
+        message: 'invalid image format. Please upload a *.png image.',
       });
       return;
     }
