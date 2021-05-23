@@ -158,7 +158,7 @@ const DashboardPage: React.FC = () => {
             <div className="column">
               <Subtitle>Update Logo</Subtitle>
               <Select
-                isClearable
+                //isClearable
                 components={components}
                 styles={styles}
                 //todo: change variable to use in backend route for proper image
@@ -166,7 +166,7 @@ const DashboardPage: React.FC = () => {
                 onChange={handleOrgChange}
                 name="colors"
                 options={options}
-                placeholder="Search by Program Type"
+                placeholder="Partner Organization"
                 className="basic-multi-select"
                 classNamePrefix="select"
                 theme={(theme) => ({
