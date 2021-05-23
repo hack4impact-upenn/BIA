@@ -2,7 +2,6 @@ import React, { Component, useState, useEffect, ReactElement } from 'react';
 import styled from 'styled-components';
 import colors from '../common/Colors';
 import Select from 'react-select';
-import Icon from '../common/Icon';
 
 const styles = {
   control: ({ background, ...base }) => {
