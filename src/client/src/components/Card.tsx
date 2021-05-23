@@ -5,7 +5,8 @@ import colors from '../common/Colors';
 
 const Container = styled.div`
   border-radius: 10px;
-  height: 242px;
+  height: auto;
+  overflow: hidden;
   width: 400px;
   padding: 10px;
   background-color: ${colors.PURPLE};
@@ -77,7 +78,7 @@ const OrgDescription = styled.p`
   text-align: start;
   color: white;
   font-size: 12px;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   @media screen and (max-width: 768px) {
     font-size: 8px;
   }
