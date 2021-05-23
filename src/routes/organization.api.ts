@@ -301,10 +301,7 @@ router.post('/addImage/:organizationName', async (req, res) => {
 
 router.post('/uploadCSV', upload.single('file'), auth, async (req, res) => {
   //deleting all existing organizations in the db
-  const organizations = await Organization.find({}, { organizationName: 1 });
-  organizations.forEach((element) => {
-    //Organization.deleteOne({element});
-  });
+  await Organization.deleteMany({});
 
   const results: any = [];
 
