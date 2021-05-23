@@ -9,6 +9,7 @@ const Container = styled.div`
   border-radius: 10px;
   height: 550px;
   overflow-y: auto;
+  position: relative;
   width: 440px;
   padding: 10px;
   background-color: ${colors.PURPLE};
@@ -20,6 +21,12 @@ const Container = styled.div`
     box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
     transition-duration: 0.5s;
   }
+`;
+
+const SocialWrapping = styled.div`
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
 `;
 
 const Titlebar = styled.div`
@@ -158,7 +165,9 @@ const ExpandedCard = (props) => {
         <TagBar>
           <Tags tags={props.org.programTypes}></Tags>
         </TagBar>
-        <SocialsList org={props.org} />
+        <SocialWrapping>
+          <SocialsList org={props.org} />
+        </SocialWrapping>
       </Container>
     </div>
   );
