@@ -83,19 +83,7 @@ const OrgDescription = styled.p`
   }
 `;
 
-const dummyOrg = {
-  name: 'Black Innovation Alliance',
-  location: 'Philadelphia, PA',
-  tags: ['Inoovation', 'Entrepreneuership'],
-  shortDisc:
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
-  facebook: 'facebok.com',
-  website: 'hack4impact.org/',
-};
-//we will provide an org to this component, but for now we are using the dummy org object to fill these fields
-
 const Card = (props) => {
-  console.log(process.env);
   return (
     <div
       className="is-pulled-left"
