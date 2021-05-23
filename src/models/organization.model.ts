@@ -61,8 +61,8 @@ const OrganizationSchema = new Schema({
     imageURL: { type: String, required: false },
     description: { type: String, required: false },
   },
-  lat: {type: Number, required: false},
-  long: {type: Number, required: false},
+  lat: { type: Number, required: false },
+  long: { type: Number, required: false },
 });
 
 const Organization = mongoose.model<IOrganization>(
