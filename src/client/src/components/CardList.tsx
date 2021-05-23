@@ -52,7 +52,6 @@ const CardsList = (props) => {
 
       const string = item.programTypes[0];
       return filter.some((f) => {
-        console.log(item);
         return (
           f &&
           f.length > 2 &&

@@ -84,7 +84,6 @@ const OrgDescription = styled.p`
 `;
 
 const Card = (props) => {
-  console.log(process.env);
   return (
     <div
       className="is-pulled-left"
