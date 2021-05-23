@@ -64,11 +64,15 @@ const sortOptions = [
   { value: 'alphabetical', label: 'Alphabetical' },
 ];
 const programOptions = [
-  { value: 'type 1', label: 'Type 1' },
-  { value: 'type 2', label: 'Type 2' },
-  //{ value: 'type', label: 'Type' },
-  // { value: 'stage', label: 'Stage' },
-  //{ value: 'scope', label: 'Scope' },
+  { value: 'accelerator', label: 'Accelerator' },
+  { value: 'coaching', label: 'Coaching' },
+  { value: 'direct funding', label: 'Direct Funding' },
+  { value: 'Funder Matching', label: 'Funder Matching' },
+  { value: 'incubator', label: 'Incubator' },
+  { value: 'mentoring', label: 'Mentoring' },
+  { value: 'networking', label: 'Networking' },
+  { value: 'pitch events', label: 'Pitch Events' },
+  { value: 'cohort-based programs', label: 'Cohort-based Programs' },
 ];
 
 const sortSelect = styled.select`
