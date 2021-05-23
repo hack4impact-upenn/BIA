@@ -65,7 +65,7 @@ const sortOptions = [
 const programOptions = [
   { value: 'accelerator', label: 'Accelerator' },
   { value: 'coaching', label: 'Coaching' },
-  { value: 'direct-funding', label: 'Direct Funding' },
+  { value: 'direct funding', label: 'Direct Funding' },
   { value: 'funder matching', label: 'Funder Matching' },
   { value: 'incubator', label: 'Incubator' },
   { value: 'mentoring', label: 'Mentoring' },
