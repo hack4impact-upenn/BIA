@@ -261,12 +261,16 @@ router.delete('/', (_, res) => {
 });
 
 router.post('/addImage/:organizationName', async (req, res) => {
-  console.log(req.body.logo);
   const { organizationName } = req.params;
   const organization = await Organization.findOne({ organizationName });
   if (organization) {
     if (req.body.logo) {
-      var key = organization.logoURL.split('.')[0];
+      var key;
+      if (organization.logoURL) {
+        key = organization.logoURL.split('.')[0];
+      } else {
+        key = `${uuidv4()}_${organizationName}`;
+      }
       const data = Buffer.from(
         req.body.logo.replace(/^data:image\/\w+;base64,/, ''),
         'base64'
@@ -283,6 +287,11 @@ router.post('/addImage/:organizationName', async (req, res) => {
       }
       const type = mime && mime[0] ? mime[0] : 'image';
       const mime1 = mime && mime[1] ? mime[1] : 'jpeg';
+      if (!organization.logoURL) {
+        const filter = { organizationName: organizationName };
+        const update = { logoURL: key };
+        await Organization.findOneAndUpdate(filter, update);
+      }
       awsUpload(key, data, type, mime1);
     }
   }
@@ -291,7 +300,6 @@ router.post('/addImage/:organizationName', async (req, res) => {
 });
 
 router.post('/uploadCSV', upload.single('file'), auth, async (req, res) => {
-  console.log('Test 2');
   //deleting all existing organizations in the db
   const organizations = await Organization.find({}, { organizationName: 1 });
   organizations.forEach((element) => {
@@ -300,7 +308,6 @@ router.post('/uploadCSV', upload.single('file'), auth, async (req, res) => {
 
   const results: any = [];
 
-  console.log(req.file);
   fs.createReadStream(req.file.path)
     .pipe(
       csv([
@@ -362,7 +369,6 @@ router.post('/uploadCSV', upload.single('file'), auth, async (req, res) => {
           description: organization[16],
         };
 
-        console.log(newOrganization);
         try {
           // upload organization object to MongoDB
           await newOrganization.save();
