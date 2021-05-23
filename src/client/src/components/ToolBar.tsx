@@ -2,7 +2,6 @@ import React, { Component, useState, useEffect, ReactElement } from 'react';
 import styled from 'styled-components';
 import colors from '../common/Colors';
 import Select from 'react-select';
-import Icon from '../common/Icon';
 
 const styles = {
   control: ({ background, ...base }) => {
@@ -64,11 +63,18 @@ const sortOptions = [
   { value: 'alphabetical', label: 'Alphabetical' },
 ];
 const programOptions = [
-  { value: 'type 1', label: 'Type 1' },
-  { value: 'type 2', label: 'Type 2' },
-  //{ value: 'type', label: 'Type' },
-  // { value: 'stage', label: 'Stage' },
-  //{ value: 'scope', label: 'Scope' },
+  { value: 'accelerator', label: 'Accelerator' },
+  { value: 'coaching', label: 'Coaching' },
+  { value: 'direct funding', label: 'Direct Funding' },
+  { value: 'funder matching', label: 'Funder Matching' },
+  { value: 'incubator', label: 'Incubator' },
+  { value: 'mentoring', label: 'Mentoring' },
+  { value: 'networking', label: 'Networking' },
+  { value: 'pitch events', label: 'Pitch Events' },
+  {
+    value: 'other cohort-based programming',
+    label: 'Other cohort-based programming',
+  },
 ];
 
 const sortSelect = styled.select`

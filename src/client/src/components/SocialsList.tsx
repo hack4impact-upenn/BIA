@@ -15,7 +15,7 @@ const SocialsList = ({ org }) => {
     <div className="is-pulled-right">
       <Wrapper>
         {org.website && <Social type="link" link={org.website} />}
-        {org.linkedin && <Social type="linkedin" link={org.linkedin} />}
+        {org.linkedIn && <Social type="linkedin" link={org.linkedIn} />}
         {org.facebook && <Social type="facebook" link={org.facebook} />}
         {org.twitter && <Social type="twitter" link={org.twitter} />}
         {org.instagram && <Social type="instagram" link={org.instagram} />}
