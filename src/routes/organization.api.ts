@@ -328,41 +328,44 @@ router.post('/uploadCSV', upload.single('file'), auth, async (req, res) => {
       // we create a new organization object from the csv data
       // NOTE: many of these are placeholders right now (unspecified behavior)
       results.forEach(async (organization: any) => {
+        //console.log(organization);
         const newOrganization = new Organization();
-        newOrganization.organizationName = organization.OrganizationName;
-        newOrganization.yearFounded = organization.YearFounded;
+        newOrganization.organizationName = organization[0];
+        newOrganization.yearFounded = organization[1];
         //need to change short and long description to actual short and long description
         //for now we are using the signature program description because thats the only description in the data
-        newOrganization.shortDescription = organization.SignatureProgram;
-        newOrganization.longDescription = organization.SignatureProgram;
-        newOrganization.headquarterCity = organization.CityOfHeadquarters;
+        newOrganization.shortDescription = organization[16];
+        newOrganization.longDescription = organization[16];
+        newOrganization.headquarterCity = organization[2];
         newOrganization.pointOfContact = {
-          name: organization.PointOfContact,
+          name: organization[3],
           title: 'Contact Person',
-          email: organization.ContactEmail,
+          email: organization[4],
         };
-        newOrganization.contactEmail = organization.ContactEmail;
-        newOrganization.website = organization.Website;
-        newOrganization.twitter = organization.TwitterPage;
-        newOrganization.facebook = organization.FacebookPage;
-        newOrganization.instagram = organization.InstagramPage;
-        newOrganization.linkedIn = organization.LinkedinPage;
-        newOrganization.innovatorTypes = [organization.TypeOfInnovator];
-        newOrganization.businessStages = [organization.StageOfBusiness];
+        newOrganization.contactEmail = organization[4];
+        newOrganization.website = organization[5];
+        newOrganization.twitter = organization[6];
+        newOrganization.facebook = organization[7];
+        newOrganization.instagram = organization[8];
+        newOrganization.linkedIn = organization[9];
+        newOrganization.innovatorTypes = [organization[10]];
+        newOrganization.businessStages = [organization[11]];
         //empty array for industry focus until data is standardized
         newOrganization.industryFocus = [];
-        newOrganization.programTypes = organization.TypesOfPrograms.split(';');
-        newOrganization.focusArea = organization.FocusArea;
-        newOrganization.profitStatus = organization.ProfitStatus;
+        newOrganization.programTypes = organization[13]
+          ? organization[13].split(';')
+          : null;
+        newOrganization.focusArea = organization[12];
+        newOrganization.profitStatus = organization[15];
         newOrganization.signatureProgram = {
           imageURL: '',
-          description: organization.SignatureProgram,
+          description: organization[16],
         };
 
         console.log(newOrganization);
         try {
           // upload organization object to MongoDB
-          // await newOrganization.save();
+          await newOrganization.save();
         } catch (err) {
           return errorHandler(res, err);
         }
