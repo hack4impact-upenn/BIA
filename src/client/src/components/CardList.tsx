@@ -182,17 +182,23 @@ const CardsList = (props) => {
         return true;
       }
 
-      const string = item.programTypes[0];
+      const strings = item.programTypes;
       return filter.some((f) => {
-        console.log(item);
-        return (
-          f &&
-          f.length > 2 &&
-          string &&
-          string.toLowerCase().startsWith(f.toLowerCase())
-        );
+        var valid = false;
+
+        strings.forEach((s) => {
+          if (
+            f &&
+            f.length > 2 &&
+            s &&
+            s.length > 2 &&
+            s.toLowerCase().startsWith(f.toLowerCase())
+          ) {
+            valid = true;
+          }
+        });
+        return valid;
       });
-      //return
     });
     setArray(filteredArray);
   }, [filter, searchQuery]);
