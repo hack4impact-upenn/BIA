@@ -52,22 +52,26 @@ const CardsList = (props) => {
       }
 
       const strings = item.programTypes;
-      return filter.some((f) => {
-        var valid = false;
+      if (strings) {
+        return filter.some((f) => {
+          var valid = false;
 
-        strings.forEach((s) => {
-          if (
-            f &&
-            f.length > 2 &&
-            s &&
-            s.length > 2 &&
-            s.toLowerCase().startsWith(f.toLowerCase())
-          ) {
-            valid = true;
-          }
+          strings.forEach((s) => {
+            if (
+              f &&
+              f.length > 2 &&
+              s &&
+              s.length > 2 &&
+              s.toLowerCase().startsWith(f.toLowerCase())
+            ) {
+              valid = true;
+            }
+          });
+          return valid;
         });
-        return valid;
-      });
+      } else {
+        return true;
+      }
     });
     setArray(filteredArray);
   }, [filter, searchQuery]);
