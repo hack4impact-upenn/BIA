@@ -10,9 +10,9 @@ const styles = {
       boxShadow: 'none',
       color: colors.PURPLE,
       background: colors.GREY,
-      width: `240px`,
+      width: `12vw`,
       margin: 'auto',
-      padding: '0px; 20px',
+      borderRadius: '5px',
     };
   },
   option: ({ background, ...base }, { isFocused, isSelected }) => {
@@ -50,8 +50,7 @@ const Input = styled.input`
   margin: auto
   font-size: 1em;
   display: inline;
-  width: 220px;
-  padding: 8px 8px;
+  width: 12vw;
   background: ${colors.GREY};
   border-radius: 5px;
   &:hover,
