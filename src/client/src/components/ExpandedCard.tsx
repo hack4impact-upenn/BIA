@@ -9,7 +9,7 @@ const Container = styled.div`
   border-radius: 0px 0px 10px 10px;
   height: 550px;
   overflow-y: auto;
-  vw: 33;
+  width: 30vw;
   position: relative;
   padding: 10px;
   background-color: ${colors.PURPLE};
@@ -39,8 +39,10 @@ const TopBar = styled.div`
   padding-left: 20px;
 
   background: ${colors.YELLOW};
-  width: 100%;
+  width: 30vw;
   height: 70px;
+  margin: auto;
+
   &:hover {
     box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
     transition-duration: 0.5s;

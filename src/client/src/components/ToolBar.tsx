@@ -11,6 +11,8 @@ const styles = {
       color: colors.PURPLE,
       background: colors.GREY,
       width: `240px`,
+      margin: 'auto',
+      padding: '0px; 20px',
     };
   },
   option: ({ background, ...base }, { isFocused, isSelected }) => {
@@ -45,6 +47,7 @@ const Container = styled.div`
 const Input = styled.input`
   color: black;
   width: 100%;
+  margin: auto
   font-size: 1em;
   display: inline;
   width: 220px;
@@ -136,7 +139,7 @@ const ToolBar = ({
             onChange={handleSearchChange}
           />
         </div>
-        <div className="flex-item">
+        <div className="flex-item is-pulled-right">
           <Select
             isMulti
             components={components}

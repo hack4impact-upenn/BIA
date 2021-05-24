@@ -7,7 +7,7 @@ const Container = styled.div`
   border-radius: 10px;
   max-height: 70vh;
   overflow-y: scroll;
-  vw: 33;
+  width: 30vw;
   padding: 5px 10px;
   justify-content: center;
   align-items: center;
