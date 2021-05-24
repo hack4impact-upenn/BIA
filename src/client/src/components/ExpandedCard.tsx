@@ -10,6 +10,7 @@ const Container = styled.div`
   height: 550px;
   overflow-y: auto;
   vw: 33;
+  position: relative;
   padding: 10px;
   background-color: ${colors.PURPLE};
   justify-content: center;
@@ -20,6 +21,12 @@ const Container = styled.div`
     box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
     transition-duration: 0.5s;
   }
+`;
+
+const SocialWrapping = styled.div`
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
 `;
 
 const Titlebar = styled.div`
@@ -150,16 +157,24 @@ const ExpandedCard = (props) => {
             <OrgName>{props.org.organizationName}</OrgName>
             <OrgYear>Established: {props.org.yearFounded}</OrgYear>
             <OrgCity>{props.org.headquarterCity}</OrgCity>
-            <OrgWebsite> Website: {props.org.website}</OrgWebsite>
+            <OrgWebsite>
+              {' '}
+              Website: <a href={props.org.website}> {props.org.website} </a>
+            </OrgWebsite>
+            <OrgWebsite> Contact Email: {props.org.contactEmail}</OrgWebsite>
           </InfoDiv>
         </Titlebar>
         <DescriptionDiv>
-          <OrgDescription>{props.org.longDisc}</OrgDescription>
+          <OrgDescription>{props.org.longDescription}</OrgDescription>
         </DescriptionDiv>
         <TagBar>
-          <Tags tags={props.org.programTypes}></Tags>
+          {props.org.programTypes && (
+            <Tags tags={props.org.programTypes}></Tags>
+          )}
         </TagBar>
-        <SocialsList org={props.org} />
+        <SocialWrapping>
+          <SocialsList org={props.org} />
+        </SocialWrapping>
       </Container>
     </div>
   );
