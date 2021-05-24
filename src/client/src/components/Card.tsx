@@ -5,7 +5,8 @@ import colors from '../common/Colors';
 
 const Container = styled.div`
   border-radius: 10px;
-  height: 192px;
+  height: auto;
+  overflow: hidden;
   width: 400px;
   padding: 10px;
   background-color: ${colors.PURPLE};
@@ -77,25 +78,13 @@ const OrgDescription = styled.p`
   text-align: start;
   color: white;
   font-size: 12px;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   @media screen and (max-width: 768px) {
     font-size: 8px;
   }
 `;
 
-const dummyOrg = {
-  name: 'Black Innovation Alliance',
-  location: 'Philadelphia, PA',
-  tags: ['Inoovation', 'Entrepreneuership'],
-  shortDisc:
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
-  facebook: 'facebok.com',
-  website: 'hack4impact.org/',
-};
-//we will provide an org to this component, but for now we are using the dummy org object to fill these fields
-
 const Card = (props) => {
-  console.log(process.env);
   return (
     <div
       className="is-pulled-left"

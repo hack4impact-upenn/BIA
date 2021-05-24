@@ -27,7 +27,7 @@ const Social = (props) => {
   const { type, link } = props;
   return (
     <>
-      <IconWrapper href={`http://${link}`} target="blank">
+      <IconWrapper href={`${link}`} target="blank">
         <Icon name={type} />
       </IconWrapper>
     </>

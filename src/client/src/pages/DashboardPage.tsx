@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Select from 'react-select';
 import colors from '../common/Colors';
 import api from '../api/index.js';
+import auth from '../api/auth';
 
 const styles = {
   control: ({ background, ...base }) => {
@@ -37,44 +38,63 @@ const components = {
 };
 
 const DashboardPage: React.FC = () => {
-  const [fileCSV, setFileCSV] = useState<any>(null);
+  const [file, setFileCSV] = useState<any>(null);
   const [fileLogo, setFileLogo] = useState<any>(null);
   const [errorCSV, setErrorCSV] = useState<any>(null);
   const [errorLogo, setErrorLogo] = useState<any>(null);
   const [partners, setPartners] = useState<any>(null);
   const [options, setOptions] = useState<any>([]);
+  const [targetOrg, setOrg] = useState<any>(null);
 
   const uploadCSV = () => {
     if (
-      !fileCSV.type ||
-      (fileCSV.type != 'text/csv' && fileCSV.type != 'application/vnd.ms-excel')
+      !file.type ||
+      (file.type != 'text/csv' && file.type != 'application/vnd.ms-excel')
     ) {
       setErrorCSV({ message: 'invalid file type. Please upload a .csv file.' });
       return;
     }
     setErrorCSV(null);
-    //api.post('path', file) todo
+    const data = new FormData();
+    data.append('file', file);
+    api({
+      url: '/api/org/uploadCSV',
+      method: 'POST',
+      timeout: 0,
+      headers: {
+        Authorization: `Bearer ${auth.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      data,
+    })
+      .then((res) => alert('Your CSV was uploaded!'))
+      .catch((err: Error) => alert(err.message));
   };
 
   const uploadLogo = () => {
-    if (
-      !fileLogo.type ||
-      (fileLogo.type != 'image/png' && fileLogo.type != 'image/jpg')
-    ) {
+    if (!fileLogo.type || fileLogo.type != 'image/png') {
       setErrorLogo({
-        message: 'invalid image format. Please upload a .png or .jpg image.',
+        message: 'invalid image format. Please upload a *.png image.',
       });
       return;
     }
     setErrorLogo(null);
-    //api.post('path', file) todo
+    var fileReader = new FileReader();
+    fileReader.onload = function (fileLoadedEvent) {
+      var srcData: string = fileLoadedEvent.target.result as string; // <--- data: base64
+      console.log(targetOrg);
+      if (targetOrg) {
+        api.post(`/api/org/addImage/${targetOrg}`, { logo: srcData });
+      }
+    };
+    fileReader.readAsDataURL(fileLogo);
   };
 
   useEffect(() => {
-    if (fileCSV) {
+    if (file) {
       uploadCSV();
     }
-  }, [fileCSV]);
+  }, [file]);
 
   useEffect(() => {
     if (fileLogo) {
@@ -105,6 +125,12 @@ const DashboardPage: React.FC = () => {
     fetchData();
   }, []);
 
+  const handleOrgChange = (e) => {
+    if (e.label) {
+      setOrg(e.label);
+    }
+  };
+
   return (
     <DashboardContainer>
       <Title>Partner Map Admin Portal</Title>
@@ -118,7 +144,7 @@ const DashboardPage: React.FC = () => {
                 console.log(files[0]);
                 setFileCSV(files[0]);
               }}
-              file={fileCSV}
+              file={file}
             />
             {errorCSV && <div>Cannot submit {errorCSV.message}</div>}
             <ExportButton>Export to CSV</ExportButton>
@@ -127,15 +153,15 @@ const DashboardPage: React.FC = () => {
             <div className="column">
               <Subtitle>Update Logo</Subtitle>
               <Select
-                isClearable
+                //isClearable
                 components={components}
                 styles={styles}
                 //todo: change variable to use in backend route for proper image
                 //todo: clear current file upload name
-                onChange={() => console.log('success')}
+                onChange={handleOrgChange}
                 name="colors"
                 options={options}
-                placeholder="Search by Program Type"
+                placeholder="Partner Organization"
                 className="basic-multi-select"
                 classNamePrefix="select"
                 theme={(theme) => ({
@@ -243,7 +269,7 @@ const FileSelector = (props: {
         <input
           className="file-input"
           type="file"
-          name="resume"
+          name="file"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             props.onLoadFile(e.target.files)
           }

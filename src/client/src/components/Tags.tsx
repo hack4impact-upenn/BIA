@@ -5,12 +5,11 @@ import Colors from '../common/Colors';
 export const Tag = styled.span`
   margin: 5px 4px 4px 5px;
   font-weight: 200;
-  font-size: 10px;
-  max-width: 20px;
+  font-size: 12px;
   background-color: ${Colors.GREY};
   color: ${Colors.PURPLE};
   padding: 10px;
-  border-radius: 40px;
+  border-radius: 20px;
 `;
 
 const Tags = ({ tags }) => {

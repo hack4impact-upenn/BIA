@@ -2,12 +2,16 @@ import express from 'express';
 import errorHandler from './error';
 import { Organization, IOrganization } from '../models/organization.model';
 import { v4 as uuidv4 } from 'uuid';
+import csv from 'csv-parser';
+import multer from 'multer';
+import auth from '../middleware/auth';
+import fs from 'fs';
 
 const { awsUpload, awsGet } = require('../utils/aws');
-import multer from 'multer';
 import database from 'src/utils/database';
 
 const router = express.Router();
+const upload = multer({ dest: 'uploads/' });
 
 /* create a new organization*/
 router.post('/', async (req, res) => {
@@ -229,7 +233,7 @@ router.put('/:organizationName', async (req, res) => {
     .catch((e) => errorHandler(res, e.message));
 });
 
-/* delete individaul organization */
+/* delete individual organization */
 router.delete('/:organizationName', (req, res) => {
   const { organizationName } = req.params;
 
@@ -242,7 +246,6 @@ router.delete('/:organizationName', (req, res) => {
     .catch((err) => errorHandler(res, err.message));
 });
 
-/* TESTING ENDPOINTS BELOW (DELETE IN PRODUCTION) */
 /* fetch all users in database */
 router.get('/', (_, res) => {
   Organization.find({})
@@ -257,4 +260,130 @@ router.delete('/', (_, res) => {
     .catch((e) => errorHandler(res, e));
 });
 
+router.post('/addImage/:organizationName', async (req, res) => {
+  const { organizationName } = req.params;
+  const organization = await Organization.findOne({ organizationName });
+  if (organization) {
+    if (req.body.logo) {
+      var key;
+      if (organization.logoURL) {
+        key = organization.logoURL.split('.')[0];
+      } else {
+        key = `${uuidv4()}_${organizationName}`;
+      }
+      const data = Buffer.from(
+        req.body.logo.replace(/^data:image\/\w+;base64,/, ''),
+        'base64'
+      );
+      var mime = req.body.logo.match(
+        /data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+).*,.*/
+      );
+      if (mime && mime.length > 0) {
+        mime = mime[1];
+        mime = mime.split('/');
+        if (mime && mime.length > 0) {
+          key = key + `.${mime[1]}`;
+        }
+      }
+      const type = mime && mime[0] ? mime[0] : 'image';
+      const mime1 = mime && mime[1] ? mime[1] : 'jpeg';
+      if (!organization.logoURL) {
+        const filter = { organizationName: organizationName };
+        const update = { logoURL: key };
+        await Organization.findOneAndUpdate(filter, update);
+      }
+      awsUpload(key, data, type, mime1);
+    }
+  }
+
+  res.send({ status: 'success' });
+});
+
+router.post('/uploadCSV', upload.single('file'), auth, async (req, res) => {
+  //deleting all existing organizations in the db
+  await Organization.deleteMany({});
+
+  const results: any = [];
+
+  fs.createReadStream(req.file.path)
+    .pipe(
+      csv([
+        'OrganizationName',
+        'YearFounded',
+        'CityOfHeadquarters',
+        'PointOfContact',
+        'ContactEmail',
+        'Website',
+        'TwitterPage',
+        'FacebookPage',
+        'InstagramPage',
+        'LinkedinPage',
+        'TypeOfInnovator',
+        'StageOfBusiness',
+        'IndustryFocus',
+        'TypesOfPrograms',
+        'FocusArea',
+        'ProfitStatus',
+        'SignatureProgram',
+      ])
+    )
+    .on('data', (data) => results.push(data))
+    .on('end', () => {
+      // we create a new organization object from the csv data
+      // NOTE: many of these are placeholders right now (unspecified behavior)
+      results.forEach(async (organization: any) => {
+        //console.log(organization);
+        const newOrganization = new Organization();
+        newOrganization.organizationName = organization[0];
+        newOrganization.yearFounded = organization[1];
+        //need to change short and long description to actual short and long description
+        //for now we are using the signature program description because thats the only description in the data
+        newOrganization.shortDescription = organization[16];
+        newOrganization.longDescription = organization[16];
+        newOrganization.headquarterCity = organization[2];
+        newOrganization.pointOfContact = {
+          name: organization[3],
+          title: 'Contact Person',
+          email: organization[4],
+        };
+        newOrganization.contactEmail = organization[4];
+        newOrganization.website = organization[5];
+        newOrganization.twitter = organization[6];
+        newOrganization.facebook = organization[7];
+        newOrganization.instagram = organization[8];
+        newOrganization.linkedIn = organization[9];
+        newOrganization.innovatorTypes = [organization[10]];
+        newOrganization.businessStages = [organization[11]];
+        //empty array for industry focus until data is standardized
+        newOrganization.industryFocus = [];
+        newOrganization.programTypes = organization[13]
+          ? organization[13].split(';')
+          : null;
+        newOrganization.focusArea = organization[12];
+        newOrganization.profitStatus = organization[15];
+        newOrganization.signatureProgram = {
+          imageURL: '',
+          description: organization[16],
+        };
+
+        try {
+          // upload organization object to MongoDB
+          await newOrganization.save();
+        } catch (err) {
+          return errorHandler(res, err);
+        }
+      });
+      // We are deleting the file that was uploaded from the server.
+      fs.unlink(req.file.path, (err) => {
+        if (err) console.error(err);
+      });
+      return res.status(200).json({ success: true });
+    });
+});
+/* add/update all organizations by CSV */
+
 export default router;
+
+/*
+
+*/

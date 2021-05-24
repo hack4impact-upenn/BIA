@@ -38,7 +38,7 @@ const TopBar = styled.div`
   padding: 10px;
 
   background: ${colors.YELLOW};
-  width: 500px;
+  width: 440px;
   height: 70px;
   margin-left: -10px;
   margin-top: -10px;
@@ -128,6 +128,7 @@ const TagBar = styled.div`
   height: 50px;
   margin-top: 10px;
   positon: absolute;
+  overflow-wrap: break-word;
 `;
 
 const ExpandedCard = (props) => {
