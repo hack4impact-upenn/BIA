@@ -6,7 +6,7 @@ import Tags from './Tags.tsx';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const Container = styled.div`
-  border-radius: 10px;
+  border-radius: 0px 0px 10px 10px;
   height: 550px;
   overflow-y: auto;
   vw: 33;
@@ -35,14 +35,17 @@ const Titlebar = styled.div`
 `;
 
 const TopBar = styled.div`
-  padding: 10px;
+  padding-top: 15px;
+  padding-left: 20px;
 
   background: ${colors.YELLOW};
-  width: 440px;
+  width: 100%;
   height: 70px;
-  margin-left: -10px;
-  margin-top: -10px;
-  margin-bottom: 15px;
+  &:hover {
+    box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
+    transition-duration: 0.5s;
+  }
+  border-radius: 10px 10px 0px 0px;
 `;
 
 const InfoDiv = styled.div`
@@ -124,7 +127,7 @@ const OrgDescription = styled.p`
   margin-bottom: 6px;
 `;
 const TagBar = styled.div`
-  padding: 0px;
+  padding-left: 15px;
   height: 50px;
   margin-top: 10px;
   positon: absolute;
@@ -134,15 +137,15 @@ const TagBar = styled.div`
 const ExpandedCard = (props) => {
   return (
     <div>
+      <TopBar>
+        <FaArrowLeft
+          size={20}
+          style={{ cursor: 'pointer' }}
+          onClick={props.switchToList()}
+        />
+        <OrgTitle>{props.org.organizationName}</OrgTitle>
+      </TopBar>
       <Container>
-        <TopBar>
-          <FaArrowLeft
-            size={20}
-            style={{ cursor: 'pointer' }}
-            onClick={props.switchToList()}
-          />
-          <OrgTitle>{props.org.organizationName}</OrgTitle>
-        </TopBar>
         <Titlebar>
           <Avatar
             src={
