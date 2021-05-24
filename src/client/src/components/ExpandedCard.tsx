@@ -157,14 +157,20 @@ const ExpandedCard = (props) => {
             <OrgName>{props.org.organizationName}</OrgName>
             <OrgYear>Established: {props.org.yearFounded}</OrgYear>
             <OrgCity>{props.org.headquarterCity}</OrgCity>
-            <OrgWebsite> Website: {props.org.website}</OrgWebsite>
+            <OrgWebsite>
+              {' '}
+              Website: <a href={props.org.website}> {props.org.website} </a>
+            </OrgWebsite>
+            <OrgWebsite> Contact Email: {props.org.contactEmail}</OrgWebsite>
           </InfoDiv>
         </Titlebar>
         <DescriptionDiv>
           <OrgDescription>{props.org.longDescription}</OrgDescription>
         </DescriptionDiv>
         <TagBar>
-          <Tags tags={props.org.programTypes}></Tags>
+          {props.org.programTypes && (
+            <Tags tags={props.org.programTypes}></Tags>
+          )}
         </TagBar>
         <SocialWrapping>
           <SocialsList org={props.org} />
