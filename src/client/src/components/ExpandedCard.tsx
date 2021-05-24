@@ -161,7 +161,7 @@ const ExpandedCard = (props) => {
           </InfoDiv>
         </Titlebar>
         <DescriptionDiv>
-          <OrgDescription>{props.org.longDisc}</OrgDescription>
+          <OrgDescription>{props.org.longDescription}</OrgDescription>
         </DescriptionDiv>
         <TagBar>
           <Tags tags={props.org.programTypes}></Tags>
