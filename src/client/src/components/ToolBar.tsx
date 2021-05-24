@@ -10,7 +10,7 @@ const styles = {
       boxShadow: 'none',
       color: colors.PURPLE,
       background: colors.GREY,
-      width: `250px`,
+      width: `240px`,
     };
   },
   option: ({ background, ...base }, { isFocused, isSelected }) => {
@@ -47,7 +47,7 @@ const Input = styled.input`
   width: 100%;
   font-size: 1em;
   display: inline;
-  width: 200px;
+  width: 220px;
   padding: 8px 8px;
   background: ${colors.GREY};
   border-radius: 5px;

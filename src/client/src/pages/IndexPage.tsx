@@ -26,7 +26,7 @@ const HomeContainer = styled.div`
   }
 `;
 const Tbar = styled.div`
-  width: 550px;
+  width: 600px;
   padding: 0px 10px;
 `;
 

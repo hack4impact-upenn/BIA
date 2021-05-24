@@ -9,7 +9,7 @@ const Container = styled.div`
   border-radius: 10px;
   height: 550px;
   overflow-y: auto;
-  width: 440px;
+  vw: 33;
   padding: 10px;
   background-color: ${colors.PURPLE};
   justify-content: center;

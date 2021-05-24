@@ -7,12 +7,13 @@ const Container = styled.div`
   border-radius: 10px;
   max-height: 70vh;
   overflow-y: scroll;
-  width: 440px;
+  vw: 33;
   padding: 5px 10px;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  position: relative;
+  padding-left: 20px;
+  position: absolute;
 
   @media screen and (max-width: 768px) {
     max-width: 80vw;
