@@ -5,8 +5,14 @@ import colors from '../common/Colors';
 
 const Container = styled.div`
   border-radius: 10px;
+<<<<<<< HEAD
   height: 192px;
   width: 400px;
+=======
+  height: auto;
+  overflow: hidden;
+  width: 550px;
+>>>>>>> 74257f226906425337d98bc1c9478cad3c76f911
   padding: 10px;
   background-color: ${colors.PURPLE};
   justify-content: center;
