@@ -5,7 +5,7 @@ import Card from './Card.tsx';
 
 const Container = styled.div`
   border-radius: 10px;
-  max-height: 70vh;
+  max-height: 69vh;
   overflow-y: scroll;
   width: 30vw;
   padding: 5px 10px;

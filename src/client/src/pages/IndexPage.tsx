@@ -6,20 +6,33 @@ import CardWrapper from '../components/CardWrapper.tsx';
 import styled from 'styled-components';
 import Colors from '../common/Colors';
 import ToolBar from '../components/ToolBar.tsx';
+import Navbar from '../components/Navbar.tsx';
 
 const Titlebar = styled.div`
-  padding: 0px 10px;
-  font-size: 48px;
-  text-align: center;
+  padding: 0px 30px;
+  font-size: 28px;
+  text-align: start;
+  font-family: 'Montserrat Alternates', sans-serif;
   margin-top: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: ${Colors.PURPLE};
+`;
+
+const Discbar = styled.div`
+  padding: 0px 30px;
+  font-size: 12px;
+  text-align: start;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 2px;
+  margin-bottom: 10px;
+  color: ${Colors.SECONDARY_GREY};
 `;
 
 const HomeContainer = styled.div`
   padding: 10px;
   position: relative;
   overflow-x: hidden;
+  background-color: ${Colors.HOMEPAGE_GREY} 
   max-width: 100vw;
   @media screen and (max-width: 768px) {
     padding: 2px;
@@ -51,31 +64,41 @@ function IndexPage() {
   console.log(searchQuery);
 
   return (
-    <HomeContainer>
-      <Titlebar>Partner Map</Titlebar>
-      <Tbar>
-        <ToolBar
-          changeSearch={handleSearchChange}
-          changeFilter={handleFilterChange}
-        />
-      </Tbar>
-      <div className="columns" style={{ padding: '10px' }}>
-        <div className="column is-one-third" style={{ height: '70vh' }}>
-          {isLoading ? (
-            'Loading'
-          ) : (
-            <CardWrapper
-              data={data}
-              searchQuery={searchQuery}
-              filter={filter}
-            />
-          )}
+    <>
+      <Navbar />
+      <HomeContainer>
+        <Titlebar>The Black Innovation Alliance Map</Titlebar>
+        <Discbar>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+          numquam natus dolore eum dolor, distinctio quidem molestias sed
+          voluptatem nisi ab hic, repellat asperiores non incidunt labore error
+          officia inventore!
+        </Discbar>
+        <hr style={{ border: '1px solid #1d1e8' }} />
+        <Tbar>
+          <ToolBar
+            changeSearch={handleSearchChange}
+            changeFilter={handleFilterChange}
+          />
+        </Tbar>
+        <div className="columns" style={{ padding: '10px' }}>
+          <div className="column is-one-third" style={{ height: '70vh' }}>
+            {isLoading ? (
+              'Loading'
+            ) : (
+              <CardWrapper
+                data={data}
+                searchQuery={searchQuery}
+                filter={filter}
+              />
+            )}
+          </div>
+          <div className="column" style={{ height: '70vh' }}>
+            {isLoading ? 'Loading' : <Map data={data} />}
+          </div>
         </div>
-        <div className="column" style={{ height: '70vh' }}>
-          {isLoading ? 'Loading' : <Map data={data} />}
-        </div>
-      </div>
-    </HomeContainer>
+      </HomeContainer>
+    </>
   );
 }
 

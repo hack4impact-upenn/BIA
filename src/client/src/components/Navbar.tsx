@@ -10,6 +10,17 @@ const NavBarItems = styled.div`
   }
 `;
 
+const Avatar = styled.img`
+  display: inline;
+  width: 80px;
+  height: 80px;
+  maxheight: 80px;
+  margin-left: 10px;
+  background: black;
+  border-radius: 50%;
+  border: 2px solid white;
+`;
+
 //Might add this component later. Keep it for now because the login/register control might be useful.
 
 function Navbar() {
@@ -21,11 +32,21 @@ function Navbar() {
   }
 
   return (
-    <nav className="navbar" style={{ background: `${Colors.blue}44` }}>
+    <nav
+      className="navbar"
+      style={{ background: `${Colors.white}`, height: '80px' }}
+    >
       <div className="container">
         <div className="navbar-brand">
-          <a href="/" className="navbar-item title is-4">
-            Black Innovation Alliance
+          <a
+            href="/"
+            className="navbar-item title is-4"
+            style={{ maxHeight: '80px', margin: '50px 12px' }}
+          >
+            <Avatar
+              style={{ maxHeight: '80px' }}
+              src={process.env.PUBLIC_URL + '/img/BIA.jpeg'}
+            />
           </a>
         </div>
         <div className="navbar-menu">

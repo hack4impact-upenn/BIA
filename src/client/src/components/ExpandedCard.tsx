@@ -7,9 +7,9 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 const Container = styled.div`
   border-radius: 0px 0px 10px 10px;
-  height: 550px;
+  height: 500px;
   overflow-y: auto;
-  width: 30vw;
+  width: 28vw;
   position: relative;
   padding: 10px;
   background-color: ${colors.PURPLE};
@@ -39,7 +39,7 @@ const TopBar = styled.div`
   padding-left: 20px;
 
   background: ${colors.YELLOW};
-  width: 30vw;
+  width: 28vw;
   height: 70px;
   margin: auto;
 
@@ -166,7 +166,7 @@ const ExpandedCard = (props) => {
               {' '}
               Website: <a href={props.org.website}> {props.org.website} </a>
             </OrgWebsite>
-            <OrgWebsite> Contact Email: {props.org.contactEmail}</OrgWebsite>
+            <OrgWebsite> Contact: {props.org.contactEmail}</OrgWebsite>
           </InfoDiv>
         </Titlebar>
         <DescriptionDiv>

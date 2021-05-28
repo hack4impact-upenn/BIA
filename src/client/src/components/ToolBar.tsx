@@ -10,7 +10,7 @@ const styles = {
       boxShadow: 'none',
       color: colors.PURPLE,
       background: colors.GREY,
-      width: `12vw`,
+      width: `13vw`,
       margin: 'auto',
       borderRadius: '5px',
     };
@@ -38,7 +38,7 @@ const components = {
 
 const Container = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 0px 20px;
   justify-content: center;
   align-items: center;
   margin: auto;
@@ -134,7 +134,7 @@ const ToolBar = ({
           <Input
             className="input change"
             value={searchQuery}
-            placeholder={`Search by Name or State`}
+            placeholder={`State`}
             onChange={handleSearchChange}
           />
         </div>
@@ -146,7 +146,7 @@ const ToolBar = ({
             onChange={handleFilterChange}
             name="colors"
             options={programOptions}
-            placeholder="Search by Program Type"
+            placeholder="Program Type"
             className="basic-multi-select"
             classNamePrefix="select"
             theme={(theme) => ({
