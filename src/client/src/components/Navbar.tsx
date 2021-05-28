@@ -12,9 +12,9 @@ const NavBarItems = styled.div`
 
 const Avatar = styled.img`
   display: inline;
-  width: 80px;
-  height: 80px;
-  maxheight: 80px;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
   margin-left: 10px;
   background: black;
   border-radius: 50%;
@@ -37,16 +37,9 @@ function Navbar() {
       style={{ background: `${Colors.white}`, height: '80px' }}
     >
       <div className="container">
-        <div className="navbar-brand">
-          <a
-            href="/"
-            className="navbar-item title is-4"
-            style={{ maxHeight: '80px', margin: '50px 12px' }}
-          >
-            <Avatar
-              style={{ maxHeight: '80px' }}
-              src={process.env.PUBLIC_URL + '/img/BIA.jpeg'}
-            />
+        <div className="navbar-brand" style={{ position: 'relative' }}>
+          <a href="/" style={{ position: 'relative' }}>
+            <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
           </a>
         </div>
         <div className="navbar-menu">

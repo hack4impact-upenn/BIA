@@ -74,7 +74,7 @@ function IndexPage() {
           voluptatem nisi ab hic, repellat asperiores non incidunt labore error
           officia inventore!
         </Discbar>
-        <hr style={{ border: '1px solid #1d1e8' }} />
+        <hr style={{ border: '1px solid #1d1e68' }} />
         <Tbar>
           <ToolBar
             changeSearch={handleSearchChange}
