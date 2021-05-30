@@ -7,7 +7,8 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 const Container = styled.div`
   border-radius: 0px 0px 10px 10px;
-  height: 500px;
+  height: 55vh;
+  max-height: 55vh;
   overflow-y: auto;
   width: 28vw;
   position: relative;
@@ -37,12 +38,10 @@ const Titlebar = styled.div`
 const TopBar = styled.div`
   padding-top: 15px;
   padding-left: 20px;
-
   background: ${colors.YELLOW};
   width: 28vw;
-  height: 70px;
+  height: 8vh;
   margin: auto;
-
   &:hover {
     box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
     transition-duration: 0.5s;
