@@ -83,7 +83,7 @@ function LoginPage() {
     <div className="container">
       <TitleBar>
         {' '}
-        <IMG src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
+        <IMG src={process.env.PUBLIC_URL + '/img/BIA.png'} />
         <h1>Black Innovation Alliance</h1>
       </TitleBar>
       <Container>

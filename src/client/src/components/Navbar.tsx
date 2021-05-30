@@ -12,12 +12,11 @@ const NavBarItems = styled.div`
 
 const Avatar = styled.img`
   display: inline;
-  width: 70px;
-  height: 70px;
-  margin: 0 auto;
-  margin-left: 10px;
+  width: 150px;
+  height: 50px;
+  margin-left: 25px;
+  background: white !important;
   background: black;
-  border-radius: 50%;
   border: 2px solid white;
 `;
 
@@ -34,12 +33,12 @@ function Navbar() {
   return (
     <nav
       className="navbar"
-      style={{ background: `${Colors.white}`, height: '80px' }}
+      style={{ background: `${Colors.white}`, height: '65px' }}
     >
       <div className="container">
-        <div className="navbar-brand" style={{ position: 'relative' }}>
-          <a href="/" style={{ position: 'relative' }}>
-            <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
+        <div className="navbar-brand">
+          <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
+            <Avatar src={process.env.PUBLIC_URL + '/img/BIA.png'} />
           </a>
         </div>
         <div className="navbar-menu">

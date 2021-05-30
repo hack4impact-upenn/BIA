@@ -5,7 +5,7 @@ import Card from './Card.tsx';
 
 const Container = styled.div`
   border-radius: 10px;
-  max-height: 69vh;
+  max-height: 63vh;
   overflow-y: scroll;
   width: 30vw;
   padding: 5px 10px;
@@ -53,7 +53,7 @@ const CardsList = (props) => {
 
       const strings = item.programTypes;
       if (strings) {
-        return filter.some((f) => {
+        return filter.every((f) => {
           var valid = false;
 
           strings.forEach((s) => {

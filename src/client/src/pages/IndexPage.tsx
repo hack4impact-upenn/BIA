@@ -24,7 +24,7 @@ const Discbar = styled.div`
   text-align: start;
   font-family: 'Montserrat', sans-serif;
   margin-top: 2px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: ${Colors.SECONDARY_GREY};
 `;
 
@@ -74,15 +74,26 @@ function IndexPage() {
           voluptatem nisi ab hic, repellat asperiores non incidunt labore error
           officia inventore!
         </Discbar>
-        <hr style={{ border: '1px solid #1d1e68' }} />
+
         <Tbar>
           <ToolBar
             changeSearch={handleSearchChange}
             changeFilter={handleFilterChange}
           />
         </Tbar>
-        <div className="columns" style={{ padding: '10px' }}>
-          <div className="column is-one-third" style={{ height: '70vh' }}>
+        <hr
+          style={{
+            border: '1px solid #1d1e68',
+            marginBottom: '20px',
+            marginTop: '20px',
+            marginLeft: '10px',
+          }}
+        />
+        <div className="columns" style={{ padding: '10px', paddingTop: '0px' }}>
+          <div
+            className="column is-one-third is-full-mobile"
+            style={{ height: '70vh' }}
+          >
             {isLoading ? (
               'Loading'
             ) : (

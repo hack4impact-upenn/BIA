@@ -6,7 +6,7 @@ const FooterContainer = styled.div`
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 60px;
+  height: 40px;
   width: 100%;
   background-color: black;
   color: white;
@@ -19,12 +19,12 @@ const FooterContainer = styled.div`
 
 const AppContainer = ({ children }) => {
   return (
-    <div>
-      {children}
+    <>
+      <div>{children}</div>
       <FooterContainer>
         <h1> © Black Innovation Alliance</h1>
       </FooterContainer>
-    </div>
+    </>
   );
 };
 

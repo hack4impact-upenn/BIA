@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect, ReactElement } from 'react';
 import styled from 'styled-components';
 import colors from '../common/Colors';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
 
 const styles = {
   control: ({ background, ...base }) => {
@@ -30,8 +30,26 @@ const styles = {
   },
 };
 
-const components = {
+const ValueContainer = ({ children, ...props }) => {
+  const { getValue, hasValue } = props;
+  const nbValues = getValue().length;
+  if (!hasValue) {
+    return (
+      <components.ValueContainer {...props}>
+        {children}
+      </components.ValueContainer>
+    );
+  }
+  return (
+    <components.ValueContainer {...props}>
+      {nbValues === 1 ? 'One Item Selected' : `${nbValues} items selected`}
+    </components.ValueContainer>
+  );
+};
+
+const customeComponents = {
   IndicatorSeparator: () => null,
+  ValueContainer,
 };
 
 const Container = styled.div`
@@ -140,8 +158,7 @@ const ToolBar = ({
           <Select
             isMulti
             hideSelectedOptions={false}
-            controlShouldRenderValue={false}
-            components={components}
+            components={customeComponents}
             styles={styles}
             onChange={handleFilterChange}
             name="colors"
