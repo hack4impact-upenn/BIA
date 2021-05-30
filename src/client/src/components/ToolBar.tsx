@@ -10,7 +10,7 @@ const styles = {
       boxShadow: 'none',
       color: colors.PURPLE,
       background: colors.GREY,
-      width: `13vw`,
+      width: `16vw`,
       margin: 'auto',
       borderRadius: '5px',
     };
@@ -19,8 +19,6 @@ const styles = {
     const isEmphasized = isFocused || isSelected;
     return {
       ...base,
-      background: isEmphasized ? colors.GREY : background,
-      color: colors.PURPLE,
     };
   },
 
@@ -47,7 +45,7 @@ const Container = styled.div`
 const Input = styled.input`
   color: black;
   width: 100%;
-  margin: auto
+  margin-right: 10px;
   font-size: 1em;
   display: inline;
   width: 12vw;
@@ -127,20 +125,22 @@ const ToolBar = ({
         style={{
           width: '100%',
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-start',
         }}
       >
         <div className="flex-item">
           <Input
             className="input change"
             value={searchQuery}
-            placeholder={`State`}
+            placeholder={`Search by Location`}
             onChange={handleSearchChange}
           />
         </div>
         <div className="flex-item is-pulled-right">
           <Select
             isMulti
+            hideSelectedOptions={false}
+            controlShouldRenderValue={false}
             components={components}
             styles={styles}
             onChange={handleFilterChange}
@@ -153,9 +153,7 @@ const ToolBar = ({
               ...theme,
               colors: {
                 ...theme.colors,
-                //neutral50: colors.GREY,
-                //neutral150: colors.GREY,
-                //primary: colors.PURPLE,
+                primary: colors.GREEN,
               },
             })}
           />

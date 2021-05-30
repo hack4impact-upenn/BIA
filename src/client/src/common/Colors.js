@@ -1,7 +1,7 @@
 const Colors = {
   pink: '#ffa3a3',
   blue: '#91ccec',
-  green: '#98D3B5',
+  GREEN: '#00B8D1',
   GREY: '#E8E8E8',
   SECONDARY_GREY: '#666666;',
   BORDER_BLUE: '#2684FF',
