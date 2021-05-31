@@ -7,12 +7,13 @@ const Container = styled.div`
   border-radius: 10px;
   max-height: 70vh;
   overflow-y: scroll;
-  width: 440px;
+  width: 30vw;
   padding: 5px 10px;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  position: relative;
+  padding-left: 20px;
+  position: absolute;
 
   @media screen and (max-width: 768px) {
     max-width: 80vw;
@@ -51,22 +52,26 @@ const CardsList = (props) => {
       }
 
       const strings = item.programTypes;
-      return filter.some((f) => {
-        var valid = false;
+      if (strings) {
+        return filter.some((f) => {
+          var valid = false;
 
-        strings.forEach((s) => {
-          if (
-            f &&
-            f.length > 2 &&
-            s &&
-            s.length > 2 &&
-            s.toLowerCase().startsWith(f.toLowerCase())
-          ) {
-            valid = true;
-          }
+          strings.forEach((s) => {
+            if (
+              f &&
+              f.length > 2 &&
+              s &&
+              s.length > 2 &&
+              s.toLowerCase().startsWith(f.toLowerCase())
+            ) {
+              valid = true;
+            }
+          });
+          return valid;
         });
-        return valid;
-      });
+      } else {
+        return true;
+      }
     });
     setArray(filteredArray);
   }, [filter, searchQuery]);

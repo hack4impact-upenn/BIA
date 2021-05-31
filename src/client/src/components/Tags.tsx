@@ -3,21 +3,33 @@ import styled from 'styled-components';
 import Colors from '../common/Colors';
 
 export const Tag = styled.span`
-  margin: 5px 4px 4px 5px;
-  font-weight: 200;
-  font-size: 12px;
-  background-color: ${Colors.GREY};
-  color: ${Colors.PURPLE};
+  margin: 0 6px 10px 0;
+  font-weight: 300;
+
   padding: 10px;
-  border-radius: 20px;
+
+  &.tag {
+    border-radius: 10px;
+    background-color: ${Colors.GREY};
+    color: ${Colors.PURPLE};
+    white-space: normal;
+    display: inline-block;
+    height: auto;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+  }
 `;
 
 const Tags = ({ tags }) => {
-  console.log(tags);
+  //console.log(tags);
   return (
     <>
       {tags.map((tag, index) => (
-        <Tag key={index}>{tag}</Tag>
+        <span>
+          <Tag className="tag is-medium" key={index}>
+            {tag}
+          </Tag>
+        </span>
       ))}
     </>
   );

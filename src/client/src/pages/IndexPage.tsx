@@ -25,8 +25,9 @@ const HomeContainer = styled.div`
     padding: 2px;
   }
 `;
+
 const Tbar = styled.div`
-  width: 550px;
+  width: 28vw;
   padding: 0px 10px;
 `;
 

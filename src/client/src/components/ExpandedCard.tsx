@@ -6,11 +6,12 @@ import Tags from './Tags.tsx';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const Container = styled.div`
-  border-radius: 10px;
-  height: 550px;
-  overflow-y: auto;
-  width: 440px;
-  padding: 10px;
+  border-radius: 0px 0px 10px 10px;
+  min-height: 50px;
+  overflow: hidden;
+  width: 30vw;
+  position: relative;
+  padding: 10px 10px 50px 10px;
   background-color: ${colors.PURPLE};
   justify-content: center;
   margin: auto;
@@ -22,20 +23,31 @@ const Container = styled.div`
   }
 `;
 
+const SocialWrapping = styled.div`
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+`;
+
 const Titlebar = styled.div`
   padding: 0px;
   positon: relative;
 `;
 
 const TopBar = styled.div`
-  padding: 10px;
+  padding-top: 15px;
+  padding-left: 20px;
 
   background: ${colors.YELLOW};
-  width: 440px;
+  width: 30vw;
   height: 70px;
-  margin-left: -10px;
-  margin-top: -10px;
-  margin-bottom: 15px;
+  margin: auto;
+
+  &:hover {
+    box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
+    transition-duration: 0.5s;
+  }
+  border-radius: 10px 10px 0px 0px;
 `;
 
 const InfoDiv = styled.div`
@@ -113,11 +125,12 @@ const OrgWebsite = styled.span`
 const OrgDescription = styled.p`
   text-align: start;
   color: white;
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 6px;
+  margin-right: 40px;
 `;
 const TagBar = styled.div`
-  padding: 0px;
+  padding-left: 15px;
   height: 50px;
   margin-top: 10px;
   positon: absolute;
@@ -127,15 +140,15 @@ const TagBar = styled.div`
 const ExpandedCard = (props) => {
   return (
     <div>
+      <TopBar>
+        <FaArrowLeft
+          size={20}
+          style={{ cursor: 'pointer' }}
+          onClick={props.switchToList()}
+        />
+        <OrgTitle>{props.org.organizationName}</OrgTitle>
+      </TopBar>
       <Container>
-        <TopBar>
-          <FaArrowLeft
-            size={20}
-            style={{ cursor: 'pointer' }}
-            onClick={props.switchToList()}
-          />
-          <OrgTitle>{props.org.organizationName}</OrgTitle>
-        </TopBar>
         <Titlebar>
           <Avatar
             src={
@@ -150,16 +163,24 @@ const ExpandedCard = (props) => {
             <OrgName>{props.org.organizationName}</OrgName>
             <OrgYear>Established: {props.org.yearFounded}</OrgYear>
             <OrgCity>{props.org.headquarterCity}</OrgCity>
-            <OrgWebsite> Website: {props.org.website}</OrgWebsite>
+            <OrgWebsite>
+              {' '}
+              Website: <a href={props.org.website}> {props.org.website} </a>
+            </OrgWebsite>
+            <OrgWebsite> Contact Email: {props.org.contactEmail}</OrgWebsite>
           </InfoDiv>
         </Titlebar>
         <DescriptionDiv>
-          <OrgDescription>{props.org.longDisc}</OrgDescription>
+          <OrgDescription>{props.org.longDescription}</OrgDescription>
         </DescriptionDiv>
         <TagBar>
-          <Tags tags={props.org.programTypes}></Tags>
+          {props.org.programTypes && (
+            <Tags tags={props.org.programTypes}></Tags>
+          )}
         </TagBar>
-        <SocialsList org={props.org} />
+        <SocialWrapping>
+          <SocialsList org={props.org} />
+        </SocialWrapping>
       </Container>
     </div>
   );
