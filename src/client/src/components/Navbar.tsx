@@ -15,6 +15,7 @@ const Avatar = styled.img`
   width: 150px;
   height: 50px;
   margin-left: 25px;
+  margin-top: 7px;
   background: white !important;
   background: black;
   border: 2px solid white;
@@ -35,12 +36,10 @@ function Navbar() {
       className="navbar"
       style={{ background: `${Colors.white}`, height: '65px', width: '100%' }}
     >
-      <div className="container">
-        <div className="navbar-brand">
-          <a href="/" style={{ display: 'flex', alignItems: 'left' }}>
-            <Avatar src={process.env.PUBLIC_URL + '/img/BIA.png'} />
-          </a>
-        </div>
+      <div className="navbar-brand">
+        <a href="/" style={{ display: 'flex', alignItems: 'left' }}>
+          <Avatar src={process.env.PUBLIC_URL + '/img/BIA.png'} />
+        </a>
       </div>
     </nav>
   );

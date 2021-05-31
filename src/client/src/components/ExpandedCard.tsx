@@ -18,6 +18,10 @@ const Container = styled.div`
   margin: auto;
   align-items: center;
   box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+  &:hover {
+    box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
+    transition-duration: 0.5s;
+  }
 `;
 
 const SocialWrapping = styled.div`
@@ -38,8 +42,12 @@ const TopBar = styled.div`
   padding-left: 20px;
   background: ${colors.YELLOW};
   width: 28vw;
-  height: 6vh;
+  height: 8vh;
   margin: auto;
+  &:hover {
+    box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
+    transition-duration: 0.5s;
+  }
   border-radius: 10px 10px 0px 0px;
 `;
 
