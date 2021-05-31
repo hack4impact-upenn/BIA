@@ -153,11 +153,14 @@ const ExpandedCard = (props) => {
           <div className="flex-item">
             <Avatar
               src={
-                'https://' +
-                  //process.env.AWS_BUCKET_NAME +
-                  'bia-h4i' +
-                  '.s3.amazonaws.com/' +
-                  props.org.logoURL || process.env.PUBLIC_URL + '/img/BIA.png'
+                props.org.logoURL
+                  ? 'https://' +
+                    //process.env.AWS_BUCKET_NAME +
+                    'bia-h4i' +
+                    '.s3.amazonaws.com/' +
+                    props.org.logoURL +
+                    '/img/BIA.png'
+                  : `${process.env.PUBLIC_URL}/img/BIA2.jpeg`
               }
             />
           </div>

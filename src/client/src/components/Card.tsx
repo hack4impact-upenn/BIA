@@ -90,16 +90,18 @@ const Card = (props) => {
       className="is-pulled-left"
       style={{ marginBottom: '20px', marginLeft: '2px', marginRight: '10px' }}
     >
-      <Container>
-        <div onClick={() => props.handleClick()}>
+      <Container onClick={() => props.handleClick()}>
+        <div>
           <Titlebar>
             <Avatar
               src={
-                'https://' +
-                  //process.env.AWS_BUCKET_NAME +
-                  'bia-h4i' +
-                  '.s3.amazonaws.com/' +
-                  props.org.logoURL || process.env.PUBLIC_URL + '/img/BIA.png'
+                props.org.logoURL
+                  ? 'https://' +
+                    //process.env.AWS_BUCKET_NAME +
+                    'bia-h4i' +
+                    '.s3.amazonaws.com/' +
+                    props.org.logoURL
+                  : `${process.env.PUBLIC_URL}/img/BIA2.jpeg`
               }
             />
             <InfoDiv>
