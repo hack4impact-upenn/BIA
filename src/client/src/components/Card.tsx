@@ -7,7 +7,7 @@ const Container = styled.div`
   border-radius: 10px;
   height: auto;
   overflow: hidden;
-  width: 550px;
+  width: 28vw;
   padding: 10px;
   background-color: ${colors.PURPLE};
   justify-content: center;

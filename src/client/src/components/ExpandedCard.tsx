@@ -7,11 +7,11 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 const Container = styled.div`
   border-radius: 0px 0px 10px 10px;
-  height: 550px;
-  overflow-y: auto;
+  min-height: 50px;
+  overflow: hidden;
   width: 30vw;
   position: relative;
-  padding: 10px;
+  padding: 10px 10px 50px 10px;
   background-color: ${colors.PURPLE};
   justify-content: center;
   margin: auto;
@@ -125,8 +125,9 @@ const OrgWebsite = styled.span`
 const OrgDescription = styled.p`
   text-align: start;
   color: white;
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 6px;
+  margin-right: 40px;
 `;
 const TagBar = styled.div`
   padding-left: 15px;
