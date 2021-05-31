@@ -29,16 +29,28 @@ const SocialWrapping = styled.div`
 const Titlebar = styled.div`
   padding: 0px;
   positon: relative;
+  display: flex;
+  align-items: flex-start;
 `;
 
 const TopBar = styled.div`
-  padding-top: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   padding-left: 20px;
   background: ${colors.YELLOW};
   width: 28vw;
   height: 6vh;
   margin: auto;
   border-radius: 10px 10px 0px 0px;
+
+  @media screen and (min-width: 1460px) {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
 `;
 
 const InfoDiv = styled.div`
@@ -57,13 +69,22 @@ const DescriptionDiv = styled.div`
 
 const Avatar = styled.img`
   display: inline;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   margin-bottom: 0.2vw;
   margin-left: 10px;
   background: black;
   border-radius: 50%;
   border: 2px solid white;
+
+  @media screen and (min-width: 1460px) {
+    width: 100px;
+    height: 100px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 36px;
+    height: 36px;
+  }
 `;
 
 const Arrow = styled.button`
@@ -89,16 +110,28 @@ const OrgTitle = styled.span`
 
 const OrgName = styled.span`
   display: block;
-  font-size: 1.6em;
   font-weight: 600;
   color: ${colors.YELLOW};
+  font-size: 20px;
+  @media screen and (min-width: 1460px) {
+    font-size: 24px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const OrgCity = styled.span`
   display: block;
-  font-size: 1.1em;
   font-weight: 400;
   color: white;
+  font-size: 18px;
+  @media screen and (min-width: 1460px) {
+    font-size: 22px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const OrgYear = styled.span`
@@ -118,9 +151,16 @@ const OrgWebsite = styled.span`
 const OrgDescription = styled.p`
   text-align: start;
   color: white;
-  font-size: 1.05em;
   font-weight: 300;
   margin-bottom: 6px;
+
+  font-size: 12px;
+  @media screen and (min-width: 1460px) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 10px;
+  }
 `;
 const TagBar = styled.div`
   padding-left: 15px;
@@ -143,25 +183,25 @@ const ExpandedCard = (props) => {
       </TopBar>
       <Container>
         <Titlebar>
-          <Avatar
-            src={
-              'https://' +
-                //process.env.AWS_BUCKET_NAME +
-                'bia-h4i' +
-                '.s3.amazonaws.com/' +
-                props.org.logoURL || process.env.PUBLIC_URL + '/img/BIA.png'
-            }
-          />
-          <InfoDiv>
-            <OrgName>{props.org.organizationName}</OrgName>
-            <OrgYear>Established: {props.org.yearFounded}</OrgYear>
-            <OrgCity>{props.org.headquarterCity}</OrgCity>
-            <OrgWebsite>
-              {' '}
-              Website: <a href={props.org.website}> {props.org.website} </a>
-            </OrgWebsite>
-            <OrgWebsite> Contact: {props.org.contactEmail}</OrgWebsite>
-          </InfoDiv>
+          <div className="flex-item">
+            <Avatar
+              src={
+                props.org.logoURL
+                  ? 'https://' +
+                    //process.env.AWS_BUCKET_NAME +
+                    'bia-h4i' +
+                    '.s3.amazonaws.com/' +
+                    props.org.logoURL
+                  : `${process.env.PUBLIC_URL}/img/BIA2.jpeg`
+              }
+            />
+          </div>
+          <div className="flex-item">
+            <InfoDiv>
+              <OrgName>{props.org.organizationName}</OrgName>
+              <OrgCity>{props.org.headquarterCity}</OrgCity>
+            </InfoDiv>
+          </div>
         </Titlebar>
         <DescriptionDiv>
           <OrgDescription>{props.org.longDescription}</OrgDescription>
