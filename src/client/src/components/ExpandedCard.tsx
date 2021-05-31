@@ -156,7 +156,7 @@ const OrgDescription = styled.p`
 
   font-size: 12px;
   @media screen and (min-width: 1460px) {
-    font-size: 16px;
+    font-size: 17px;
   }
   @media screen and (max-width: 768px) {
     font-size: 10px;
