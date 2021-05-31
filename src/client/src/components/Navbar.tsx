@@ -41,27 +41,7 @@ function Navbar() {
             <Avatar src={process.env.PUBLIC_URL + '/img/BIA.png'} />
           </a>
         </div>
-        <div className="navbar-menu">
-          <div className="navbar-end">
-            {auth.isAuthenticated ? (
-              <NavBarItems
-                className="navbar-item"
-                onClick={() => handleLogout()}
-              >
-                Logout
-              </NavBarItems>
-            ) : (
-              <>
-                <Link to="/login" className="navbar-item">
-                  Login
-                </Link>
-                <Link to="/register" className="navbar-item">
-                  Register
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
+        <div className="navbar-menu"></div>
       </div>
     </nav>
   );
