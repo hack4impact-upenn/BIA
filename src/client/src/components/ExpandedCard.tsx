@@ -31,8 +31,10 @@ const SocialWrapping = styled.div`
 `;
 
 const Titlebar = styled.div`
-  padding: 0px;
+  padding: 0px 0px 10px 5px;
   positon: relative;
+  display: flex;
+  align-items: flex-start;
 `;
 
 const TopBar = styled.div`
@@ -51,7 +53,7 @@ const TopBar = styled.div`
 
 const InfoDiv = styled.div`
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 40px;
   margin-bottom: 8px;
 `;
 
@@ -148,25 +150,24 @@ const ExpandedCard = (props) => {
       </TopBar>
       <Container>
         <Titlebar>
-          <Avatar
-            src={
-              'https://' +
-                //process.env.AWS_BUCKET_NAME +
-                'bia-h4i' +
-                '.s3.amazonaws.com/' +
-                props.org.logoURL || process.env.PUBLIC_URL + '/img/BIA.png'
-            }
-          />
-          <InfoDiv>
-            <OrgName>{props.org.organizationName}</OrgName>
-            <OrgYear>Established: {props.org.yearFounded}</OrgYear>
-            <OrgCity>{props.org.headquarterCity}</OrgCity>
-            <OrgWebsite>
-              {' '}
-              Website: <a href={props.org.website}> {props.org.website} </a>
-            </OrgWebsite>
-            <OrgWebsite> Contact: {props.org.contactEmail}</OrgWebsite>
-          </InfoDiv>
+          <div className="flex-item">
+            <Avatar
+              src={
+                'https://' +
+                  //process.env.AWS_BUCKET_NAME +
+                  'bia-h4i' +
+                  '.s3.amazonaws.com/' +
+                  props.org.logoURL || process.env.PUBLIC_URL + '/img/BIA.png'
+              }
+            />
+          </div>
+          <div className="flex-item">
+            <InfoDiv>
+              <OrgName>{props.org.organizationName}</OrgName>
+              <OrgCity>{props.org.headquarterCity}</OrgCity>
+              <OrgWebsite> Contact: {props.org.contactEmail}</OrgWebsite>
+            </InfoDiv>
+          </div>
         </Titlebar>
         <DescriptionDiv>
           <OrgDescription>{props.org.longDescription}</OrgDescription>

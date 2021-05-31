@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import Colors from '../common/Colors';
 
 export const Tag = styled.span`
-  margin: 0 6px 10px 0;
+  margin: 0 6px 8px 0;
   font-weight: 300;
+  font-size: 12px;
 
   padding: 10px;
 
