@@ -33,15 +33,14 @@ function Navbar() {
   return (
     <nav
       className="navbar"
-      style={{ background: `${Colors.white}`, height: '65px' }}
+      style={{ background: `${Colors.white}`, height: '65px', width: '100%' }}
     >
       <div className="container">
         <div className="navbar-brand">
-          <a href="/" style={{ display: 'flex', alignItems: 'center' }}>
+          <a href="/" style={{ display: 'flex', alignItems: 'left' }}>
             <Avatar src={process.env.PUBLIC_URL + '/img/BIA.png'} />
           </a>
         </div>
-        <div className="navbar-menu"></div>
       </div>
     </nav>
   );
