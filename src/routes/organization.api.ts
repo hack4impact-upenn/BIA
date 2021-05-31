@@ -308,23 +308,23 @@ router.post('/uploadCSV', upload.single('file'), auth, async (req, res) => {
   fs.createReadStream(req.file.path)
     .pipe(
       csv([
-        'OrganizationName',
-        'YearFounded',
-        'CityOfHeadquarters',
-        'PointOfContact',
-        'ContactEmail',
-        'Website',
-        'TwitterPage',
-        'FacebookPage',
-        'InstagramPage',
-        'LinkedinPage',
-        'TypeOfInnovator',
-        'StageOfBusiness',
-        'IndustryFocus',
-        'TypesOfPrograms',
-        'FocusArea',
-        'ProfitStatus',
-        'SignatureProgram',
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15',
+        '16',
       ])
     )
     .on('data', (data) => results.push(data))
@@ -332,45 +332,48 @@ router.post('/uploadCSV', upload.single('file'), auth, async (req, res) => {
       // we create a new organization object from the csv data
       // NOTE: many of these are placeholders right now (unspecified behavior)
       results.forEach(async (organization: any) => {
-        //console.log(organization);
+        console.log(organization);
         const newOrganization = new Organization();
         newOrganization.organizationName = organization[0];
-        newOrganization.yearFounded = organization[1];
+        newOrganization.yearFounded = 2000;
         //need to change short and long description to actual short and long description
         //for now we are using the signature program description because thats the only description in the data
-        newOrganization.shortDescription = organization[16];
-        newOrganization.longDescription = organization[16];
-        newOrganization.headquarterCity = organization[2];
+        newOrganization.shortDescription = organization[12];
+        newOrganization.longDescription = organization[12];
+
         newOrganization.pointOfContact = {
-          name: organization[3],
+          name: organization[0],
           title: 'Contact Person',
-          email: organization[4],
+          email: 'dummyEmail@gmail.com',
         };
-        newOrganization.contactEmail = organization[4];
-        newOrganization.website = organization[5];
-        newOrganization.twitter = organization[6];
-        newOrganization.facebook = organization[7];
-        newOrganization.instagram = organization[8];
-        newOrganization.linkedIn = organization[9];
-        newOrganization.innovatorTypes = [organization[10]];
-        newOrganization.businessStages = [organization[11]];
+        const location = `${organization[1]}, ${organization[2]}`;
+        newOrganization.headquarterCity = location;
+        newOrganization.contactEmail = organization[3];
+        newOrganization.website = organization[3];
+        newOrganization.twitter = organization[4];
+        newOrganization.facebook = organization[5];
+        newOrganization.instagram = organization[6];
+        newOrganization.linkedIn = organization[7];
+        newOrganization.innovatorSupport = organization[8];
+        newOrganization.growthStage = organization[9];
         //empty array for industry focus until data is standardized
         newOrganization.industryFocus = [];
-        newOrganization.programTypes = organization[13]
-          ? organization[13].split(';')
+        newOrganization.programTypes = organization[10]
+          ? organization[10].split(';')
           : null;
-        newOrganization.focusArea = organization[12];
-        newOrganization.profitStatus = organization[15];
+        newOrganization.focusArea = organization[11];
+        newOrganization.profitStatus = organization[12];
         newOrganization.signatureProgram = {
           imageURL: '',
-          description: organization[16],
+          description: organization[12],
         };
 
         try {
           // upload organization object to MongoDB
           await newOrganization.save();
         } catch (err) {
-          return errorHandler(res, err);
+          console.log(err);
+          return { success: false };
         }
       });
       // We are deleting the file that was uploaded from the server.
