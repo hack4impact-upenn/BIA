@@ -7,8 +7,8 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 const Container = styled.div`
   border-radius: 0px 0px 10px 10px;
-  height: 55vh;
-  max-height: 55vh;
+  height: 56vh;
+  max-height: 56vh;
   overflow-y: auto;
   width: 28vw;
   position: relative;
@@ -18,23 +18,17 @@ const Container = styled.div`
   margin: auto;
   align-items: center;
   box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
-  &:hover {
-    box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
-    transition-duration: 0.5s;
-  }
 `;
 
 const SocialWrapping = styled.div`
   position: absolute;
-  bottom: 15px;
+  bottom: 10px;
   right: 15px;
 `;
 
 const Titlebar = styled.div`
-  padding: 0px 0px 10px 5px;
+  padding: 0px;
   positon: relative;
-  display: flex;
-  align-items: flex-start;
 `;
 
 const TopBar = styled.div`
@@ -42,18 +36,14 @@ const TopBar = styled.div`
   padding-left: 20px;
   background: ${colors.YELLOW};
   width: 28vw;
-  height: 8vh;
+  height: 6vh;
   margin: auto;
-  &:hover {
-    box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
-    transition-duration: 0.5s;
-  }
   border-radius: 10px 10px 0px 0px;
 `;
 
 const InfoDiv = styled.div`
   display: inline-block;
-  margin-left: 40px;
+  margin-left: 20px;
   margin-bottom: 8px;
 `;
 
@@ -67,8 +57,9 @@ const DescriptionDiv = styled.div`
 
 const Avatar = styled.img`
   display: inline;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 0.2vw;
   margin-left: 10px;
   background: black;
   border-radius: 50%;
@@ -91,42 +82,44 @@ const OrgTitle = styled.span`
   position: relative;
   margin-top: 20px;
   font-size: 25px;
+  font-family: 'Montserrat Alternates', sans-serif;
   font-weight: 500;
   color: ${colors.WHITE};
 `;
 
 const OrgName = styled.span`
   display: block;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 1.6em;
+  font-weight: 600;
   color: ${colors.YELLOW};
 `;
 
 const OrgCity = styled.span`
   display: block;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 1.1em;
+  font-weight: 400;
   color: white;
 `;
 
 const OrgYear = styled.span`
   display: block;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 1.1em;
+  font-weight: 400;
   color: white;
 `;
 
 const OrgWebsite = styled.span`
   display: block;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 1.1em;
+  font-weight: 400;
   color: white;
 `;
 
 const OrgDescription = styled.p`
   text-align: start;
   color: white;
-  font-size: 13px;
+  font-size: 1.05em;
+  font-weight: 300;
   margin-bottom: 6px;
 `;
 const TagBar = styled.div`
@@ -150,27 +143,25 @@ const ExpandedCard = (props) => {
       </TopBar>
       <Container>
         <Titlebar>
-          <div className="flex-item">
-            <Avatar
-              src={
-                props.org.logoURL
-                  ? 'https://' +
-                    //process.env.AWS_BUCKET_NAME +
-                    'bia-h4i' +
-                    '.s3.amazonaws.com/' +
-                    props.org.logoURL +
-                    '/img/BIA.png'
-                  : `${process.env.PUBLIC_URL}/img/BIA2.jpeg`
-              }
-            />
-          </div>
-          <div className="flex-item">
-            <InfoDiv>
-              <OrgName>{props.org.organizationName}</OrgName>
-              <OrgCity>{props.org.headquarterCity}</OrgCity>
-              <OrgWebsite> Contact: {props.org.contactEmail}</OrgWebsite>
-            </InfoDiv>
-          </div>
+          <Avatar
+            src={
+              'https://' +
+                //process.env.AWS_BUCKET_NAME +
+                'bia-h4i' +
+                '.s3.amazonaws.com/' +
+                props.org.logoURL || process.env.PUBLIC_URL + '/img/BIA.png'
+            }
+          />
+          <InfoDiv>
+            <OrgName>{props.org.organizationName}</OrgName>
+            <OrgYear>Established: {props.org.yearFounded}</OrgYear>
+            <OrgCity>{props.org.headquarterCity}</OrgCity>
+            <OrgWebsite>
+              {' '}
+              Website: <a href={props.org.website}> {props.org.website} </a>
+            </OrgWebsite>
+            <OrgWebsite> Contact: {props.org.contactEmail}</OrgWebsite>
+          </InfoDiv>
         </Titlebar>
         <DescriptionDiv>
           <OrgDescription>{props.org.longDescription}</OrgDescription>
