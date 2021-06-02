@@ -2,6 +2,7 @@
   position: relative;
   top: 5px;
   bottom: 10px;
+  max-height: 62vh;
   height: 100%;
 }
 
@@ -24,6 +25,12 @@
 .mapboxgl-ctrl-group {
   border-radius: 4px;
   background: #faab18;
+}
+
+@media screen and (max-width: 768px) {
+  .map-container {
+    display: none;
+  }
 }
 
 .mapboxgl-ctrl-group button + button {
