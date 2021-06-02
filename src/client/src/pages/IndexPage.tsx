@@ -8,6 +8,8 @@ import Colors from '../common/Colors';
 import ToolBar from '../components/ToolBar.tsx';
 import Navbar from '../components/Navbar.tsx';
 
+const screenWidth = window.screen.width;
+
 const Titlebar = styled.div`
   padding: 0px 30px;
   font-size: 28px;
@@ -30,6 +32,9 @@ const Discbar = styled.div`
 
 const HomeContainer = styled.div`
   padding: 10px;
+  height: 100%;
+  display:flex;
+  flex-flow: column;
   position: relative;
   overflow-x: hidden;
   background-color: ${Colors.HOMEPAGE_GREY} 
@@ -89,11 +94,32 @@ function IndexPage() {
             marginLeft: '10px',
           }}
         />
-        <div className="columns" style={{ padding: '10px', paddingTop: '0px' }}>
+
+        {screenWidth > 1280 ? (
           <div
-            className="column is-one-third is-full-mobile"
-            style={{ height: '70vh' }}
+            className="columns"
+            style={{ padding: '10px', paddingTop: '0px' }}
           >
+            <div
+              className="column is-one-third is-full-mobile"
+              style={{ height: '70vh' }}
+            >
+              {isLoading ? (
+                'Loading'
+              ) : (
+                <CardWrapper
+                  data={data}
+                  searchQuery={searchQuery}
+                  filter={filter}
+                />
+              )}
+            </div>
+            <div className="column" style={{ height: '70vh' }}>
+              {isLoading ? 'Loading' : <Map data={data} />}
+            </div>
+          </div>
+        ) : (
+          <div style={{ padding: '10px', paddingTop: '0px' }}>
             {isLoading ? (
               'Loading'
             ) : (
@@ -104,10 +130,7 @@ function IndexPage() {
               />
             )}
           </div>
-          <div className="column" style={{ height: '70vh' }}>
-            {isLoading ? 'Loading' : <Map data={data} />}
-          </div>
-        </div>
+        )}
       </HomeContainer>
     </>
   );

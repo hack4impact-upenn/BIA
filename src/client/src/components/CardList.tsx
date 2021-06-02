@@ -3,11 +3,15 @@ import styled from 'styled-components';
 //import SocialsList from './SocialsList.tsx';
 import Card from './Card.tsx';
 
+const screenWidth = window.screen.width;
+var displayWidth = screenWidth < 1280 ? '80vw' : '30vw';
+displayWidth = screenWidth > 1680 ? '26vw' : displayWidth;
+
 const Container = styled.div`
   border-radius: 10px;
   max-height: 63vh;
   overflow-y: scroll;
-  width: 30vw;
+  width: ${displayWidth};
   padding: 5px 10px;
   justify-content: center;
   align-items: center;

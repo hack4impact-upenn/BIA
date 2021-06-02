@@ -4,8 +4,7 @@ import colors from '../common/Colors';
 import Select, { components } from 'react-select';
 
 const screenWidth = window.screen.width;
-console.log(screenWidth);
-var displayWidth = screenWidth < 1280 ? '40vw' : '16vw';
+var displayWidth = screenWidth < 1280 ? '43vw' : '16vw';
 displayWidth = screenWidth > 1680 ? '12vw' : displayWidth;
 
 const styles = {
@@ -59,7 +58,7 @@ const customeComponents = {
 
 const Container = styled.div`
   width: 100%;
-  padding: 0px 20px;
+  padding: 0px ${screenWidth < 1280 ? '5' : '20'}px;
   justify-content: center;
   align-items: center;
   margin: auto;

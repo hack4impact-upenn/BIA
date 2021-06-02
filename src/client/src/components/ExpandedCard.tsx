@@ -5,12 +5,16 @@ import colors from '../common/Colors';
 import Tags from './Tags.tsx';
 import { FaArrowLeft } from 'react-icons/fa';
 
+const screenWidth = window.screen.width;
+var displayWidth = screenWidth < 1280 ? '80vw' : '28vw';
+displayWidth = screenWidth > 1680 ? '24vw' : displayWidth;
+
 const Container = styled.div`
   border-radius: 0px 0px 10px 10px;
   height: 56vh;
   max-height: 56vh;
   overflow-y: auto;
-  width: 28vw;
+  width: ${displayWidth};
   position: relative;
   padding: 10px;
   background-color: ${colors.PURPLE};
@@ -38,7 +42,7 @@ const TopBar = styled.div`
   padding-bottom: 10px;
   padding-left: 20px;
   background: ${colors.YELLOW};
-  width: 28vw;
+  width: ${displayWidth};
   height: 6vh;
   margin: auto;
   border-radius: 10px 10px 0px 0px;
@@ -82,8 +86,8 @@ const Avatar = styled.img`
     height: 100px;
   }
   @media screen and (max-width: 768px) {
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
   }
 `;
 

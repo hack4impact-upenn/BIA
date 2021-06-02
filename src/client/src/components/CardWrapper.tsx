@@ -29,7 +29,7 @@ const CardWrapper = (props) => {
     setState('list');
   };
   return (
-    <div>
+    <div style={{ height: '80vh' }}>
       {state === 'list' && (
         <CardsList
           data={data}
