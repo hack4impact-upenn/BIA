@@ -25,6 +25,8 @@ interface IOrganization extends mongoose.Document {
   industryFocus: string[];
   programTypes: string[];
   focusArea: string;
+  growthStage: string;
+  innovatorSupport: string;
   profitStatus: string;
   logoURL: string;
   signatureProgram: {
@@ -55,6 +57,8 @@ const OrganizationSchema = new Schema({
   industryFocus: { type: [String], required: false },
   programTypes: { type: [String], required: false },
   focusArea: { type: String, required: false },
+  growthStage: { type: String, required: false },
+  innovatorSupport: { type: String, required: false },
   profitStatus: { type: String, required: false },
   logoURL: { type: String, required: false },
   signatureProgram: {
