@@ -3,6 +3,11 @@ import styled from 'styled-components';
 import colors from '../common/Colors';
 import Select, { components } from 'react-select';
 
+const screenWidth = window.screen.width;
+console.log(screenWidth);
+var displayWidth = screenWidth < 1280 ? '40vw' : '16vw';
+displayWidth = screenWidth > 1680 ? '12vw' : displayWidth;
+
 const styles = {
   control: ({ background, ...base }) => {
     return {
@@ -10,7 +15,7 @@ const styles = {
       boxShadow: 'none',
       color: colors.PURPLE,
       background: colors.GREY,
-      width: `16vw`,
+      width: displayWidth,
       margin: 'auto',
       borderRadius: '5px',
     };
@@ -66,7 +71,7 @@ const Input = styled.input`
   margin-right: 10px;
   font-size: 1em;
   display: inline;
-  width: 12vw;
+  width: ${displayWidth};
   background: ${colors.GREY};
   border-radius: 5px;
   &:hover,
