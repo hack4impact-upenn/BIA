@@ -69,6 +69,20 @@ const OrgName = styled.span`
   }
 `;
 
+const LearnMore = styled.span`
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  color: ${colors.YELLOW};
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+    font-weight: 50;
+  }
+`;
+
 const OrgCity = styled.span`
   font-size: 14px;
   font-weight: 500;
@@ -116,6 +130,11 @@ const Card = (props) => {
           <OrgDescription>{props.org.shortDescription}</OrgDescription>
         </div>
         <SocialsList org={props.org} />
+        <div className="is-pulled-left">
+          <div style={{ display: 'relative' }}>
+            <LearnMore>Learn More</LearnMore>
+          </div>
+        </div>
       </Container>
     </div>
   );
