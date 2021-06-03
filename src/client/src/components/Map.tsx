@@ -1,111 +1,61 @@
-import * as React from 'react';
-import { useState } from 'react';
-import { render } from 'react-dom';
-import MapGL, {
-  Popup,
-  NavigationControl,
-  FullscreenControl,
-  ScaleControl,
-  GeolocateControl,
-} from 'react-map-gl';
-import Pins from './Pins.tsx';
-var d3 = require('d3-geo');
-import { useQuery } from 'react-query';
-import axios from 'axios';
-import geocoder from '../api/geocoder';
-import locator from '../api/geocoder';
-const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN; // Set your mapbox token here
+import React, { useRef, useEffect } from 'react';
+import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import '../map.css';
 
-const R = 6378137.0; // radius of Earth in meters
-const projection = d3.geoAlbersUsa().translate([0, 0]).scale(R);
-const projectionMercartor = d3.geoMercator().translate([0, 0]).scale(R);
+mapboxgl.accessToken =
+  'pk.eyJ1Ijoiams2MDYwNjA2MCIsImEiOiJja2J4Nm4yd3kwampvMnJwZ2l6a2hrY3RjIn0.7WBReAD5vV1__FmyUaPMbA';
 
-function convertToAlbers(city) {
-  const location = geocoder.getLocation(city.city);
-  location.then((resp) => {
-    const converted = projectionMercartor.invert(
-      projection([resp.lng, resp.lat])
-    );
-    const newlng = converted[0];
-    const newlat = converted[1];
-    city.newlng = newlng;
-    city.newlat = newlat;
-    return city;
-  });
-}
+const Map = (data) => {
+  const mapContainerRef = useRef(null);
 
-const CITIES = [
-  {
-    city: 'New York',
-    latitude: 40.7127837,
-    longitude: -74.0059413,
-  },
-  {
-    city: 'New York',
-    latitude: 40.7127837,
-    longitude: -74.0059413,
-  },
-  {
-    city: 'New York',
-    latitude: 40.7127837,
-    longitude: -74.0059413,
-  },
-  {
-    city: 'Chicago',
-    latitude: 41.8781136,
-    longitude: -87.6297982,
-  },
-];
+  // initialize map
+  useEffect(() => {
+    const map = new mapboxgl.Map({
+      container: mapContainerRef.current,
+      style: 'mapbox://styles/jk60606060/cknh2goxk0d6717o5fv913vam',
+      center: [0, 0],
+      zoom: 4,
+    });
 
-CITIES.map(convertToAlbers);
+    map.on('load', function () {
+      // custom marker image
+      map.loadImage(process.env.PUBLIC_URL + '/img/marker.png', function (
+        error,
+        image
+      ) {
+        if (error) throw error;
+        map.addImage(process.env.PUBLIC_URL + '/img/marker.png', image);
+        map.addSource('earthquakes', {
+          type: 'geojson',
+          // random earthquake geojson file with points yay
+          data:
+            'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson',
+        });
 
-function Map() {
-  const [viewport, setViewport] = useState({
-    latitude: 0,
-    longitude: 0,
-    zoom: 4.5,
-    bearing: 0,
-    pitch: 0,
-  });
+        map.addControl(new mapboxgl.NavigationControl());
 
-  const navStyle = {
-    top: 5,
-    left: 0,
-    padding: '10px',
-  };
+        // Marker Layer
+        map.addLayer({
+          id: 'earthquakes',
+          type: 'symbol',
+          source: 'earthquakes',
+          layout: {
+            'icon-image': process.env.PUBLIC_URL + '/img/marker.png',
+          },
+        });
+      });
+    });
 
-  const scaleControlStyle = {
-    bottom: 36,
-    right: 0,
-    padding: '10px',
-  };
+    map.on('click', 'earthquakes', function (e) {
+      alert('you clicked a point. good job');
+    });
 
-  const print_marker = (city) => {
-    console.log(city);
-  };
+    // clean up
+    return () => map.remove();
+  }, []);
 
-  const { isLoading, error, data } = useQuery('users', () =>
-    axios.get('/api/org/').then((res) => {
-      return res.data;
-    })
-  );
-
-  return (
-    <>
-      <MapGL
-        {...viewport}
-        width="100vw"
-        height="100vh"
-        mapStyle="mapbox://styles/bndemers/ckmxqsh18137317lkh1ukwfxx"
-        onViewportChange={setViewport}
-        mapboxApiAccessToken={MAPBOX_TOKEN}
-      >
-        {!isLoading && <Pins data={CITIES} onClick={print_marker} />}
-
-        <NavigationControl style={navStyle} />
-      </MapGL>
-    </>
-  );
-}
+  return <div className="map-container" ref={mapContainerRef} />;
+};
 
 export default Map;

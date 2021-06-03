@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
 
-// work here for task 1.2
-
 const Container = styled.div`
   border-radius: 10px;
-  height: 200px;
-  width: 400px;
+  height: auto;
+  overflow: hidden;
+  width: 28vw;
   padding: 10px;
   background-color: ${colors.PURPLE};
   justify-content: center;
@@ -78,39 +77,39 @@ const OrgCity = styled.span`
 const OrgDescription = styled.p`
   text-align: start;
   color: white;
-  font-size: 10px;
-  margin-bottom: 6px;
+  font-size: 12px;
+  margin-bottom: 12px;
   @media screen and (max-width: 768px) {
     font-size: 8px;
   }
 `;
 
-const dummyOrg = {
-  name: 'Black Innovation Alliance',
-  location: 'Philadelphia, PA',
-  tags: ['Inoovation', 'Entrepreneuership'],
-  shortDisc:
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates laudantium minima natus saepe explicabo, sapiente animi, neque, quisquam quaerat similique id?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam molestiae sed fugit ipsum perspiciatis ipsa ipsam voluptates',
-  facebook: 'facebok.com',
-  website: 'hack4impact.org/',
-};
-//we will provide an org to this component, but for now we are using the dummy org object to fill these fields
 const Card = (props) => {
   return (
     <div
       className="is-pulled-left"
-      style={{ marginBottom: '20px', marginLeft: '10px', marginRight: '10px' }}
+      style={{ marginBottom: '20px', marginLeft: '2px', marginRight: '10px' }}
     >
-      <Container>
-        <div onClick={() => props.handleClick()}>
+      <Container onClick={() => props.handleClick()}>
+        <div>
           <Titlebar>
-            <Avatar src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
+            <Avatar
+              src={
+                props.org.logoURL
+                  ? 'https://' +
+                    //process.env.AWS_BUCKET_NAME +
+                    'bia-h4i' +
+                    '.s3.amazonaws.com/' +
+                    props.org.logoURL
+                  : `${process.env.PUBLIC_URL}/img/BIA2.jpeg`
+              }
+            />
             <InfoDiv>
-              <OrgName>{props.org.name}</OrgName>
-              <OrgCity>{props.org.location}</OrgCity>
+              <OrgName>{props.org.organizationName}</OrgName>
+              <OrgCity>{props.org.headquarterCity}</OrgCity>
             </InfoDiv>
           </Titlebar>
-          <OrgDescription>{props.org.shortDisc}</OrgDescription>
+          <OrgDescription>{props.org.shortDescription}</OrgDescription>
         </div>
         <SocialsList org={props.org} />
       </Container>

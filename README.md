@@ -23,7 +23,8 @@ Interactive map to showcae Black Innovation Alliance Partner Orginzations.
 
 ##### Configuring Enviromental Variable
 
-Create file called ".env.development" in root directory, it should look like the following:
+Create file called ".env.development" in a "config" folder in the root directory (you may have to create a new config folder).
+It should look like the following:
 
 ```
 ATLAS_URI=mongodb-connection-string-placeholder

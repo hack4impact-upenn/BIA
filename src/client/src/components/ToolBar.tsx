@@ -1,8 +1,7 @@
 import React, { Component, useState, useEffect, ReactElement } from 'react';
 import styled from 'styled-components';
 import colors from '../common/Colors';
-import Select from 'react-select';
-import Icon from '../common/Icon';
+import Select, { components } from 'react-select';
 
 const styles = {
   control: ({ background, ...base }) => {
@@ -11,15 +10,15 @@ const styles = {
       boxShadow: 'none',
       color: colors.PURPLE,
       background: colors.GREY,
-      width: `250px`,
+      width: `16vw`,
+      margin: 'auto',
+      borderRadius: '5px',
     };
   },
   option: ({ background, ...base }, { isFocused, isSelected }) => {
     const isEmphasized = isFocused || isSelected;
     return {
       ...base,
-      background: isEmphasized ? colors.GREY : background,
-      color: colors.PURPLE,
     };
   },
 
@@ -31,34 +30,49 @@ const styles = {
   },
 };
 
-const components = {
+const ValueContainer = ({ children, ...props }) => {
+  const { getValue, hasValue } = props;
+  const nbValues = getValue().length;
+  if (!hasValue) {
+    return (
+      <components.ValueContainer {...props}>
+        {children}
+      </components.ValueContainer>
+    );
+  }
+  return (
+    <components.ValueContainer {...props}>
+      {nbValues === 1 ? 'One Item Selected' : `${nbValues} items selected`}
+    </components.ValueContainer>
+  );
+};
+
+const customeComponents = {
   IndicatorSeparator: () => null,
+  ValueContainer,
 };
 
 const Container = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 0px 20px;
   justify-content: center;
   align-items: center;
   margin: auto;
 `;
 
 const Input = styled.input`
-  outline: none;
-  color: ${colors.PURPLE};
+  color: black;
   width: 100%;
+  margin-right: 10px;
   font-size: 1em;
   display: inline;
-  width: 200px;
-  padding: 8px 10px;
+  width: 12vw;
   background: ${colors.GREY};
   border-radius: 5px;
   &:hover,
   &:active,
   &:focus {
-    background: ${colors.GREY};
-    border: none;
-    border-radius: none;
+    background: 0.5px ${colors.BORDER_BLUE} solid;
   }
 `;
 
@@ -67,11 +81,18 @@ const sortOptions = [
   { value: 'alphabetical', label: 'Alphabetical' },
 ];
 const programOptions = [
-  { value: 'type 1', label: 'Type 1' },
-  { value: 'type 2', label: 'Type 2' },
-  //{ value: 'type', label: 'Type' },
-  // { value: 'stage', label: 'Stage' },
-  //{ value: 'scope', label: 'Scope' },
+  { value: 'accelerator', label: 'Accelerator' },
+  { value: 'coaching', label: 'Coaching' },
+  { value: 'direct funding', label: 'Direct Funding' },
+  { value: 'funder matching', label: 'Funder Matching' },
+  { value: 'incubator', label: 'Incubator' },
+  { value: 'mentoring', label: 'Mentoring' },
+  { value: 'networking', label: 'Networking' },
+  { value: 'pitch events', label: 'Pitch Events' },
+  {
+    value: 'other cohort-based programming',
+    label: 'Other cohort-based programming',
+  },
 ];
 
 const sortSelect = styled.select`
@@ -122,35 +143,34 @@ const ToolBar = ({
         style={{
           width: '100%',
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-start',
         }}
       >
         <div className="flex-item">
           <Input
-            className="input"
+            className="input change"
             value={searchQuery}
-            placeholder={`Search by state entries`}
+            placeholder={`Search by Location`}
             onChange={handleSearchChange}
           />
         </div>
-        <div className="flex-item">
+        <div className="flex-item is-pulled-right">
           <Select
             isMulti
-            components={components}
+            hideSelectedOptions={false}
+            components={customeComponents}
             styles={styles}
             onChange={handleFilterChange}
             name="colors"
             options={programOptions}
-            placeholder="program"
+            placeholder="Program Type"
             className="basic-multi-select"
             classNamePrefix="select"
             theme={(theme) => ({
               ...theme,
               colors: {
                 ...theme.colors,
-                neutral50: colors.PURPLE,
-                neutral150: colors.PURPLE,
-                primary: colors.PURPLE,
+                primary: colors.GREEN,
               },
             })}
           />

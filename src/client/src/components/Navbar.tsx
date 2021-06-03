@@ -10,6 +10,17 @@ const NavBarItems = styled.div`
   }
 `;
 
+const Avatar = styled.img`
+  display: inline;
+  width: 150px;
+  height: 50px;
+  margin-left: 25px;
+  margin-top: 7px;
+  background: white !important;
+  background: black;
+  border: 2px solid white;
+`;
+
 //Might add this component later. Keep it for now because the login/register control might be useful.
 
 function Navbar() {
@@ -21,34 +32,14 @@ function Navbar() {
   }
 
   return (
-    <nav className="navbar" style={{ background: `${Colors.blue}44` }}>
-      <div className="container">
-        <div className="navbar-brand">
-          <a href="/" className="navbar-item title is-4">
-            Black Innovation Alliance
-          </a>
-        </div>
-        <div className="navbar-menu">
-          <div className="navbar-end">
-            {auth.isAuthenticated ? (
-              <NavBarItems
-                className="navbar-item"
-                onClick={() => handleLogout()}
-              >
-                Logout
-              </NavBarItems>
-            ) : (
-              <>
-                <Link to="/login" className="navbar-item">
-                  Login
-                </Link>
-                <Link to="/register" className="navbar-item">
-                  Register
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
+    <nav
+      className="navbar"
+      style={{ background: `${Colors.white}`, height: '65px', width: '100%' }}
+    >
+      <div className="navbar-brand">
+        <a href="/" style={{ display: 'flex', alignItems: 'left' }}>
+          <Avatar src={process.env.PUBLIC_URL + '/img/BIA.png'} />
+        </a>
       </div>
     </nav>
   );

@@ -19,7 +19,7 @@ const Container = styled.div`
 const TitleBar = styled.div`
   font-size: 24px;
   text-align: center;
-  margin: 30px auto;
+  margin: 40px auto;
   color: ${Colors.PURPLE} !important;
 `;
 const Register = styled.span`
@@ -30,9 +30,8 @@ const Register = styled.span`
 `;
 
 const IMG = styled.img`
-  border-radius: 50%;
   height: 100px;
-  width: 100px;
+  width: 300px;
 `;
 
 const Actions = styled.div`
@@ -83,8 +82,7 @@ function LoginPage() {
     <div className="container">
       <TitleBar>
         {' '}
-        <IMG src={process.env.PUBLIC_URL + '/img/BIA.jpeg'} />
-        <h1>Black Innovation Alliance</h1>
+        <IMG src={process.env.PUBLIC_URL + '/img/BIA.png'} />
       </TitleBar>
       <Container>
         <Formik

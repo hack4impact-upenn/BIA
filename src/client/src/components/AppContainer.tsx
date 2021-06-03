@@ -6,25 +6,25 @@ const FooterContainer = styled.div`
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 50px;
+  height: 40px;
   width: 100%;
-  background-color: ${Colors.PURPLE};
+  background-color: black;
   color: white;
-  text-align: center;
+  text-align: start;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  padding: 0px 20px;
   z-index: 99;
 `;
 
 const AppContainer = ({ children }) => {
   return (
-    <div>
-      {children}
+    <>
+      <div>{children}</div>
       <FooterContainer>
-        <h1 style={{ color: Colors.YELLOW }}>Black Innovation Alliance</h1>
+        <h1> © Black Innovation Alliance</h1>
       </FooterContainer>
-    </div>
+    </>
   );
 };
 

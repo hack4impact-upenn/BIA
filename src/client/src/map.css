@@ -2,6 +2,8 @@
   position: relative;
   top: 5px;
   bottom: 10px;
+  max-height: 62vh;
+  height: 100%;
 }
 
 .mapboxgl-canvas {
@@ -25,6 +27,31 @@
   background: #faab18;
 }
 
+@media screen and (max-width: 768px) {
+  .map-container {
+    display: none;
+  }
+}
+
 .mapboxgl-ctrl-group button + button {
   border-top: 2px solid #1d1e68;
+}
+
+.change::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #808080;
+}
+.change:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #808080;
+  opacity: 1;
+}
+.change::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #808080;
+  opacity: 1;
+}
+.change:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #808080;
 }
