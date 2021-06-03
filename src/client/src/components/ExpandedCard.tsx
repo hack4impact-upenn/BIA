@@ -175,6 +175,15 @@ const TagBar = styled.div`
 `;
 
 const ExpandedCard = (props) => {
+  var tagsArray = props.org.programTypes
+    ? props.org.programTypes.map((normal) => {
+        return { type: 'normal', text: normal };
+      })
+    : [];
+  tagsArray.push(
+    { type: 'inovatorSupport', text: props.org.innovatorSupport },
+    { type: 'growthStage', text: props.org.growthStage }
+  );
   return (
     <div>
       <TopBar>
@@ -210,11 +219,7 @@ const ExpandedCard = (props) => {
         <DescriptionDiv>
           <OrgDescription>{props.org.longDescription}</OrgDescription>
         </DescriptionDiv>
-        <TagBar>
-          {props.org.programTypes && (
-            <Tags tags={props.org.programTypes}></Tags>
-          )}
-        </TagBar>
+        <TagBar>{tagsArray && <Tags tags={tagsArray}></Tags>}</TagBar>
         <SocialWrapping>
           <SocialsList org={props.org} />
         </SocialWrapping>
