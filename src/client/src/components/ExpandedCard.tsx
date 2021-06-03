@@ -8,11 +8,12 @@ import { FaArrowLeft } from 'react-icons/fa';
 const screenWidth = window.screen.width;
 var displayWidth = screenWidth < 1280 ? '80vw' : '28vw';
 displayWidth = screenWidth > 1680 ? '24vw' : displayWidth;
+var displayHeight = screenWidth < 1280 ? '68vh' : '56vh';
 
 const Container = styled.div`
   border-radius: 0px 0px 10px 10px;
-  height: 56vh;
-  max-height: 56vh;
+  height: ${displayHeight};
+  max-height: ${displayHeight};
   overflow-y: auto;
   width: ${displayWidth};
   position: relative;

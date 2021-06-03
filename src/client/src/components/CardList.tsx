@@ -86,7 +86,11 @@ const CardsList = (props) => {
     </div>
   ));
   return (
-    <div>
+    <div
+      style={
+        screenWidth < 1280 ? { display: 'flex', justifyContent: 'center' } : {}
+      }
+    >
       <Container>{cardArray}</Container>
     </div>
   );
