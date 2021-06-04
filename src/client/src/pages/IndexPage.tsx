@@ -31,15 +31,13 @@ const Discbar = styled.div`
 `;
 
 const HomeContainer = styled.div`
-  padding: 10px;
+  padding: 10px 40px;
   height: 100%;
-  display:flex;
+  display: flex;
   flex-flow: column;
   position: relative;
   overflow-x: hidden;
-  background-color: ${Colors.HOMEPAGE_GREY} 
-  max-width: 100vw;
-  @media screen and (max-width: 768px) {
+  background-color: ${Colors.HOMEPAGE_GREY} @media screen and (max-width: 768px) {
     padding: 2px;
   }
 `;
@@ -91,7 +89,8 @@ function IndexPage() {
             border: '1px solid #1d1e68',
             marginBottom: '20px',
             marginTop: '20px',
-            marginLeft: '10px',
+            marginLeft: '30px',
+            marginRight: '10px',
           }}
         />
 

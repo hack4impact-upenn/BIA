@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import Colors from '../common/Colors';
 
 export const Tag = styled.span`
-  margin: 0 6px 8px 0;
+  margin: 0 5px 8px 0;
   font-weight: 300;
-  font-size: 12px;
-  padding: 10px;
+  font-size: 10px;
+  padding: 2px;
 
   &.tag {
     background: ${(props) =>
@@ -19,9 +19,9 @@ export const Tag = styled.span`
     white-space: normal;
     display: inline-block;
     height: auto;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
-    border-radius: 10px;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    border-radius: 5px;
   }
 `;
 

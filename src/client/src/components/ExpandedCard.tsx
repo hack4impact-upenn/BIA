@@ -69,7 +69,7 @@ const DescriptionDiv = styled.div`
   height: 300px
   padding: 10px;
   margin-left: 20px;
-  margin-bottom: 8px;
+  margin-bottom: 0px;
 `;
 
 const Avatar = styled.img`
@@ -157,9 +157,9 @@ const OrgDescription = styled.p`
   text-align: start;
   color: white;
   font-weight: 300;
-  margin-bottom: 6px;
+  margin-bottom: 0px;
 
-  font-size: 12px;
+  font-size: 14px;
   @media screen and (min-width: 1460px) {
     font-size: 17px;
   }
