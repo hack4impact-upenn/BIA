@@ -22,7 +22,7 @@ const Titlebar = styled.div`
 
 const Discbar = styled.div`
   padding: 0px 30px;
-  font-size: 12px;
+  font-size: 14px;
   text-align: start;
   font-family: 'Montserrat', sans-serif;
   margin-top: 2px;
