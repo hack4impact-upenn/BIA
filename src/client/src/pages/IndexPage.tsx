@@ -37,6 +37,7 @@ const HomeContainer = styled.div`
   flex-flow: column;
   position: relative;
   overflow-x: hidden;
+  flex-grow: 1;
   background-color: ${Colors.HOMEPAGE_GREY} @media screen and (max-width: 768px) {
     padding: 2px;
   }
@@ -67,7 +68,7 @@ function IndexPage() {
   console.log(searchQuery);
 
   return (
-    <>
+    <div style={{ display: 'flex', flexFlow: 'column', height: '100%' }}>
       <Navbar />
       <HomeContainer>
         <Titlebar>The Black Innovation Alliance Map</Titlebar>
@@ -131,7 +132,7 @@ function IndexPage() {
           </div>
         )}
       </HomeContainer>
-    </>
+    </div>
   );
 }
 
