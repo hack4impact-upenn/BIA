@@ -3,11 +3,15 @@ import styled from 'styled-components';
 import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
 
+const screenWidth = window.screen.width;
+var displayWidth = screenWidth < 1280 ? '70vw' : '28vw';
+displayWidth = screenWidth > 1680 ? '24vw' : displayWidth;
+
 const Container = styled.div`
   border-radius: 10px;
   height: auto;
   overflow: hidden;
-  width: 28vw;
+  width: ${displayWidth};
   padding: 10px;
   background-color: ${colors.PURPLE};
   justify-content: center;
@@ -65,6 +69,20 @@ const OrgName = styled.span`
   }
 `;
 
+const LearnMore = styled.span`
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  color: ${colors.YELLOW};
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+    font-weight: 50;
+  }
+`;
+
 const OrgCity = styled.span`
   font-size: 14px;
   font-weight: 500;
@@ -87,7 +105,7 @@ const OrgDescription = styled.p`
 const Card = (props) => {
   return (
     <div
-      className="is-pulled-left"
+      className={screenWidth < 1280 ? '' : `is-pulled-left`}
       style={{ marginBottom: '20px', marginLeft: '2px', marginRight: '10px' }}
     >
       <Container onClick={() => props.handleClick()}>
@@ -112,6 +130,11 @@ const Card = (props) => {
           <OrgDescription>{props.org.shortDescription}</OrgDescription>
         </div>
         <SocialsList org={props.org} />
+        <div className="is-pulled-left">
+          <div style={{ display: 'relative' }}>
+            <LearnMore>Learn More</LearnMore>
+          </div>
+        </div>
       </Container>
     </div>
   );

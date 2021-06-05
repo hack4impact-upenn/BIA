@@ -8,6 +8,8 @@ import Colors from '../common/Colors';
 import ToolBar from '../components/ToolBar.tsx';
 import Navbar from '../components/Navbar.tsx';
 
+const screenWidth = window.screen.width;
+
 const Titlebar = styled.div`
   padding: 0px 30px;
   font-size: 28px;
@@ -20,7 +22,7 @@ const Titlebar = styled.div`
 
 const Discbar = styled.div`
   padding: 0px 30px;
-  font-size: 12px;
+  font-size: 14px;
   text-align: start;
   font-family: 'Montserrat', sans-serif;
   margin-top: 2px;
@@ -29,12 +31,14 @@ const Discbar = styled.div`
 `;
 
 const HomeContainer = styled.div`
-  padding: 10px;
+  padding: 10px 40px;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
   position: relative;
   overflow-x: hidden;
-  background-color: ${Colors.HOMEPAGE_GREY} 
-  max-width: 100vw;
-  @media screen and (max-width: 768px) {
+  flex-grow: 1;
+  background-color: ${Colors.HOMEPAGE_GREY} @media screen and (max-width: 768px) {
     padding: 2px;
   }
 `;
@@ -64,7 +68,7 @@ function IndexPage() {
   console.log(searchQuery);
 
   return (
-    <>
+    <div style={{ display: 'flex', flexFlow: 'column', height: '100%' }}>
       <Navbar />
       <HomeContainer>
         <Titlebar>The Black Innovation Alliance Map</Titlebar>
@@ -86,14 +90,36 @@ function IndexPage() {
             border: '1px solid #1d1e68',
             marginBottom: '20px',
             marginTop: '20px',
-            marginLeft: '10px',
+            marginLeft: '30px',
+            marginRight: '10px',
           }}
         />
-        <div className="columns" style={{ padding: '10px', paddingTop: '0px' }}>
+
+        {screenWidth > 1280 ? (
           <div
-            className="column is-one-third is-full-mobile"
-            style={{ height: '70vh' }}
+            className="columns"
+            style={{ padding: '10px', paddingTop: '0px' }}
           >
+            <div
+              className="column is-one-third is-full-mobile"
+              style={{ height: '70vh' }}
+            >
+              {isLoading ? (
+                'Loading'
+              ) : (
+                <CardWrapper
+                  data={data}
+                  searchQuery={searchQuery}
+                  filter={filter}
+                />
+              )}
+            </div>
+            <div className="column" style={{ height: '70vh' }}>
+              {isLoading ? 'Loading' : <Map data={data} />}
+            </div>
+          </div>
+        ) : (
+          <div style={{ padding: '10px', paddingTop: '0px' }}>
             {isLoading ? (
               'Loading'
             ) : (
@@ -104,12 +130,9 @@ function IndexPage() {
               />
             )}
           </div>
-          <div className="column" style={{ height: '70vh' }}>
-            {isLoading ? 'Loading' : <Map data={data} />}
-          </div>
-        </div>
+        )}
       </HomeContainer>
-    </>
+    </div>
   );
 }
 

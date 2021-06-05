@@ -14,7 +14,7 @@ const Avatar = styled.img`
   display: inline;
   width: 150px;
   height: 50px;
-  margin-left: 25px;
+  margin-left: 60px;
   margin-top: 7px;
   background: white !important;
   background: black;
