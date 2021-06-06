@@ -33,6 +33,8 @@ interface IOrganization extends mongoose.Document {
     imageURL: string;
     description?: string;
   };
+  lat: number;
+  long: number;
 }
 
 const OrganizationSchema = new Schema({

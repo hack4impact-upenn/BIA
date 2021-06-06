@@ -6,6 +6,7 @@ import csv from 'csv-parser';
 import multer from 'multer';
 import auth from '../middleware/auth';
 import fs from 'fs';
+import locator from '../utils/geocoder';
 
 const { awsUpload, awsGet } = require('../utils/aws');
 import database from 'src/utils/database';
@@ -348,6 +349,9 @@ router.post('/uploadCSV', upload.single('file'), auth, async (req, res) => {
         };
         const location = `${organization[1]}, ${organization[2]}`;
         newOrganization.headquarterCity = location;
+        const cords = locator.getLocation(location);
+        newOrganization.lat = (await cords).lat;
+        newOrganization.long = (await cords).lng;
         newOrganization.contactEmail = organization[3];
         newOrganization.website = organization[3];
         newOrganization.twitter = organization[4];
