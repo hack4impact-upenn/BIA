@@ -11,6 +11,7 @@ const Colors = {
   white: '#FFFFFF',
   PURPLE: '#1D1E68',
   YELLOW: '#FAAB18',
+  ORANGE: '#E26D5A',
 };
 
 export default Colors;

@@ -4,6 +4,7 @@
   bottom: 10px;
   max-height: 62vh;
   height: 100%;
+  border-radius: 12px;
 }
 
 .mapboxgl-canvas {

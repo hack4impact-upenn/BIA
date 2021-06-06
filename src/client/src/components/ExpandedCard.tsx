@@ -5,12 +5,17 @@ import colors from '../common/Colors';
 import Tags from './Tags.tsx';
 import { FaArrowLeft } from 'react-icons/fa';
 
+const screenWidth = window.screen.width;
+var displayWidth = screenWidth < 1280 ? '80vw' : '28vw';
+displayWidth = screenWidth > 1680 ? '24vw' : displayWidth;
+var displayHeight = screenWidth < 1280 ? '68vh' : '56vh';
+
 const Container = styled.div`
   border-radius: 0px 0px 10px 10px;
-  height: 56vh;
-  max-height: 56vh;
+  height: ${displayHeight};
+  max-height: ${displayHeight};
   overflow-y: auto;
-  width: 28vw;
+  width: ${displayWidth};
   position: relative;
   padding: 10px;
   background-color: ${colors.PURPLE};
@@ -38,7 +43,7 @@ const TopBar = styled.div`
   padding-bottom: 10px;
   padding-left: 20px;
   background: ${colors.YELLOW};
-  width: 28vw;
+  width: ${displayWidth};
   height: 6vh;
   margin: auto;
   border-radius: 10px 10px 0px 0px;
@@ -64,7 +69,7 @@ const DescriptionDiv = styled.div`
   height: 300px
   padding: 10px;
   margin-left: 20px;
-  margin-bottom: 8px;
+  margin-bottom: 0px;
 `;
 
 const Avatar = styled.img`
@@ -82,8 +87,8 @@ const Avatar = styled.img`
     height: 100px;
   }
   @media screen and (max-width: 768px) {
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
   }
 `;
 
@@ -152,9 +157,9 @@ const OrgDescription = styled.p`
   text-align: start;
   color: white;
   font-weight: 300;
-  margin-bottom: 6px;
+  margin-bottom: 0px;
 
-  font-size: 12px;
+  font-size: 14px;
   @media screen and (min-width: 1460px) {
     font-size: 17px;
   }
@@ -171,6 +176,15 @@ const TagBar = styled.div`
 `;
 
 const ExpandedCard = (props) => {
+  var tagsArray = props.org.programTypes
+    ? props.org.programTypes.map((normal) => {
+        return { type: 'normal', text: normal };
+      })
+    : [];
+  tagsArray.push(
+    { type: 'inovatorSupport', text: props.org.innovatorSupport },
+    { type: 'growthStage', text: props.org.growthStage }
+  );
   return (
     <div>
       <TopBar>
@@ -206,11 +220,7 @@ const ExpandedCard = (props) => {
         <DescriptionDiv>
           <OrgDescription>{props.org.longDescription}</OrgDescription>
         </DescriptionDiv>
-        <TagBar>
-          {props.org.programTypes && (
-            <Tags tags={props.org.programTypes}></Tags>
-          )}
-        </TagBar>
+        <TagBar>{tagsArray && <Tags tags={tagsArray}></Tags>}</TagBar>
         <SocialWrapping>
           <SocialsList org={props.org} />
         </SocialWrapping>
