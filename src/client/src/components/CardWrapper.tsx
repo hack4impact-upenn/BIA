@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import CardsList from './CardList.tsx';
 import ExpandedCard from './ExpandedCard.tsx';
@@ -15,15 +15,26 @@ let currOrg = {
   website: '',
 };
 
-const CardWrapper = (props) => {
+const CardWrapper = (props: any) => {
   const { data } = props;
   const { searchQuery } = props;
   const { filter } = props;
   const { targetCard } = props;
+  const { changeTargetCard } = props;
+  console.log(props);
   const [targetOrg, setOrg] = useState(targetCard);
   const [state, setState] = useState(targetCard ? 'expanded' : 'list');
+
+  useEffect(() => {
+    if (targetOrg) {
+      console.log(targetOrg);
+      setState('expanded');
+    }
+  }, [targetCard]);
+
   const switchToExpanded = (org) => {
     setOrg(org);
+    changeTargetCard(org);
     setState('expanded');
   };
 
@@ -42,7 +53,7 @@ const CardWrapper = (props) => {
       )}
 
       {state === 'expanded' && (
-        <ExpandedCard org={targetOrg} switchToList={() => switchToList} />
+        <ExpandedCard org={targetCard} switchToList={() => switchToList} />
       )}
     </div>
   );
