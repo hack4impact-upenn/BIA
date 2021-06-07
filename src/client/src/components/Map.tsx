@@ -25,6 +25,7 @@ mapboxgl.accessToken =
 
 const Map = (props) => {
   const { data } = props;
+  const { changeOrg } = props;
   const coords = data.map((org) => {
     return { id: org.organizationName, coordinates: [org.lat, org.long] };
   });
@@ -77,30 +78,37 @@ const Map = (props) => {
           const coords = getGeometryObject(org.long, org.lat);
           const newCoords = reproject(options, coords);
 
+          map.addSource(org.organizationName, {
+            type: 'geojson',
+            data: newCoords,
+          });
+
+          map.addLayer({
+            id: org.organizationName,
+            type: 'symbol',
+            source: org.organizationName,
+            layout: {
+              'icon-image': process.env.PUBLIC_URL + '/img/marker.png',
+            },
+          });
+
           var coordinates = [
             newCoords.geometry['coordinates'][0],
             newCoords.geometry['coordinates'][1],
           ];
-          coordinateList.push(coordinates);
-          console.log(coordinates);
+          map.on('click', org.organizationName, function (e) {
+            changeOrg(org.organizationName);
+          });
+          //console.log(coordinates);
           //var coordinates = [org.long + 96, org.lat - 35];
 
           //var marker = new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
         });
 
-        map.addSource('orgs', {
-          type: 'canvas',
-          canvas: 'idOfMyHTMLCanvas',
-          animate: true,
-          coordinates: coordinateList,
-        });
+        console.log(coordinateList);
 
         // Marker Layer
       });
-    });
-
-    map.on('click', 'earthquakes', function (e) {
-      alert('you clicked a point. good job');
     });
 
     // clean up

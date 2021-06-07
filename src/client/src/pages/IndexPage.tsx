@@ -117,7 +117,11 @@ function IndexPage() {
               )}
             </div>
             <div className="column" style={{ height: '70vh' }}>
-              {isLoading ? 'Loading' : <Map data={data} />}
+              {isLoading ? (
+                'Loading'
+              ) : (
+                <Map data={data} changeOrg={setTargetCard} />
+              )}
             </div>
           </div>
         ) : (
