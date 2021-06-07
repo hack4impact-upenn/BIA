@@ -185,10 +185,12 @@ const ExpandedCard = (props) => {
         return { type: 'normal', text: normal };
       })
     : [];
-  tagsArray.push(
-    { type: 'inovatorSupport', text: props.org.innovatorSupport },
-    { type: 'growthStage', text: props.org.focusArea }
-  );
+  if (props.org.focusArea && props.org.innovatorSupport) {
+    tagsArray.push(
+      { type: 'inovatorSupport', text: props.org.innovatorSupport },
+      { type: 'growthStage', text: props.org.focusArea }
+    );
+  }
   tagsArray.sort((a, b) => {
     if (a.type === 'growthStage') return -1;
     else return 0;
