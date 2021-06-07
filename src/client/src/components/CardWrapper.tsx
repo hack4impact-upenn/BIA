@@ -19,9 +19,11 @@ const CardWrapper = (props) => {
   const { data } = props;
   const { searchQuery } = props;
   const { filter } = props;
-  const [state, setState] = useState('list');
+  const { targetCard } = props;
+  const [targetOrg, setOrg] = useState(targetCard);
+  const [state, setState] = useState(targetCard ? 'expanded' : 'list');
   const switchToExpanded = (org) => {
-    currOrg = org;
+    setOrg(org);
     setState('expanded');
   };
 
@@ -40,7 +42,7 @@ const CardWrapper = (props) => {
       )}
 
       {state === 'expanded' && (
-        <ExpandedCard org={currOrg} switchToList={() => switchToList} />
+        <ExpandedCard org={targetOrg} switchToList={() => switchToList} />
       )}
     </div>
   );

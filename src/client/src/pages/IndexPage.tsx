@@ -64,6 +64,7 @@ function IndexPage() {
   const handleFilterChange = (filter) => {
     setFilter(filter);
   };
+  const [targetCard, setTargetCard] = useState<any>(null);
 
   console.log(searchQuery);
 
@@ -111,6 +112,7 @@ function IndexPage() {
                   data={data}
                   searchQuery={searchQuery}
                   filter={filter}
+                  targetCard={targetCard}
                 />
               )}
             </div>
