@@ -107,10 +107,14 @@ const OrgTitle = styled.span`
   margin-left: 35px;
   position: relative;
   margin-top: 20px;
+  word-wrap: break-word;
   font-size: 25px;
   font-family: 'Montserrat Alternates', sans-serif;
   font-weight: 500;
   color: ${colors.WHITE};
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const OrgName = styled.span`
