@@ -55,7 +55,7 @@ function App() {
               <Switch>
                 <PublicRoute exact path="/" component={IndexPage} />
                 <PublicRoute exact path="/login" component={LoginPage} />
-                <PublicRoute exact path="/register" component={RegisterPage} />
+                <PrivateRoute exact path="/register" component={RegisterPage} />
                 <PublicRoute exact path="/map" component={Map} />
 
                 <PublicRoute
@@ -68,7 +68,6 @@ function App() {
                   path="/dashboard"
                   component={DashboardPage}
                 />
-                <PublicRoute exact path="/toolBar" component={ToolBar} />
                 <Route exact={false} component={NotFoundPage} />
               </Switch>
             </main>

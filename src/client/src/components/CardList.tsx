@@ -54,6 +54,9 @@ const CardsList = (props) => {
       if (!filter || filter.length < 1) {
         return true;
       }
+      if (!item.programTypes || item.programTypes.length < 0) {
+        return false;
+      }
 
       const strings = item.programTypes;
       if (strings) {
