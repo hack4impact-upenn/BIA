@@ -26,8 +26,7 @@ const CardWrapper = (props: any) => {
   const [state, setState] = useState(targetCard ? 'expanded' : 'list');
 
   useEffect(() => {
-    if (targetOrg) {
-      console.log(targetOrg);
+    if (targetCard) {
       setState('expanded');
     }
   }, [targetCard]);
