@@ -66,8 +66,6 @@ function IndexPage() {
   };
   const [targetCard, setTargetCard] = useState<any>(null);
 
-  console.log(searchQuery);
-
   return (
     <div style={{ display: 'flex', flexFlow: 'column', height: '100%' }}>
       <Navbar />
@@ -113,6 +111,7 @@ function IndexPage() {
                   searchQuery={searchQuery}
                   filter={filter}
                   targetCard={targetCard}
+                  changeTargetCard={setTargetCard}
                 />
               )}
             </div>
@@ -133,6 +132,8 @@ function IndexPage() {
                 data={data}
                 searchQuery={searchQuery}
                 filter={filter}
+                changeTargetCard={setTargetCard}
+                targetCard={targetCard}
               />
             )}
           </div>

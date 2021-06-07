@@ -97,7 +97,7 @@ const Map = (props) => {
             newCoords.geometry['coordinates'][1],
           ];
           map.on('click', org.organizationName, function (e) {
-            changeOrg(org.organizationName);
+            changeOrg(org);
           });
           //console.log(coordinates);
           //var coordinates = [org.long + 96, org.lat - 35];
