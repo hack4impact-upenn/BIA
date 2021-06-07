@@ -63,10 +63,6 @@ const Button = styled.button`
 function RegisterPage() {
   const auth = useContext(AuthContext);
 
-  if (auth.isAuthenticated) {
-    return <Redirect to="/" />;
-  }
-
   async function handleSubmit(values, actions) {
     try {
       await api.post('/api/users/signup', values);
