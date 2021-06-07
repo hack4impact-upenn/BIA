@@ -183,8 +183,12 @@ const ExpandedCard = (props) => {
     : [];
   tagsArray.push(
     { type: 'inovatorSupport', text: props.org.innovatorSupport },
-    { type: 'growthStage', text: props.org.growthStage }
+    { type: 'growthStage', text: props.org.focusArea }
   );
+  tagsArray.sort((a, b) => {
+    if (a.type === 'growthStage') return -1;
+    else return 0;
+  });
   return (
     <div>
       <TopBar>
