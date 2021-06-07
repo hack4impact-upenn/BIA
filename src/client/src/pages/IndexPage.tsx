@@ -72,10 +72,16 @@ function IndexPage() {
       <HomeContainer>
         <Titlebar>The Black Innovation Alliance Map</Titlebar>
         <Discbar>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
-          numquam natus dolore eum dolor, distinctio quidem molestias sed
-          voluptatem nisi ab hic, repellat asperiores non incidunt labore error
-          officia inventore!
+          The{' '}
+          <a href="https://blackinnovationalliance.com">
+            Black Innovation Alliance
+          </a>{' '}
+          is a national coalition made up of approximately 50 Innovator Support
+          Organizations (ISOs) across 24 cities and nearly as many states. Our
+          members are dedicated to the development and advancement of Black
+          start-up founders, small business owners and creative technologists
+          across the country - all for the purpose of increasing ownership in
+          the innovation economy and driving economic independence.
         </Discbar>
 
         <Tbar>
