@@ -68,7 +68,6 @@ function App() {
                   path="/dashboard"
                   component={DashboardPage}
                 />
-                <PublicRoute exact path="/toolBar" component={ToolBar} />
                 <Route exact={false} component={NotFoundPage} />
               </Switch>
             </main>
