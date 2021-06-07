@@ -26,7 +26,6 @@ export const Tag = styled.span`
 `;
 
 const Tags = ({ tags }) => {
-  console.log(tags);
   return (
     <>
       {tags.map((tag, index) => (

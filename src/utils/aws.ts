@@ -30,7 +30,7 @@ const awsUpload = (key: string, body: Buffer, type: string, mime: string) => {
       console.log(err);
       console.log('Error uploading data: ', data);
     } else {
-      console.log('successfully uploaded the image!');
+      console.log('Successfully uploaded the image!');
     }
   });
 };

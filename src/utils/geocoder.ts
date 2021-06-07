@@ -25,7 +25,7 @@ class Locator {
   async getLocation(location: string) {
     return axios
       .get(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?types=place&access_token=${process.env.MAPBOX_TOKEN}`
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?types=place&access_token=pk.eyJ1Ijoiams2MDYwNjA2MCIsImEiOiJja2J4Nm4yd3kwampvMnJwZ2l6a2hrY3RjIn0.7WBReAD5vV1__FmyUaPMbA`
       )
       .then((resp) => {
         const location = { lat: 0, lng: 0 };

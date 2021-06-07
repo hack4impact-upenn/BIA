@@ -107,10 +107,14 @@ const OrgTitle = styled.span`
   margin-left: 35px;
   position: relative;
   margin-top: 20px;
+  word-wrap: break-word;
   font-size: 25px;
   font-family: 'Montserrat Alternates', sans-serif;
   font-weight: 500;
   color: ${colors.WHITE};
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const OrgName = styled.span`
@@ -181,10 +185,16 @@ const ExpandedCard = (props) => {
         return { type: 'normal', text: normal };
       })
     : [];
-  tagsArray.push(
-    { type: 'inovatorSupport', text: props.org.innovatorSupport },
-    { type: 'growthStage', text: props.org.growthStage }
-  );
+  if (props.org.focusArea && props.org.innovatorSupport) {
+    tagsArray.push(
+      { type: 'inovatorSupport', text: props.org.innovatorSupport },
+      { type: 'growthStage', text: props.org.focusArea }
+    );
+  }
+  tagsArray.sort((a, b) => {
+    if (a.type === 'growthStage') return -1;
+    else return 0;
+  });
   return (
     <div>
       <TopBar>

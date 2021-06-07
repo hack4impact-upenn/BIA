@@ -64,8 +64,7 @@ function IndexPage() {
   const handleFilterChange = (filter) => {
     setFilter(filter);
   };
-
-  console.log(searchQuery);
+  const [targetCard, setTargetCard] = useState<any>(null);
 
   return (
     <div style={{ display: 'flex', flexFlow: 'column', height: '100%' }}>
@@ -111,11 +110,17 @@ function IndexPage() {
                   data={data}
                   searchQuery={searchQuery}
                   filter={filter}
+                  targetCard={targetCard}
+                  changeTargetCard={setTargetCard}
                 />
               )}
             </div>
             <div className="column" style={{ height: '70vh' }}>
-              {isLoading ? 'Loading' : <Map data={data} />}
+              {isLoading ? (
+                'Loading'
+              ) : (
+                <Map data={data} changeOrg={setTargetCard} />
+              )}
             </div>
           </div>
         ) : (
@@ -127,6 +132,8 @@ function IndexPage() {
                 data={data}
                 searchQuery={searchQuery}
                 filter={filter}
+                changeTargetCard={setTargetCard}
+                targetCard={targetCard}
               />
             )}
           </div>

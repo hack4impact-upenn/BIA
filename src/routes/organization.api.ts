@@ -214,7 +214,6 @@ router.put('/:organizationName', async (req, res) => {
   if (req.hasOwnProperty('logo')) {
     const { logoURL } = req.body;
     organization.logoURL = logoURL;
-    console.log('\n\n ******about to post an image \n\n ******');
     awsUpload(logoURL);
   }
   if (req.hasOwnProperty('signatureProgram')) {
@@ -333,7 +332,6 @@ router.post('/uploadCSV', upload.single('file'), auth, async (req, res) => {
       // we create a new organization object from the csv data
       // NOTE: many of these are placeholders right now (unspecified behavior)
       results.forEach(async (organization: any) => {
-        console.log(organization);
         const newOrganization = new Organization();
         newOrganization.organizationName = organization[0];
         newOrganization.yearFounded = 2000;

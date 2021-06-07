@@ -82,7 +82,6 @@ const DashboardPage: React.FC = () => {
     var fileReader = new FileReader();
     fileReader.onload = function (fileLoadedEvent) {
       var srcData: string = fileLoadedEvent.target.result as string; // <--- data: base64
-      console.log(targetOrg);
       if (targetOrg) {
         api.post(`/api/org/addImage/${targetOrg}`, { logo: srcData });
       }
@@ -141,7 +140,6 @@ const DashboardPage: React.FC = () => {
             <FileSelector
               onLoadFile={(files: FileList) => {
                 alert('you uploaded partner data. good job');
-                console.log(files[0]);
                 setFileCSV(files[0]);
               }}
               file={file}
@@ -177,7 +175,6 @@ const DashboardPage: React.FC = () => {
               <FileSelector
                 onLoadFile={(files: FileList) => {
                   alert('you uploaded a logo. good job');
-                  console.log(files[0]);
                   setFileLogo(files[0]);
                 }}
                 file={fileLogo}
