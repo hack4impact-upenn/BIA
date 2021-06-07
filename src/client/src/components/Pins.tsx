@@ -30,7 +30,6 @@ function convertToAlbers(city) {
 // Important for perf: the markers never change, avoid rerender when the map viewport changes
 function Pins(props) {
   const { onClick, data } = props;
-  console.log(data);
   return (
     data
       //.map((city) => convertToAlbers(city))

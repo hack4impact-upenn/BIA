@@ -99,19 +99,12 @@ const Map = (props) => {
           map.on('click', org.organizationName, function (e) {
             changeOrg(org);
           });
-          //console.log(coordinates);
-          //var coordinates = [org.long + 96, org.lat - 35];
-
-          //var marker = new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
         });
-
-        console.log(coordinateList);
 
         // Marker Layer
       });
     });
 
-    // clean up
     return () => map.remove();
   }, []);
 

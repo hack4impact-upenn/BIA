@@ -21,7 +21,6 @@ const CardWrapper = (props: any) => {
   const { filter } = props;
   const { targetCard } = props;
   const { changeTargetCard } = props;
-  console.log(props);
   const [targetOrg, setOrg] = useState(targetCard);
   const [state, setState] = useState(targetCard ? 'expanded' : 'list');
 
