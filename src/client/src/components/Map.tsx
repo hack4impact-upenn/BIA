@@ -2,14 +2,21 @@ import React, { useRef, useEffect } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '../map.css';
-import projections from 'dirty-reprojectors';
+const projections = require('dirty-reprojectors/projections');
+import reproject from 'dirty-reprojectors/index.js';
 
-const options = {
-  forward: 'albersUsa',
-  reverse: 'mercator',
-  projections: { alberUsa: 'alberUsa', mercator: 'mercator' },
-};
-console.log(projections(options, [35, -77]));
+function getGeometryObject(x, y) {
+  return {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [x, y],
+    },
+    properties: {
+      name: 'Dinagat Islands',
+    },
+  };
+}
 
 //mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
@@ -56,10 +63,36 @@ const Map = (props) => {
 
         map.addControl(new mapboxgl.NavigationControl());
 
+        var coordinateList = [];
         data.forEach((org) => {
-          var coordinates = [org.long + 96, org.lat - 35];
+          const projs = {
+            albersUsa: projections.albers,
+            mercator: projections.mercator,
+          };
+          const options = {
+            reverse: 'mercator',
+            forward: 'albersUsa',
+            projections: projs,
+          };
+          const coords = getGeometryObject(org.long, org.lat);
+          const newCoords = reproject(options, coords);
 
-          var marker = new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+          var coordinates = [
+            newCoords.geometry['coordinates'][0],
+            newCoords.geometry['coordinates'][1],
+          ];
+          coordinateList.push(coordinates);
+          console.log(coordinates);
+          //var coordinates = [org.long + 96, org.lat - 35];
+
+          //var marker = new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+        });
+
+        map.addSource('orgs', {
+          type: 'canvas',
+          canvas: 'idOfMyHTMLCanvas',
+          animate: true,
+          coordinates: coordinateList,
         });
 
         // Marker Layer
