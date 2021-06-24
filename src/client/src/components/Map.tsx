@@ -89,6 +89,7 @@ const Map = (props) => {
             source: org.organizationName,
             layout: {
               'icon-image': process.env.PUBLIC_URL + '/img/marker.png',
+              'icon-allow-overlap': true,
             },
           });
 

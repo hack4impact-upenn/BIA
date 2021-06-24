@@ -19,6 +19,9 @@ const Avatar = styled.img`
   background: white !important;
   background: black;
   border: 2px solid white;
+  @media screen and (max-width: 768px) {
+    margin-left: 20px;
+  }
 `;
 
 //Might add this component later. Keep it for now because the login/register control might be useful.

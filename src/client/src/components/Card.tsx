@@ -4,7 +4,7 @@ import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
 
 const screenWidth = window.screen.width;
-var displayWidth = screenWidth < 1280 ? '70vw' : '28vw';
+var displayWidth = screenWidth < 1280 ? '90vw' : '28vw';
 displayWidth = screenWidth > 1680 ? '24vw' : displayWidth;
 
 const Container = styled.div`
@@ -25,8 +25,9 @@ const Container = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    max-width: 75vw;
     padding: 8px;
+    width: auto;
+    margin: auto;
   }
 `;
 

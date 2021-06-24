@@ -23,6 +23,15 @@ const Container = styled.div`
   margin: auto;
   align-items: center;
   box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+  @media screen and (max-width: 768px) {
+    max-width: 90vw;
+    padding: 10px 0px;
+    width: auto;
+    margin: 0px;
+    margin-left: 5px;
+    margin-right: 15px;
+    overflow-x: hidden;
+  }
 `;
 
 const SocialWrapping = styled.div`
@@ -55,6 +64,15 @@ const TopBar = styled.div`
   @media screen and (max-width: 768px) {
     padding-top: 5px;
     padding-bottom: 5px;
+  }
+
+  @media screen and (max-width: 768px) {
+    max-width: 90vw;
+    width: auto;
+    margin: 0px;
+    margin-left: 5px;
+    margin-right: 15px;
+    overflow-x: hidden;
   }
 `;
 
@@ -168,7 +186,7 @@ const OrgDescription = styled.p`
     font-size: 17px;
   }
   @media screen and (max-width: 768px) {
-    font-size: 10px;
+    font-size: 14px;
   }
 `;
 const TagBar = styled.div`
