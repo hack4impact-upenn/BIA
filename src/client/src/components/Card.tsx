@@ -65,7 +65,7 @@ const OrgName = styled.span`
   font-weight: 500;
   color: ${colors.YELLOW};
   @media screen and (max-width: 768px) {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 50;
   }
 `;
@@ -89,7 +89,7 @@ const OrgCity = styled.span`
   font-weight: 500;
   color: white;
   @media screen and (max-width: 768px) {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 40;
   }
 `;
@@ -99,7 +99,7 @@ const OrgDescription = styled.p`
   font-size: 12px;
   margin-bottom: 12px;
   @media screen and (max-width: 768px) {
-    font-size: 8px;
+    font-size: 11px;
   }
 `;
 

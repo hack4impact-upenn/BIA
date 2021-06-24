@@ -144,7 +144,7 @@ const OrgName = styled.span`
     font-size: 24px;
   }
   @media screen and (max-width: 768px) {
-    font-size: 16px;
+    font-size: 18px;
   }
 `;
 
@@ -157,7 +157,7 @@ const OrgCity = styled.span`
     font-size: 22px;
   }
   @media screen and (max-width: 768px) {
-    font-size: 16px;
+    font-size: 18px;
   }
 `;
 
@@ -186,7 +186,7 @@ const OrgDescription = styled.p`
     font-size: 17px;
   }
   @media screen and (max-width: 768px) {
-    font-size: 14px;
+    font-size: 18px;
   }
 `;
 const TagBar = styled.div`
