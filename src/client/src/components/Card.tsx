@@ -120,7 +120,7 @@ const Card = (props) => {
                     'bia-h4i' +
                     '.s3.amazonaws.com/' +
                     props.org.logoURL
-                  : `${process.env.PUBLIC_URL}/img/BIA2.jpeg`
+                  : `${process.env.PUBLIC_URL}/home.png`
               }
             />
             <InfoDiv>
