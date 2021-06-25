@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Card from './Card.tsx';
 
 const screenWidth = window.screen.width;
-var displayWidth = screenWidth < 1280 ? '80vw' : '30vw';
+var displayWidth = screenWidth < 1280 ? '100vw' : '30vw';
 displayWidth = screenWidth > 1680 ? '26vw' : displayWidth;
 
 const Container = styled.div`
@@ -20,8 +20,9 @@ const Container = styled.div`
   position: absolute;
 
   @media screen and (max-width: 768px) {
-    max-width: 80vw;
-    padding: 2px 4px;
+    max-width: 90vw;
+    padding: 0px 0px;
+    width: auto;
     margin: 0px;
     overflow-x: hidden;
   }

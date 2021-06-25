@@ -58,7 +58,7 @@ const customeComponents = {
 
 const Container = styled.div`
   width: 100%;
-  padding: 0px ${screenWidth < 1280 ? '5' : '20'}px;
+  padding: 0px ${screenWidth < 1280 ? '6' : '20'}px;
   justify-content: center;
   align-items: center;
   margin: auto;

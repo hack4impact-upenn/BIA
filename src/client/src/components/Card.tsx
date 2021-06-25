@@ -4,7 +4,7 @@ import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
 
 const screenWidth = window.screen.width;
-var displayWidth = screenWidth < 1280 ? '70vw' : '28vw';
+var displayWidth = screenWidth < 1280 ? '90vw' : '28vw';
 displayWidth = screenWidth > 1680 ? '24vw' : displayWidth;
 
 const Container = styled.div`
@@ -25,8 +25,9 @@ const Container = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    max-width: 75vw;
     padding: 8px;
+    width: auto;
+    margin: auto;
   }
 `;
 
@@ -64,7 +65,7 @@ const OrgName = styled.span`
   font-weight: 500;
   color: ${colors.YELLOW};
   @media screen and (max-width: 768px) {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 50;
   }
 `;
@@ -88,7 +89,7 @@ const OrgCity = styled.span`
   font-weight: 500;
   color: white;
   @media screen and (max-width: 768px) {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 40;
   }
 `;
@@ -98,7 +99,7 @@ const OrgDescription = styled.p`
   font-size: 12px;
   margin-bottom: 12px;
   @media screen and (max-width: 768px) {
-    font-size: 8px;
+    font-size: 11px;
   }
 `;
 
@@ -119,7 +120,7 @@ const Card = (props) => {
                     'bia-h4i' +
                     '.s3.amazonaws.com/' +
                     props.org.logoURL
-                  : `${process.env.PUBLIC_URL}/img/BIA2.jpeg`
+                  : `${process.env.PUBLIC_URL}/home.png`
               }
             />
             <InfoDiv>

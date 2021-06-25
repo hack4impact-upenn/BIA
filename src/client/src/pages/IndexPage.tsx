@@ -95,8 +95,8 @@ function IndexPage() {
             border: '1px solid #1d1e68',
             marginBottom: '20px',
             marginTop: '20px',
-            marginLeft: '30px',
-            marginRight: '10px',
+            marginLeft: screenWidth > 1280 ? '30px' : '20px',
+            marginRight: screenWidth > 1280 ? '10px' : '30px',
           }}
         />
 
