@@ -117,7 +117,7 @@ const Card = (props) => {
                 props.org.logoURL
                   ? 'https://' +
                     //process.env.AWS_BUCKET_NAME +
-                    'bia-h4i' +
+                    'bia-h4i-bucket' +
                     '.s3.amazonaws.com/' +
                     props.org.logoURL
                   : `${process.env.PUBLIC_URL}/home.png`
