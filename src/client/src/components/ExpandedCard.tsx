@@ -96,7 +96,7 @@ const Avatar = styled.img`
   height: 80px;
   margin-bottom: 0.2vw;
   margin-left: 10px;
-  background: black;
+  background: white;
   border-radius: 50%;
   border: 2px solid white;
 
