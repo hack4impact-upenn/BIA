@@ -40,7 +40,10 @@ function Navbar() {
       style={{ background: `${Colors.white}`, height: '65px', width: '100%' }}
     >
       <div className="navbar-brand">
-        <a href="/" style={{ display: 'flex', alignItems: 'left' }}>
+        <a
+          href="https://blackinnovationalliance.com/"
+          style={{ display: 'flex', alignItems: 'left' }}
+        >
           <Avatar src={process.env.PUBLIC_URL + '/img/BIA.png'} />
         </a>
       </div>

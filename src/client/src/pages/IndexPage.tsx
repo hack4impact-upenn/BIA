@@ -70,7 +70,7 @@ function IndexPage() {
     <div style={{ display: 'flex', flexFlow: 'column', height: '100%' }}>
       <Navbar />
       <HomeContainer>
-        <Titlebar>The Black Innovation Alliance Map</Titlebar>
+        <Titlebar>Black Innovation Alliance Membership</Titlebar>
         <Discbar>
           The{' '}
           <a href="https://blackinnovationalliance.com">
